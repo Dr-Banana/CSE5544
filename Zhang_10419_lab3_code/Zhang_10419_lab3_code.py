@@ -61,4 +61,3 @@ p = alt.Chart(movies_url).mark_circle().encode(
     alt.X('Rotten_Tomatoes_Rating:Q'),
     alt.Y('IMDB_Rating:Q')
 )
-st.pyplot(p)

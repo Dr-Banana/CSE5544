@@ -38,7 +38,7 @@ for i in range(30):
 chart_data = pd.DataFrame()
 chart_data.index = year_list
 continent_list = ['Asia','Europe','South America','Oceania','North America']
-options = st.multiselect("select continent", Countinent, ['Europe'])
+options = st.multiselect("select continent", countinent_list, ['Europe'])
 for n in range(len(options)):
   total_list = []
   df_tmp = df_1[df_1["Continent"]== options[n]]

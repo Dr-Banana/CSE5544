@@ -89,8 +89,8 @@ year_choose = []
 for i in range(start_1-1990,end_1-1989):
     year = str(1990+i)
     year_choose.append(year)
-#  & (df['year'].isin(year_choose))
-df_output = chart_data[(chart_data['country'].isin(option1))]
+    
+df_output = chart_data[(chart_data['country'].isin(option1))& (df['year'].isin(year_choose))]
 df_output.reset_index()
 #render using altair
 

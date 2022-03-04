@@ -51,6 +51,6 @@ for n in range(5):
 sns.set()
 fig = plt.figure()
 sns.heatmap(chart_data,cmap="coolwarm")
-fig.set_xlabel("Continent", fontsize = 20)
-fig.set_ylabel("Year", fontsize = 20)
+plt.set_xlabel("Continent", fontsize = 20)
+plt.set_ylabel("Year", fontsize = 20)
 st.pyplot(fig)

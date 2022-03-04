@@ -60,7 +60,7 @@ st.pyplot(plt)
 df_1 = df_1.set_index('Country\\year')
 df_1
 chart = alt.Chart(df_1.reset_index()).mark_circle().encode(
-    x='index:T',
+    x='2019:Q',
     y='2018:Q',
 )
 

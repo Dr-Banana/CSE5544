@@ -58,8 +58,9 @@ ax.set_ylabel("Year", fontsize = 15)
 st.pyplot(plt)
 
 movies_url = 'https://cdn.jsdelivr.net/npm/vega-datasets@1/data/movies.json'
-chart = alt.Chart(movies_url).mark_circle().encode(
-    alt.X('Rotten_Tomatoes_Rating:Q'),
-    alt.Y('IMDB_Rating:Q')
+chart = alt.Chart(movies_url).mark_bar().encode(
+    alt.X('Rotten_Tomatoes_Rating:Q'),bin=alt.BinParams(maxbins=20)),
+    alt.Y('IMDB_Rating:Q'), bin=alt.BinParams(maxbins=20)),
+    alt.Color('count()')
 )
 st.altair_chart(chart, use_container_width = True)

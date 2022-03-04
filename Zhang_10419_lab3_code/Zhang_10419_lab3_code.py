@@ -28,8 +28,9 @@ df_1.reset_index(inplace=True)
 df_1 = df_1.drop(columns=['Non-OECD Economies','index'])
 # add corresponding continent
 df_1["Continent"] = ["South America","Oceania","Europe","Europe","Europe","South America","Europe","North America","South America","Asia","South America","North America","Europe","Asia","Europe","Europe","Europe","","Europe","Europe","Europe","Europe","Europe","Europe","Asia","Asia","Asia","Europe","Asia","Europe","Asia","Asia","Asia","Europe","Europe","Europe","Europe","Europe","North America","Europe","Europe","Oceania","Europe","","","South America","Europe","Europe","Europe","Europe","Asia","Europe","Europe","Africa","Europe","Europe","Europe","Asia","Europe","Europe","North America"]
+
+
 # Create a year list
-# year_list = ['1990','1997','2004','2011','2019']
 year_list = []
 for i in range(30):
     year = str(1990+i)
@@ -38,7 +39,11 @@ for i in range(30):
 chart_data = pd.DataFrame()
 chart_data.index = year_list
 continent_list = ['Asia','Europe','South America','Oceania','North America']
+st.subheader("Select the continent")
 options = st.multiselect("select continent", continent_list, ['Europe'])
+st.subheader("Slide to choose the year")
+x = st.slider("Year", 1990, 2019)
+st.write("number is:",x-1990)
 for n in range(len(options)):
   total_list = []
   df_tmp = df_1[df_1["Continent"]== options[n]]
@@ -61,6 +66,7 @@ if(len(options)!=0):
 else:
   st.write("Please select at least one country")
 
+  
 #prepare the data
 countries = data['Country\\year']
 df_data_country = data.iloc[:,2:]

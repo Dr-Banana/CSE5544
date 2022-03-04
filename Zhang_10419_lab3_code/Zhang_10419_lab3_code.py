@@ -5,7 +5,7 @@ import seaborn as sns
 import numpy as np
 import altair as alt
 
-st.title("streamlit quick start")
+st.title("Zhang_10419_lab3_code")
 
 st.header("Write and magic commands")
 
@@ -15,19 +15,9 @@ st.markdown("# h1")
 st.markdown("## h2")
 st.markdown("### h3")
 
-st.latex("\sum_{0}^{n}i")
-
-st.header("Display data")
-
-st.subheader("Matplotlib chart")
-
-df = pd.DataFrame({
-    'c1':[1,2,3,4],
-    'c2':[10,20,30,40]
-})
-
 data = pd.read_csv("https://raw.githubusercontent.com/CSE5544/data/main/ClimateData.csv")
 
+# change ".." to number
 data = data.replace('..',0)
 for i in range(30):
   year = str(1990+i)

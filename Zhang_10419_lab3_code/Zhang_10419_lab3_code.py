@@ -28,3 +28,10 @@ df = pd.DataFrame({
 
 data = pd.read_csv("https://raw.githubusercontent.com/CSE5544/data/main/ClimateData.csv")
 data
+
+# Set a new df_1 without OECD-Total and Non-OCED Economies column
+df_1 = df_data.drop(df_data[df_data['Country\\year']=="OECD - Total"].index)
+df_1.reset_index(inplace=True)
+df_1 = df_1.drop(columns=['Non-OECD Economies','index'])
+# add corresponding continent
+df_1["Continent"] = ["South America","Oceania","Europe","Europe","Europe","South America","Europe","North America","South America","Asia","South America","North America","Europe","Asia","Europe","Europe","Europe","","Europe","Europe","Europe","Europe","Europe","Europe","Asia","Asia","Asia","Europe","Asia","Europe","Asia","Asia","Asia","Europe","Europe","Europe","Europe","Europe","North America","Europe","Europe","Oceania","Europe","","","South America","Europe","Europe","Europe","Europe","Asia","Europe","Europe","Africa","Europe","Europe","Europe","Asia","Europe","Europe","North America"]

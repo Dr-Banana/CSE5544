@@ -50,13 +50,11 @@ for n in range(5):
 
 # display chart
 sns.set()
-fig = plt.figure()
 ax = sns.heatmap(chart_data,cmap="coolwarm")
 ax.set_xlabel("Continent", fontsize = 15)
 ax.set_ylabel("Year", fontsize = 15)
 
-
-st.pyplot(fig)
+st.pyplot(plt)
 
 movies_url = 'https://cdn.jsdelivr.net/npm/vega-datasets@1/data/movies.json'
 alt.Chart(movies_url).mark_circle().encode(

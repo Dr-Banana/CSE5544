@@ -12,7 +12,7 @@ st.markdown("### h3")
 
 st.header("Visualize climate data in heatmaps")
 
-st.subheader("write subheader")
+st.subheader("honest/ethical/truthful graph")
 
 data = pd.read_csv("https://raw.githubusercontent.com/CSE5544/data/main/ClimateData.csv")
 

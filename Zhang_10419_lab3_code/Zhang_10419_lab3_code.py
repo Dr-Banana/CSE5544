@@ -51,7 +51,7 @@ for n in range(len(options)):
   
   chart_data[options[n]] = total_list
 year_choose_list = []
-for i in range(start-1989,end-1989):
+for i in range(start-1990,end-1990):
     year = str(1990+i)
     year_choose_list.append(year)
 chart_data.index = year_choose_list

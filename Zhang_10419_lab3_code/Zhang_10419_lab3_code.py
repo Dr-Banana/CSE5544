@@ -57,7 +57,7 @@ ax.set_ylabel("Year", fontsize = 15)
 
 st.pyplot(plt)
 
-chart = alt.Chart(data).mark_circle().encode(
+chart = alt.Chart(df_1).mark_circle().encode(
     x='Country\\year',
     y='2019'
 )

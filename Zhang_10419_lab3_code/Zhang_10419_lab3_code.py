@@ -57,3 +57,10 @@ ax.set_ylabel("Year", fontsize = 15)
 
 
 st.pyplot(fig)
+
+movies_url = 'https://cdn.jsdelivr.net/npm/vega-datasets@1/data/movies.json'
+alt.Chart(movies_url).mark_circle().encode(
+    alt.X('Rotten_Tomatoes_Rating:Q'),
+    alt.Y('IMDB_Rating:Q')
+)
+st.pyplot(plt)

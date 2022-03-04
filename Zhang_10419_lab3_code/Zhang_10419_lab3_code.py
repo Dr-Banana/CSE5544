@@ -46,11 +46,10 @@ for n in range(5):
   total_list = []
   year_list = []
   df_tmp = df_1[df_1["Continent"]== continent_list[n]]
-  df_tmp
   for i in range(30):
     year = str(1990+i)
     year_list.append(year)
     total = df_tmp[year].sum()
     total_list.append(total)
-  chart_data = pd.DataFrame({continent_list[n]:total_list})
+  chart_data[continent_list[n]] = total_list
 chart_data

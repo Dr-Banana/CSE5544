@@ -39,7 +39,7 @@ st.subheader("Select the continent")
 options = st.multiselect("select continent", continent_list, ['Europe'])
 st.subheader("Slide to choose the year")
 x = st.slider("Year", 1990, 2019)
-y = x-1990
+y = x-1989
 
 # Data setup part
 for n in range(len(options)):

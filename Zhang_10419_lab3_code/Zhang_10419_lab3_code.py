@@ -38,7 +38,7 @@ continent_list = ['Asia','Europe','South America','Oceania','North America']
 st.subheader("Select the continent")
 options = st.multiselect("select continent", continent_list, ['Europe'])
 st.subheader("Slide to choose the year")
-x = st.slider("Year", 1990, 2019)
+x = st.slider("Year", 1990, 2019,(1990, 1991))
 y = x-1989
 
 # Data setup part

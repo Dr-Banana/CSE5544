@@ -57,11 +57,19 @@ ax.set_ylabel("Year", fontsize = 15)
 
 st.pyplot(plt)
 
-df_1 = df_1.set_index('Country\\year')
-df_1
-chart = alt.Chart(df_1.reset_index()).mark_circle().encode(
-    x='2019:Q',
-    y='2018:Q',
+chart_data = data.drop(columns=['Non-OECD Economies'])
+chart_data = pd.melt(chart_data, id_vars=['Country\year'], var_name='year')
+chart_data['value'] = chart_data['value'].apply(pd.to_numeric, errors='coerce')
+chart_data.rename(columns={"Country\year": "country", "value":"emission"}, inplace = True)
+chart_data
+countries = data['Country\\year']
+
+option = st.selectbox("select one country", countries)
+
+filter_data = chart_data[chart_data['country'] == option]
+bar_chart = alt.Chart(filter_data).mark_bar().encode(
+    x = 'year:O',
+    y = 'emission:Q'
 )
 
 st.altair_chart(chart, use_container_width=True)

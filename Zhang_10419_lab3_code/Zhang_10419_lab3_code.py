@@ -46,5 +46,5 @@ for n in range(5):
     year_list.append(year)
     total = df_tmp[year].sum()
     total_list.append(total)
-  chart_data = {'year':year_list,continent_list[n]:mean_list}
+  chart_data = {'year':year_list,continent_list[n]:total_list}
 chart_data

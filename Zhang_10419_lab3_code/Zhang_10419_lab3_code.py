@@ -18,6 +18,7 @@ for i in range(30):
   year = str(1990+i)
   data[year] = data[year].astype(float)
 
+st.markdown("### Emission of Continent vs. Year Heatmap")
 # Set a new df_1 without OECD-Total and Non-OCED Economies column
 df_1 = data.drop(data[data['Country\\year']=="OECD - Total"].index)
 df_1.reset_index(inplace=True)
@@ -28,9 +29,6 @@ df_1["Continent"] = ["South America","Oceania","Europe","Europe","Europe","South
                      "Europe","Europe","Asia","Asia","Asia","Europe","Asia","Europe","Asia","Asia","Asia","Europe","Europe","Europe",
                      "Europe","Europe","North America","Europe","Europe","Oceania","Europe","","","South America","Europe","Europe",
                      "Europe","Europe","Asia","Europe","Europe","Africa","Europe","Europe","Europe","Asia","Europe","Europe","North America"]
-
-
-
 # Create a continent VS. year polution dataframe
 chart_data = pd.DataFrame()
 continent_list = ['Asia','Europe','South America','Oceania','North America']
@@ -68,7 +66,7 @@ if(len(options)!=0 and (start-1990)>=0):
 else:
   st.write("Country and Year cannot be null!!!")
 
-
+#Graph 2:
 #prepare the data
 countries = data['Country\\year']
 df_data_country = data.iloc[:,2:]
@@ -104,14 +102,14 @@ heatmap = alt.Chart(df_output).mark_rect().encode(
 st.altair_chart(heatmap, use_container_width = True)
 
 
-st.subheader("interactive altair chart")
+# st.subheader("interactive altair chart")
 
-option = st.selectbox("select one country", countries)
+# option = st.selectbox("select one country", countries)
 
-filter_data = chart_data[chart_data['country'] == option]
-bar_chart = alt.Chart(filter_data).mark_circle().encode(
-    x = 'year:O',
-    y = 'emission:Q'
-)
+# filter_data = chart_data[chart_data['country'] == option]
+# bar_chart = alt.Chart(filter_data).mark_bar().encode(
+#     x = 'year:O',
+#     y = 'emission:Q'
+# )
 
-st.altair_chart(bar_chart, use_container_width = True)
+# st.altair_chart(bar_chart, use_container_width = True)

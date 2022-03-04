@@ -50,14 +50,16 @@ for n in range(len(options)):
   chart_data[options[n]] = total_list
 
 # display chart
-fig, ax = plt.subplots()
-sns.set()
-ax = sns.heatmap(chart_data,cmap="coolwarm")
-ax.set_xlabel("Continent", fontsize = 15)
-ax.set_ylabel("Year", fontsize = 15)
+if(len(options)!=0):
+  fig, ax = plt.subplots()
+  sns.set()
+  ax = sns.heatmap(chart_data,cmap="coolwarm")
+  ax.set_xlabel("Continent", fontsize = 15)
+  ax.set_ylabel("Year", fontsize = 15)
 
-st.pyplot(plt)
-
+  st.pyplot(plt)
+else:
+  st.write("Please select at least one country")
 
 #prepare the data
 countries = data['Country\\year']

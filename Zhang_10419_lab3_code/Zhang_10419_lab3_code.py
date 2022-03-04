@@ -76,7 +76,7 @@ option1 = st.multiselect("select one country", countries,['Canada','Austria','In
 st.subheader("altair chart")
 
 chart_data = data.drop(columns=['Non-OECD Economies'])
-chart_data = pd.melt(chart_data, id_vars=['Country\year'=='Canada'], var_name='year')
+chart_data = pd.melt(chart_data, id_vars=['Country\year'], var_name='year')
 chart_data
 chart_data['value'] = chart_data['value'].apply(pd.to_numeric, errors='coerce')
 chart_data.rename(columns={"Country\year": "country", "value":"emission"}, inplace = True)

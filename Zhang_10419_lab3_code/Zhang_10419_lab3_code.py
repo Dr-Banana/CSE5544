@@ -56,7 +56,7 @@ for n in range(5):
     total = df_tmp[year].sum()
     total_list.append(total)
   chart_data[continent_list[n]] = total_list
-chart_data
+
 # display chart
 sns.set()
 fig = plt.figure()

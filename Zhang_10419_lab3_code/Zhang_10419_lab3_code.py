@@ -26,5 +26,5 @@ df = pd.DataFrame({
     'c2':[10,20,30,40]
 })
 
-data = pd.read_csv("https://raw.githubusercontent.com/ZeningQu/World-Bank-Data-by-Indicators/master/gender/Metadata_Country_API_17_DS2_en_csv_v2_3058240.csv")
+data = pd.read_csv("https://raw.githubusercontent.com/CSE5544/data/main/ClimateData.csv")
 data

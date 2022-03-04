@@ -57,9 +57,10 @@ ax.set_ylabel("Year", fontsize = 15)
 
 st.pyplot(plt)
 
+df_1 = df_1.set_index('Country\\year')
 chart = alt.Chart(df_1).mark_circle().encode(
     x='Continent',
-    y='Country\\year'
+    y='index:T'
 )
 
 st.altair_chart(chart, use_container_width=True)

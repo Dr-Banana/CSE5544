@@ -60,7 +60,7 @@ st.pyplot(plt)
 data_url = 'https://raw.githubusercontent.com/CSE5544/data/main/ClimateData.csv'
 chart = alt.Chart(data_url).mark_bar().encode(
     alt.X('2019:Q', bin=alt.BinParams(maxbins=20)),
-    alt.Y('2018:Q', bin=alt.BinParams(maxbins=20)),
+    alt.Y('index:T', bin=alt.BinParams(maxbins=20)),
     color=alt.Color('Origin:N', legend=None),
 )
 

@@ -56,8 +56,9 @@ for i in range(y):
     year = str(1990+i)
     year_choose_list.append(year)
 chart_data.index = year_choose_list
+
 # display chart
-if(len(options)!=0 and y!=0):
+if(len(options)!=0 and y>=0):
   fig, ax = plt.subplots()
   sns.set()
   ax = sns.heatmap(chart_data,cmap="coolwarm")

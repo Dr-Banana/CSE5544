@@ -59,8 +59,8 @@ st.pyplot(plt)
 
 movies_url = 'https://raw.githubusercontent.com/CSE5544/data/main/ClimateData.csv'
 chart = alt.Chart(movies_url).mark_circle().encode(
-    alt.X("2019"),
-    alt.Y("1990"),
+    alt.X('2019:Q'),
+    alt.Y('1990:Q'),
     alt.Color('count()')
 )
 

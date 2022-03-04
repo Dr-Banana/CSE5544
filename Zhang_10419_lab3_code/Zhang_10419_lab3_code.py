@@ -6,14 +6,13 @@ import numpy as np
 import altair as alt
 
 st.title("Zhang_10419_lab3_code")
-
-st.header("Write and magic commands")
-
-st.subheader("write subheader")
-
 st.markdown("# h1")
 st.markdown("## h2")
 st.markdown("### h3")
+
+st.header("Visualize climate data in heatmaps")
+
+st.subheader("write subheader")
 
 data = pd.read_csv("https://raw.githubusercontent.com/CSE5544/data/main/ClimateData.csv")
 

@@ -60,9 +60,9 @@ st.pyplot(plt)
 data_url = 'https://raw.githubusercontent.com/CSE5544/data/main/ClimateData.csv'
 data = pd.read_csv("https://raw.githubusercontent.com/CSE5544/data/main/ClimateData.csv")
 data
-# chart = alt.Chart(data_url).mark_bar().encode(
-#     alt.X('2019:Q'),
-#     alt.Y(''Country\\year:N'),
-# )
+chart = alt.Chart(data_url).mark_bar().encode(
+    alt.X('2019:Q'),
+    alt.Y(''Country\\year:T'),
+)
 
-# st.altair_chart(chart, use_container_width = True)
+st.altair_chart(chart, use_container_width = True)

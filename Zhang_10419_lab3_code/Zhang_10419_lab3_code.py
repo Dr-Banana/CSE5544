@@ -17,7 +17,7 @@ st.subheader("honest/ethical/truthful graph")
 data = pd.read_csv("https://raw.githubusercontent.com/CSE5544/data/main/ClimateData.csv")
 
 # change ".." to number
-data = data.replace('..',0)
+data = data.replace('..','')
 for i in range(30):
   year = str(1990+i)
   data[year] = data[year].astype(float)
@@ -50,7 +50,7 @@ for n in range(5):
 # display chart
 sns.set()
 fig = plt.figure()
-ax = sns.heatmap(chart_data,cmap="coolwarm").interactive()
+ax = sns.heatmap(chart_data,cmap="coolwarm")
 ax.set_xlabel("Continent", fontsize = 15)
 ax.set_ylabel("Year", fontsize = 15)
 

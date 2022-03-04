@@ -57,13 +57,11 @@ ax.set_ylabel("Year", fontsize = 15)
 
 st.pyplot(plt)
 
-movies_url = 'https://raw.githubusercontent.com/CSE5544/data/main/ClimateData.csv'
-movies = pd.read_csv(movies_url)
-movies.head(5)
-chart = alt.Chart(movies_url).mark_bar().encode(
+data_url = 'https://raw.githubusercontent.com/CSE5544/data/main/ClimateData.csv'
+chart = alt.Chart(data_url).mark_bar().encode(
     alt.X('2019:Q', bin=alt.BinParams(maxbins=20)),
     alt.Y('2018:Q', bin=alt.BinParams(maxbins=20)),
-    alt.Color('count()')
+    color=alt.Color('Origin:N', legend=None),
 )
 
 st.altair_chart(chart, use_container_width = True)

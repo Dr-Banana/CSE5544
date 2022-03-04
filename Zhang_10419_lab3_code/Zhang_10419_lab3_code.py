@@ -58,10 +58,6 @@ for n in range(5):
   chart_data[continent_list[n]] = total_list
 chart_data
 # display chart
-fig, ax = plt.subplots()
-plt.imshow(chart_data)
+ax = sns.heatmap(chart_data)
 
-ax.set_xticks(np.arange(len(continent_list)), labels=continent_list)
-ax.set_yticks(np.arange(len(year_list)), labels=year_list)
-
-st.pyplot(fig)
+st.pyplot(ax)

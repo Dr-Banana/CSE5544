@@ -39,21 +39,20 @@ st.subheader("Select the continent")
 options = st.multiselect("select continent", continent_list, ['Europe'])
 st.subheader("Slide to choose the year")
 start,end = st.slider("Year", 1990, 2019,(1990,1990))
-st.write(start,end)
 x = st.slider("Year", 1990, 2019,(1990))
 y = x-1989
 # Data setup part
 for n in range(len(options)):
   total_list = []
   df_tmp = df_1[df_1["Continent"]== options[n]]
-  for i in range(y):
+  for i in range(start-1989,end-1989):
     year = year_list[i]
     total = df_tmp[year].sum()
     total_list.append(total)
   
   chart_data[options[n]] = total_list
 year_choose_list = []
-for i in range(y):
+for i in range(start-1989,end-1989):
     year = str(1990+i)
     year_choose_list.append(year)
 chart_data.index = year_choose_list

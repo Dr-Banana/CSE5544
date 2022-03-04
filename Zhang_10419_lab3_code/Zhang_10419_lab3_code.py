@@ -57,10 +57,10 @@ ax.set_ylabel("Year", fontsize = 15)
 
 st.pyplot(plt)
 
-movies_url = 'https://cdn.jsdelivr.net/npm/vega-datasets@1/data/movies.json'
+movies_url = 'https://raw.githubusercontent.com/CSE5544/data/main/ClimateData.csv'
 chart = alt.Chart(movies_url).mark_bar().encode(
-    alt.X('Rotten_Tomatoes_Rating:Q', bin=alt.BinParams(maxbins=20)),
-    alt.Y('IMDB_Rating:Q', bin=alt.BinParams(maxbins=20)),
+    alt.X("2019", bin=alt.BinParams(maxbins=20)),
+    alt.Y("1990", bin=alt.BinParams(maxbins=20)),
     alt.Color('count()')
 )
 

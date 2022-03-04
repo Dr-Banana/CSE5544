@@ -38,15 +38,16 @@ for i in range(30):
 chart_data = pd.DataFrame()
 chart_data.index = year_list
 continent_list = ['Asia','Europe','South America','Oceania','North America']
-for n in range(5):
+options = st.multiselect("select continent", Countinent, ['Europe'])
+for n in range(len(options)):
   total_list = []
-  df_tmp = df_1[df_1["Continent"]== continent_list[n]]
+  df_tmp = df_1[df_1["Continent"]== options[n]]
   for i in range(30):
     year = year_list[i]
     total = df_tmp[year].sum()
     total_list.append(total)
   
-  chart_data[continent_list[n]] = total_list
+  chart_data[options[n]] = total_list
 
 # display chart
 fig, ax = plt.subplots()
@@ -57,10 +58,6 @@ ax.set_ylabel("Year", fontsize = 15)
 
 st.pyplot(plt)
 
-st.write('-------------------------------------------')
-
-data = pd.read_csv("https://raw.githubusercontent.com/CSE5544/data/main/ClimateData.csv")
-data
 
 #prepare the data
 countries = data['Country\\year']
@@ -68,20 +65,6 @@ df_data_country = data.iloc[:,2:]
 df_data_country = df_data_country.apply(pd.to_numeric, errors='coerce')
 country_stats = pd.DataFrame({'country': countries, 'mean': df_data_country.mean(axis=1),
                        'std': df_data_country.std(axis=1)})
-
-#render results
-fig, ax = plt.subplots(figsize=(14, 6), dpi = 50)
-ax.bar(countries, country_stats['mean'], yerr=country_stats['std'], capsize = 3)
-ax.set_axisbelow(True)  #ensure the grid is under the graph elements
-ax.margins(x=0.01) #set up the margin of graph
-ax.grid(alpha = 0.3) #show the grid line
-ax.set_xlabel('country')
-ax.set_ylabel('emissions')
-ax.set_title('The mean and std of emissions of countries')
-xaxis = plt.xticks(rotation=90, ha='center', fontsize=8)
-yaxis = plt.yticks(fontsize=8)
-
-st.pyplot(fig)
 
 st.subheader("altair chart")
 
@@ -101,27 +84,6 @@ heatmap = alt.Chart(chart_data).mark_rect().encode(
 
 st.altair_chart(heatmap, use_container_width = True)
 
-st.header("widgets")
-
-st.subheader("button")
-
-st.button("click me")
-
-if(st.button("about")):
-    st.text("clicked about")
-
-st.subheader("checkbox")
-
-agree = st.checkbox("I agree")
-if agree:
-    st.write("Great, you agreed!")
-
-st.subheader("radio")
-type = st.radio("what's your favorite movie type?", ("Comedy", "Drama", "Action"))
-if type == "Comedy":
-    st.write("You selected Comedy")
-else:
-    st.write("you selected something else")
 
 st.subheader("selectbox")
 option = st.selectbox("country", ("USA", "China", "Europe Union"))

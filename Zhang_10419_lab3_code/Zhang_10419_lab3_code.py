@@ -61,7 +61,7 @@ movies_url = 'https://raw.githubusercontent.com/CSE5544/data/main/ClimateData.cs
 movies = pd.read_csv(movies_url)
 movies.head(5)
 chart = alt.Chart(movies_url).mark_bar().encode(
-    alt.X('2019:Q', bin=alt.BinParams(maxbins=10)),
+    alt.X('2019:Q', bin=alt.BinParams(maxbins=50)),
     alt.Y('1990:Q', bin=alt.BinParams(maxbins=5)),
     alt.Color('count()')
 )

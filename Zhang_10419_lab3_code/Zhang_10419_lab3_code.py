@@ -35,9 +35,7 @@ for i in range(30):
 chart_data = pd.DataFrame()
 continent_list = ['Asia','Europe','South America','Oceania','North America']
 # User selection part
-st.subheader("Select the continent")
 options = st.multiselect("select continent", continent_list, ['Europe'])
-st.subheader("Slide to choose the year")
 start,end = st.slider("Year", 1990, 2019,(1990,1990))
 # Data setup part
 for n in range(len(options)):

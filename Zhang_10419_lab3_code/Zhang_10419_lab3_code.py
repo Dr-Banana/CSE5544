@@ -109,7 +109,7 @@ st.subheader("interactive altair chart")
 option = st.selectbox("select one country", countries)
 
 filter_data = chart_data[chart_data['country'] == option]
-bar_chart = alt.Chart(filter_data).mark_dot().encode(
+bar_chart = alt.Chart(filter_data).mark_circle().encode(
     x = 'year:O',
     y = 'emission:Q'
 )

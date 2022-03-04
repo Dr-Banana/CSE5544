@@ -59,7 +59,7 @@ st.pyplot(plt)
 
 chart = alt.Chart(df_1).mark_circle().encode(
     x='Continent',
-    y='2019'
+    y='Country\\year'
 )
 
 st.altair_chart(chart, use_container_width=True)

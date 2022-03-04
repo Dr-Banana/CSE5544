@@ -63,4 +63,5 @@ chart = alt.Chart(movies_url).mark_bar().encode(
     alt.Y('IMDB_Rating:Q'), bin=alt.BinParams(maxbins=20)),
     alt.Color('count()')
 )
+
 st.altair_chart(chart, use_container_width = True)

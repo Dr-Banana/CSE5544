@@ -34,4 +34,17 @@ df_1.reset_index(inplace=True)
 df_1 = df_1.drop(columns=['Non-OECD Economies','index'])
 # add corresponding continent
 df_1["Continent"] = ["South America","Oceania","Europe","Europe","Europe","South America","Europe","North America","South America","Asia","South America","North America","Europe","Asia","Europe","Europe","Europe","","Europe","Europe","Europe","Europe","Europe","Europe","Asia","Asia","Asia","Europe","Asia","Europe","Asia","Asia","Asia","Europe","Europe","Europe","Europe","Europe","North America","Europe","Europe","Oceania","Europe","","","South America","Europe","Europe","Europe","Europe","Asia","Europe","Europe","Africa","Europe","Europe","Europe","Asia","Europe","Europe","North America"]
-df_1
+
+chart_data = pd.DataFrame()
+continent_list = ['Asia','Europe','South America','Oceania','North America']
+for n in range(5):
+  total_list = []
+  year_list = []
+  df_tmp = df_1[df_1["Continent"]== continent_list[n]]
+  for i in range(30):
+    year = str(1990+i)
+    year_list.append(year)
+    total = df_tmp[year].sum()
+    total_list.append(total)
+  chart_data = {'year':year_list,continent_list[n]:mean_list}
+chart_data

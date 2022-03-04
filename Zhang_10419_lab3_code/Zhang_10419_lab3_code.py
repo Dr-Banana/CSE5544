@@ -49,6 +49,7 @@ for n in range(5):
   chart_data[continent_list[n]] = total_list
 
 # display chart
+fig, ax = plt.subplots()
 sns.set()
 ax = sns.heatmap(chart_data,cmap="coolwarm")
 ax.set_xlabel("Continent", fontsize = 15)
@@ -56,8 +57,10 @@ ax.set_ylabel("Year", fontsize = 15)
 
 st.pyplot(plt)
 
+fig, ax = plt.subplots()
 movies_url = 'https://cdn.jsdelivr.net/npm/vega-datasets@1/data/movies.json'
-p = alt.Chart(movies_url).mark_circle().encode(
+ax = alt.Chart(movies_url).mark_circle().encode(
     alt.X('Rotten_Tomatoes_Rating:Q'),
     alt.Y('IMDB_Rating:Q')
 )
+st.pyplot(plt)

@@ -53,7 +53,7 @@ for n in range(len(options)):
   chart_data[options[n]] = total_list
 chart_data
 # display chart
-if(len(options)!=0):
+if(len(options)!=0 and x!=0):
   fig, ax = plt.subplots()
   sns.set()
   ax = sns.heatmap(chart_data,cmap="coolwarm")
@@ -62,7 +62,7 @@ if(len(options)!=0):
 
   st.pyplot(plt)
 else:
-  st.write("Please select at least one country")
+  st.write("Country and Year cannot be null!!!")
 
   
 #prepare the data

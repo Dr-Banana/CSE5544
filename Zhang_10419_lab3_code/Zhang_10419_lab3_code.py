@@ -58,7 +58,7 @@ ax.set_ylabel("Year", fontsize = 15)
 st.pyplot(plt)
 
 movies_url = 'https://raw.githubusercontent.com/CSE5544/data/main/ClimateData.csv'
-chart = alt.Chart(movies_url).mark_circle().encode(
+chart = alt.Chart(movies_url).mark_bar().encode(
     alt.X('2019:Q', bin=alt.BinParams(maxbins=20)),
     alt.Y('1990:Q', bin=alt.BinParams(maxbins=20)),
     alt.Color('count()')

@@ -61,8 +61,8 @@ data_url = 'https://raw.githubusercontent.com/CSE5544/data/main/ClimateData.csv'
 data = pd.read_csv("https://raw.githubusercontent.com/CSE5544/data/main/ClimateData.csv")
 data
 chart = alt.Chart(data_url).mark_circle().encode(
-    alt.X('Country\year:T'),
-    alt.Y('2019:Q'),
+    alt.X('Country\year'),
+    alt.Y('2019'),
 )
 
 st.altair_chart(chart, use_container_width = True)

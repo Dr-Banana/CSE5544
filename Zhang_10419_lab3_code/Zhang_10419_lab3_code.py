@@ -71,10 +71,8 @@ df_data_country = data.iloc[:,2:]
 df_data_country = df_data_country.apply(pd.to_numeric, errors='coerce')
 country_stats = pd.DataFrame({'country': countries, 'mean': df_data_country.mean(axis=1),
                        'std': df_data_country.std(axis=1)})
-country_stats
-AllCountry_list = countries.tolist()
-AllCountry_list
-option1 = st.multiselect("Select Countries", AllCountry_list, ['Europe'])
+
+option = st.selectbox("select one country", countries)
 st.subheader("altair chart")
 
 chart_data = data.drop(columns=['Non-OECD Economies'])
@@ -84,6 +82,7 @@ chart_data.rename(columns={"Country\year": "country", "value":"emission"}, inpla
 chart_data
 
 #render using altair
+
 heatmap = alt.Chart(chart_data).mark_rect().encode(
     x=alt.X('country:N', title = 'country'),
     y=alt.Y('year:O', title = 'year'),

@@ -73,6 +73,7 @@ country_stats = pd.DataFrame({'country': countries, 'mean': df_data_country.mean
                        'std': df_data_country.std(axis=1)})
 country_stats
 AllCountry_list = countries.tolist()
+AllCountry_list
 option1 = st.multiselect("Select Countries", AllCountry_list, ['Europe'])
 st.subheader("altair chart")
 

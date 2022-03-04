@@ -58,8 +58,8 @@ ax.set_ylabel("Year", fontsize = 15)
 st.pyplot(plt)
 
 chart = alt.Chart(data).mark_circle().encode(
-    x='Country\year',
+    x='Country\\year',
     y='2019'
 )
 
-st.altair_chart(chart, use_container_width = True)
+st.altair_chart(chart)

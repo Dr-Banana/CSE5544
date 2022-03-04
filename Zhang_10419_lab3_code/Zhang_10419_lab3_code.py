@@ -57,5 +57,12 @@ for n in range(5):
     total_list.append(total)
   chart_data[continent_list[n]] = total_list
 # display chart
-plt.imshow(chart_data,cmap='hot', interpolation='nearest')
+fig, ax = plt.subplots()
+plt.imshow(chart_data)
+
+ax.set_xticks(np.arange(len(continent_list)), labels=continent_list)
+ax.set_yticks(np.arange(len(year_list)), labels=year_list)
+
+fig.tight_layout()
+plt.show()
 plt.show()

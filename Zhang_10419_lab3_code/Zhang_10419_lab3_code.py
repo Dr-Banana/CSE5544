@@ -77,7 +77,7 @@ country_stats = pd.DataFrame({'country': countries, 'mean': df_data_country.mean
                        'std': df_data_country.std(axis=1)})
 
 option1 = st.multiselect("select one country", countries,['Canada','Austria','India'])
-start_1,end_1 = st.slider("Select Year", 1990, 2019,(1990,1991))
+start,end = st.slider("Select Year", 1990, 2019,(1990,1991))
 
 st.subheader("altair chart")
 # Pick User choose countries

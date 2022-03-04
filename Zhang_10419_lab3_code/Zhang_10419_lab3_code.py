@@ -60,8 +60,8 @@ st.pyplot(plt)
 df_1 = df_1.set_index('Country\\year')
 df_1
 chart = alt.Chart(df_1.reset_index()).mark_circle().encode(
-    x='2018',
-    y='index:T'
+    x='index:T',
+    y='2018',
 )
 
 st.altair_chart(chart, use_container_width=True)

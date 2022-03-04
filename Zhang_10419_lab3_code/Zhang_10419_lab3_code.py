@@ -45,30 +45,30 @@ for n in range(5):
     total = df_tmp[year].sum()
     total_list.append(total)
   sizeList = []
-  for i in total_list:
-      if i<10000:
-        sizeList.append(0.1)
-      elif i<50000 and i>10000:
-        sizeList.append(0.2)
-      elif i<100000 and i>50000:
-        sizeList.append(0.3)
-      elif i<200000 and i>100000:
-        sizeList.append(0.4)
-      elif i<400000 and i>200000:
-        sizeList.append(0.5)
-      elif i<800000 and i>400000:
-        sizeList.append(0.6)
-      elif i<1600000 and i>800000:
-        sizeList.append(0.7)
-      elif i<3200000 and i>1600000:
-        sizeList.append(0.8)
-      elif i<6400000 and i>3200000:
-        sizeList.append(0.8)
-      elif i<12800000 and i>6400000:
-        sizeList.append(0.9)
-      else:
-        sizeList.append(1)
-  chart_data[continent_list[n]] = sizeList
+#   for i in total_list:
+#       if i<10000:
+#         sizeList.append(0.1)
+#       elif i<50000 and i>10000:
+#         sizeList.append(0.2)
+#       elif i<100000 and i>50000:
+#         sizeList.append(0.3)
+#       elif i<200000 and i>100000:
+#         sizeList.append(0.4)
+#       elif i<400000 and i>200000:
+#         sizeList.append(0.5)
+#       elif i<800000 and i>400000:
+#         sizeList.append(0.6)
+#       elif i<1600000 and i>800000:
+#         sizeList.append(0.7)
+#       elif i<3200000 and i>1600000:
+#         sizeList.append(0.8)
+#       elif i<6400000 and i>3200000:
+#         sizeList.append(0.8)
+#       elif i<12800000 and i>6400000:
+#         sizeList.append(0.9)
+#       else:
+#         sizeList.append(1)
+  chart_data[continent_list[n]] = total_list
 
 # display chart
 sns.set()

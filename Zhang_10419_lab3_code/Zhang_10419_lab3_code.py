@@ -46,8 +46,8 @@ y = x-1990
 for n in range(len(options)):
   total_list = []
   df_tmp = df_1[df_1["Continent"]== options[n]]
-  for i in range(y):
-    year = year_list[y]
+  for i in range(30):
+    year = year_list[i]
     total = df_tmp[year].sum()
     total_list.append(total)
   

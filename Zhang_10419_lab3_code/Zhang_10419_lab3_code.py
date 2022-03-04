@@ -41,12 +41,13 @@ options = st.multiselect("select continent", continent_list, ['Europe'])
 st.subheader("Slide to choose the year")
 x = st.slider("Year", 1990, 2019)
 y = x-1990
+
 # Data setup part
 for n in range(len(options)):
   total_list = []
   df_tmp = df_1[df_1["Continent"]== options[n]]
   for i in range(y):
-    year = year_list[i]
+    year = year_list[y]
     total = df_tmp[year].sum()
     total_list.append(total)
   

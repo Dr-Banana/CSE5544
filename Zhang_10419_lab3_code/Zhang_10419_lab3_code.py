@@ -44,7 +44,7 @@ st.write(start-1989,end-1989)
 for n in range(len(options)):
   total_list = []
   df_tmp = df_1[df_1["Continent"]== options[n]]
-  for i in range(start-1989,end-1989):
+  for i in range(start-1990,end-1990):
     year = year_list[i]
     total = df_tmp[year].sum()
     total_list.append(total)
@@ -57,7 +57,7 @@ for i in range(start-1989,end-1989):
 chart_data.index = year_choose_list
 
 # display chart
-if(len(options)!=0 and y>=0):
+if(len(options)!=0 and (start-1990)>=0):
   fig, ax = plt.subplots()
   sns.set()
   ax = sns.heatmap(chart_data,cmap="coolwarm")

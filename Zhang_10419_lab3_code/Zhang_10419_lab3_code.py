@@ -60,5 +60,3 @@ chart_data
 # display chart
 sns.set()
 ax = sns.heatmap(chart_data)
-
-st.pyplot(ax)

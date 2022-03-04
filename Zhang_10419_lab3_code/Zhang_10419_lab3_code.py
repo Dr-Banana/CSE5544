@@ -62,4 +62,4 @@ chart = alt.Chart(data).mark_circle().encode(
     y='2019:Q'
 )
 
-st.altair_chart(chart)
+st.pyplot(chart)

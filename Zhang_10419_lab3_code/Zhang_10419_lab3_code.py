@@ -52,7 +52,7 @@ for n in range(5):
   total_list = []
   df_tmp = df_1[df_1["Continent"]== continent_list[n]]
   for i in range(5):
-    year = yearr_list[i]
+    year = year_list[i]
     total = df_tmp[year].sum()
     total_list.append(total)
   chart_data[continent_list[n]] = total_list

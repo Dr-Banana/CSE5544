@@ -33,7 +33,6 @@ for i in range(30):
     year_list.append(year)
 # Create a continent VS. year polution dataframe
 chart_data = pd.DataFrame()
-chart_data.index = year_list
 continent_list = ['Asia','Europe','South America','Oceania','North America']
 # User selection part
 st.subheader("Select the continent")
@@ -46,7 +45,7 @@ y = x-1990
 for n in range(len(options)):
   total_list = []
   df_tmp = df_1[df_1["Continent"]== options[n]]
-  for i in range(1):
+  for i in range(30):
     year = year_list[i]
     total = df_tmp[year].sum()
     total_list.append(total)

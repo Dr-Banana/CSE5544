@@ -28,6 +28,11 @@ df = pd.DataFrame({
 
 data = pd.read_csv("https://raw.githubusercontent.com/CSE5544/data/main/ClimateData.csv")
 
+data = data.replace('..',0)
+for i in range(30):
+  year = str(1990+i)
+  data[year] = data[year].astype(float)
+
 # Set a new df_1 without OECD-Total and Non-OCED Economies column
 df_1 = data.drop(data[data['Country\\year']=="OECD - Total"].index)
 df_1.reset_index(inplace=True)

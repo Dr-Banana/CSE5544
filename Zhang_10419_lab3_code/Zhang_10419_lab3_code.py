@@ -59,4 +59,6 @@ for n in range(5):
 chart_data
 # display chart
 sns.set()
-ax = sns.heatmap(chart_data)
+fig = plt.figure()
+sns.heatmap(chart_data)
+st.pyplot(fig)

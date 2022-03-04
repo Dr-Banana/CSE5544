@@ -49,5 +49,5 @@ for n in range(5):
 # display chart
 sns.set()
 fig = plt.figure()
-sns.heatmap(chart_data)
+sns.heatmap(chart_data,cmap="coolwarm")
 st.pyplot(fig)

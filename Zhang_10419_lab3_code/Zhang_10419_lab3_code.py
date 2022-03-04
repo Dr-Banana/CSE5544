@@ -23,7 +23,11 @@ df_1 = data.drop(data[data['Country\\year']=="OECD - Total"].index)
 df_1.reset_index(inplace=True)
 df_1 = df_1.drop(columns=['Non-OECD Economies','index'])
 # add corresponding continent
-df_1["Continent"] = ["South America","Oceania","Europe","Europe","Europe","South America","Europe","North America","South America","Asia","South America","North America","Europe","Asia","Europe","Europe","Europe","","Europe","Europe","Europe","Europe","Europe","Europe","Asia","Asia","Asia","Europe","Asia","Europe","Asia","Asia","Asia","Europe","Europe","Europe","Europe","Europe","North America","Europe","Europe","Oceania","Europe","","","South America","Europe","Europe","Europe","Europe","Asia","Europe","Europe","Africa","Europe","Europe","Europe","Asia","Europe","Europe","North America"]
+df_1["Continent"] = ["South America","Oceania","Europe","Europe","Europe","South America","Europe","North America","South America","Asia",
+                     "South America","North America","Europe","Asia","Europe","Europe","Europe","","Europe","Europe","Europe","Europe",
+                     "Europe","Europe","Asia","Asia","Asia","Europe","Asia","Europe","Asia","Asia","Asia","Europe","Europe","Europe",
+                     "Europe","Europe","North America","Europe","Europe","Oceania","Europe","","","South America","Europe","Europe",
+                     "Europe","Europe","Asia","Europe","Europe","Africa","Europe","Europe","Europe","Asia","Europe","Europe","North America"]
 
 
 
@@ -74,13 +78,14 @@ country_stats = pd.DataFrame({'country': countries, 'mean': df_data_country.mean
 
 option1 = st.multiselect("select one country", countries,['Canada','Austria','India'])
 st.subheader("altair chart")
-
+# Pick User choose countries
 chart_data = data.drop(columns=['Non-OECD Economies'])
 chart_data = pd.melt(chart_data, id_vars=['Country\year'], var_name='year')
-chart_data
 chart_data['value'] = chart_data['value'].apply(pd.to_numeric, errors='coerce')
 chart_data.rename(columns={"Country\year": "country", "value":"emission"}, inplace = True)
-chart_data
+
+for i in range(len(option1)):
+  chart_data[chart_data['country']==option1[i]]
 
 #render using altair
 

@@ -72,7 +72,7 @@ df_data_country = df_data_country.apply(pd.to_numeric, errors='coerce')
 country_stats = pd.DataFrame({'country': countries, 'mean': df_data_country.mean(axis=1),
                        'std': df_data_country.std(axis=1)})
 country_stats
-option1 = st.multiselect("Select Countries", countries, ['Europe'])
+option1 = st.multiselect("Select Countries", df_data_country, ['Europe'])
 st.subheader("altair chart")
 
 chart_data = data.drop(columns=['Non-OECD Economies'])

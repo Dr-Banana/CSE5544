@@ -85,10 +85,10 @@ chart_data['value'] = chart_data['value'].apply(pd.to_numeric, errors='coerce')
 chart_data.rename(columns={"Country\year": "country", "value":"emission"}, inplace = True)
 
 df_output = chart_data[(chart_data['country'].isin(option1))]
-df_output
+df_output.reset_index()
 #render using altair
 
-heatmap = alt.Chart(chart_data).mark_rect().encode(
+heatmap = alt.Chart(df_output).mark_rect().encode(
     x=alt.X('country:N', title = 'country'),
     y=alt.Y('year:O', title = 'year'),
     color='emission:Q',

@@ -51,7 +51,7 @@ for n in range(len(options)):
     total_list.append(total)
   
   chart_data[options[n]] = total_list
-
+chart_data
 # display chart
 if(len(options)!=0):
   fig, ax = plt.subplots()

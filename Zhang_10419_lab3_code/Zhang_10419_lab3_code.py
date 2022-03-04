@@ -6,12 +6,8 @@ import numpy as np
 import altair as alt
 
 st.title("Zhang_10419_lab3_code")
-st.markdown("# h1")
-st.markdown("## h2")
-st.markdown("### h3")
 
 st.header("Visualize climate data in heatmaps")
-
 st.subheader("honest/ethical/truthful graph")
 
 data = pd.read_csv("https://raw.githubusercontent.com/CSE5544/data/main/ClimateData.csv")
@@ -39,15 +35,17 @@ for i in range(30):
 chart_data = pd.DataFrame()
 chart_data.index = year_list
 continent_list = ['Asia','Europe','South America','Oceania','North America']
+# User selection part
 st.subheader("Select the continent")
 options = st.multiselect("select continent", continent_list, ['Europe'])
 st.subheader("Slide to choose the year")
 x = st.slider("Year", 1990, 2019)
-st.write("number is:",x-1990)
+y = x-1990
+# Data setup part
 for n in range(len(options)):
   total_list = []
   df_tmp = df_1[df_1["Continent"]== options[n]]
-  for i in range(30):
+  for i in range(y):
     year = year_list[i]
     total = df_tmp[year].sum()
     total_list.append(total)
@@ -102,10 +100,6 @@ st.subheader("multi-select")
 option = st.multiselect("country", ("USA", "China", "Europe Union"), ("USA"))
 
 st.write(option)
-
-st.subheader("slider")
-x = st.slider("x")
-st.write("the square is", x * x)
 
 st.header("Interactive chart")
 

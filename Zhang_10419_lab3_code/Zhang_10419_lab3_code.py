@@ -57,6 +57,5 @@ for n in range(5):
     total_list.append(total)
   chart_data[continent_list[n]] = total_list
 # display chart
-plt.imshow(chart_data,labels=dict(x="Continent",y="year",color="Productivity"),
-          x=continent_list,y=year_list
-          )
+plt.imshow(chart_data)
+plt.show()

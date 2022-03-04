@@ -58,7 +58,7 @@ ax.set_ylabel("Year", fontsize = 15)
 st.pyplot(plt)
 
 chart = alt.Chart(data).mark_circle().encode(
-    x='index',
+    x=index,
     y='2019'
 )
 

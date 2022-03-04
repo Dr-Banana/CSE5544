@@ -51,9 +51,13 @@ for n in range(len(options)):
     total_list.append(total)
   
   chart_data[options[n]] = total_list
-chart_data
+year_choose_list = []
+for i in range(y):
+    year = str(1990+i)
+    year_choose_list.append(year)
+chart_data.index = year_choose_list
 # display chart
-if(len(options)!=0 and x!=0):
+if(len(options)!=0 and y!=0):
   fig, ax = plt.subplots()
   sns.set()
   ax = sns.heatmap(chart_data,cmap="coolwarm")

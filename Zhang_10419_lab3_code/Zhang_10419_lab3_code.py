@@ -29,10 +29,11 @@ df_1 = df_1.drop(columns=['Non-OECD Economies','index'])
 # add corresponding continent
 df_1["Continent"] = ["South America","Oceania","Europe","Europe","Europe","South America","Europe","North America","South America","Asia","South America","North America","Europe","Asia","Europe","Europe","Europe","","Europe","Europe","Europe","Europe","Europe","Europe","Asia","Asia","Asia","Europe","Asia","Europe","Asia","Asia","Asia","Europe","Europe","Europe","Europe","Europe","North America","Europe","Europe","Oceania","Europe","","","South America","Europe","Europe","Europe","Europe","Asia","Europe","Europe","Africa","Europe","Europe","Europe","Asia","Europe","Europe","North America"]
 # Create a year list
-year_list = ['1990','1997','2004','2011','2019']
-# for i in range(30):
-#     year = str(1990+i)
-#     year_list.append(year)
+# year_list = ['1990','1997','2004','2011','2019']
+year_list = []
+for i in range(30):
+    year = str(1990+i)
+    year_list.append(year)
 # Create a continent VS. year polution dataframe
 chart_data = pd.DataFrame()
 chart_data.index = year_list
@@ -40,7 +41,7 @@ continent_list = ['Asia','Europe','South America','Oceania','North America']
 for n in range(5):
   total_list = []
   df_tmp = df_1[df_1["Continent"]== continent_list[n]]
-  for i in range(5):
+  for i in range(30):
     year = year_list[i]
     total = df_tmp[year].sum()
     total_list.append(total)

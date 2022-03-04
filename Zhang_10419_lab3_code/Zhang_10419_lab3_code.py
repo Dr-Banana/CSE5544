@@ -87,7 +87,8 @@ chart_data.rename(columns={"Country\year": "country", "value":"emission"}, inpla
 df_output = pd.DataFrame()
 for i in range(len(option1)):
   df_output.append(chart_data[chart_data['country']==option1[i]])
-df_output
+  chart_data[chart_data['country']==option1[i]]
+  df_output
 #render using altair
 
 heatmap = alt.Chart(chart_data).mark_rect().encode(

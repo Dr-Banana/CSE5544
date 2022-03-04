@@ -50,22 +50,9 @@ for n in range(5):
 # display chart
 sns.set()
 fig = plt.figure()
-# ax = sns.heatmap(chart_data,cmap="coolwarm")
-# ax.set_xlabel("Continent", fontsize = 15)
-# ax.set_ylabel("Year", fontsize = 15)
+ax = sns.heatmap(chart_data,cmap="coolwarm").interactive()
+ax.set_xlabel("Continent", fontsize = 15)
+ax.set_ylabel("Year", fontsize = 15)
 
-ht_list = Heatmap(matrix(rnorm(100), 10), name = "mat", show_column_dend = FALSE) +
-    rowAnnotation(foo = anno_barplot(1:10, width = unit(4, "cm"))) +
-    rowAnnotation(bar = anno_boxplot(matrix(rnorm(100), 10)), width = unit(4, "cm"))
-    draw(ht_list, padding = unit(c(2, 2, 10, 2), "mm")) # add space for titles
-decorate_annotation("foo", { 
-    grid.text("title for barplot", y = unit(1, "npc") + unit(2, "mm"), just = "bottom") 
-})
-decorate_annotation("bar", { 
-    grid.text("title for boxplot", y = unit(1, "npc") + unit(2, "mm"), just = "bottom") 
-})
-decorate_heatmap_body("mat", {
-    grid.text("title for the heatmap", y = unit(1, "npc") + unit(2, "mm"), just = "bottom")
-})
 
 st.pyplot(fig)

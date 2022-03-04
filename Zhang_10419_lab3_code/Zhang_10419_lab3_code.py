@@ -58,6 +58,7 @@ for n in range(5):
   chart_data[continent_list[n]] = total_list
 chart_data
 # display chart
+sns.set()
 ax = sns.heatmap(chart_data)
 
 st.pyplot(ax)

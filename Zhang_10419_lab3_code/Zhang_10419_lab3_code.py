@@ -26,18 +26,19 @@ df_1 = df_1.drop(columns=['Non-OECD Economies','index'])
 df_1["Continent"] = ["South America","Oceania","Europe","Europe","Europe","South America","Europe","North America","South America","Asia","South America","North America","Europe","Asia","Europe","Europe","Europe","","Europe","Europe","Europe","Europe","Europe","Europe","Asia","Asia","Asia","Europe","Asia","Europe","Asia","Asia","Asia","Europe","Europe","Europe","Europe","Europe","North America","Europe","Europe","Oceania","Europe","","","South America","Europe","Europe","Europe","Europe","Asia","Europe","Europe","Africa","Europe","Europe","Europe","Asia","Europe","Europe","North America"]
 
 
+
+# Create a continent VS. year polution dataframe
+chart_data = pd.DataFrame()
+continent_list = ['Asia','Europe','South America','Oceania','North America']
+# User selection part
+options = st.multiselect("Select Continent", continent_list, ['Europe'])
+start,end = st.slider("Select Year", 1990, 2019,(1990,1991))
 # Create a year list
 year_list = []
 for i in range(30):
     year = str(1990+i)
     year_list.append(year)
-# Create a continent VS. year polution dataframe
-chart_data = pd.DataFrame()
-continent_list = ['Asia','Europe','South America','Oceania','North America']
-# User selection part
-options = st.multiselect("select continent", continent_list, ['Europe'])
-start,end = st.slider("Year", 1990, 2019,(1990,1991))
-# Data setup part
+# Data setup 
 for n in range(len(options)):
   total_list = []
   df_tmp = df_1[df_1["Continent"]== options[n]]
@@ -52,7 +53,6 @@ for i in range(start-1990,end-1989):
     year = str(1990+i)
     year_choose_list.append(year)
 chart_data.index = year_choose_list
-
 # display chart
 if(len(options)!=0 and (start-1990)>=0):
   fig, ax = plt.subplots()
@@ -60,19 +60,19 @@ if(len(options)!=0 and (start-1990)>=0):
   ax = sns.heatmap(chart_data,cmap="coolwarm")
   ax.set_xlabel("Continent", fontsize = 15)
   ax.set_ylabel("Year", fontsize = 15)
-
   st.pyplot(plt)
 else:
   st.write("Country and Year cannot be null!!!")
 
-  
+
 #prepare the data
 countries = data['Country\\year']
 df_data_country = data.iloc[:,2:]
 df_data_country = df_data_country.apply(pd.to_numeric, errors='coerce')
 country_stats = pd.DataFrame({'country': countries, 'mean': df_data_country.mean(axis=1),
                        'std': df_data_country.std(axis=1)})
-
+country_stats
+option1 = st.multiselect("Select Countries", countries, ['Europe'])
 st.subheader("altair chart")
 
 chart_data = data.drop(columns=['Non-OECD Economies'])

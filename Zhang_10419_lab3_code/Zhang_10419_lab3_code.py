@@ -32,8 +32,8 @@ st.header("Step 1")
 singleSelect = st.selectbox("select one country", countries)
 chart_data = pd.DataFrame()
 # df_data_country = df_data_country.apply(pd.to_numeric, errors='coerce')
-df_tmp.index = df_tmp["Country\year"]
 df_tmp = data[data["Country\year"]== singleSelect].iloc[:,2:]
+df_tmp.index = singleSelect
 df_tmp = df_tmp.apply(pd.to_numeric, errors='coerce')
 df_tmp
 plot = chart_data.boxplot(singleSelect)

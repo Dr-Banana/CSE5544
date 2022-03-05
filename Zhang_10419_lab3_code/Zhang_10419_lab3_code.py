@@ -45,9 +45,14 @@ boxPlot = alt.Chart(filter_data).mark_boxplot(size=50,extent=0.5).encode(
 ).properties(width=300).configure_axis(
     labelFontSize=16,
     titleFontSize=16)
-
 st.altair_chart(boxPlot, use_container_width = True)
 
+scatter_chart = alt.Chart(filter_data).mark_line().encode(
+    x = 'year:O',
+    y = 'emission:Q'
+)
+
+st.altair_chart(bar_chart, use_container_width = True)
 
 st.header("Step 2")
 st.subheader("Visualize climate data in heatmaps(P1)")

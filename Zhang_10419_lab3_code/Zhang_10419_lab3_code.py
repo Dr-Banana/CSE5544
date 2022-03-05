@@ -55,7 +55,8 @@ lower = alt.Chart(filter_data).mark_rect().encode(
     height=200
 ).interactive()
 
-st.altair_chart(upper|lower)
+obj = alt.vconcat(upper, lower)
+st.altair_chart(obj)
 
 
 

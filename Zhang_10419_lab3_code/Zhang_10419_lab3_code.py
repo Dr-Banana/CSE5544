@@ -7,8 +7,7 @@ import altair as alt
 
 st.title("Zhang_10419_lab3_code")
 
-st.header("Visualize climate data in heatmaps")
-st.subheader("honest/ethical/truthful graph")
+st.header("Visualize climate data in heatmaps(P1)")
 
 data = pd.read_csv("https://raw.githubusercontent.com/CSE5544/data/main/ClimateData.csv")
 

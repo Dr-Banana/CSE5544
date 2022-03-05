@@ -45,7 +45,6 @@ upper = alt.Chart(filter_data).mark_boxplot(size=50,extent=0.5).encode(
 ).properties(width=300).configure_axis(
     labelFontSize=16,
     titleFontSize=16)
-st.altair_chart(boxPlot, use_container_width = True)
 
 lower = alt.Chart(filter_data).mark_rect().encode(
     x = 'year:O',

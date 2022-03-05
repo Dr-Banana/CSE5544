@@ -39,19 +39,18 @@ chart_data.rename(columns={"Country\year": "country", "value":"emission"}, inpla
 st.header("Step 1")
 singleSelect = st.selectbox("select one country", countries)
 filter_data = chart_data[chart_data['country'] == singleSelect]
-upper = alt.Chart(filter_data).mark_boxplot(size=50,extent=0.5).encode(
-    x='country',
-    y=alt.Y('emission:Q',scale=alt.Scale(zero=False))
-).properties(width=600)
-
-lower = alt.Chart(filter_data).mark_rect().encode(
-    y = alt.Y('emission:Q', bin=True),
+upper = alt.Chart(filter_data).mark_rect().encode(
+    y = alt.Y('emission:Q', bin=alt.Bin(maxbins=30)),
     x = 'year:O',
     color = alt.Color('emission:Q', scale=alt.Scale(scheme='greenblue')),
     tooltip=['country', 'year', 'emission']
-).properties(width=600,height=200)
+).properties(width=550,height=200)
+lower = alt.Chart(filter_data).mark_boxplot(size=50,extent=0.5).encode(
+    x='country',
+    y=alt.Y('emission:Q',scale=alt.Scale(zero=False))
+).properties(width=550)
 
-obj = alt.vconcat(lower, upper)
+obj = alt.vconcat(upper, lower)
 st.altair_chart(obj)
 
 

@@ -76,7 +76,7 @@ country_stats = pd.DataFrame({'country': countries, 'mean': df_data_country.mean
 option1 = st.multiselect("select country", countries,['Canada','Austria','India'])
 start_1,end_1 = st.slider('Select Year', 1990, 2019,(1990,1990))
 
-st.subheader("### Emission of Countries vs. Year Heatmap")
+st.markdown("### Emission of Countries vs. Year Heatmap")
 # Pick User choose countries
 chart_data = data.drop(columns=['Non-OECD Economies'])
 chart_data = pd.melt(chart_data, id_vars=['Country\year'], var_name='year')

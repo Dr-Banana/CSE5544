@@ -50,7 +50,7 @@ st.altair_chart(boxPlot, use_container_width = True)
 bar_chart = alt.Chart(filter_data).mark_rect().encode(
     x = 'year:O',
     y = alt.Y('emission:Q', bin=True),
-    color = alt.Color('count()', scale=alt.Scale(scheme='greenblue'))
+    color = alt.Color('emission:Q', scale=alt.Scale(scheme='greenblue'))
 ).properties(
     height=200
 )

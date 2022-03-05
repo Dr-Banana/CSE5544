@@ -34,9 +34,9 @@ countries = data['Country\\year']
 st.header("Step 1")
 singleSelect = st.selectbox("select one country", countries)
 getList = data[data["Country\year"]== singleSelect].iloc[:,2:]
-df_tmp = pd.DataFrame({singleSelect:getList.values.tolist()})
-df_tmp
-
+df_tmp = pd.DataFrame()
+a = getListdf.loc[0, :].values.tolist()
+a
 
 st.header("Step 2")
 st.subheader("Visualize climate data in heatmaps(P1)")

@@ -42,16 +42,16 @@ filter_data = chart_data[chart_data['country'] == singleSelect]
 upper = alt.Chart(filter_data).mark_boxplot(size=50,extent=0.5).encode(
     x='country',
     y=alt.Y('emission:Q',scale=alt.Scale(zero=False))
-).properties(width=300)
+).properties(width=600)
 
 lower = alt.Chart(filter_data).mark_rect().encode(
     y = alt.Y('emission:Q', bin=True),
     x = 'year:O',
     color = alt.Color('emission:Q', scale=alt.Scale(scheme='greenblue')),
     tooltip=['country', 'year', 'emission']
-).properties(width=300,height=200)
+).properties(width=600,height=200)
 
-obj = alt.vconcat(upper, lower)
+obj = alt.vconcat(lower, upper)
 st.altair_chart(obj)
 
 

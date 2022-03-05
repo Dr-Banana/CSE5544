@@ -25,7 +25,7 @@ df_1["Continent"] = ["South America","Oceania","Europe","Europe","Europe","South
                      "Europe","Europe","Asia","Asia","Asia","Europe","Asia","Europe","Asia","Asia","Asia","Europe","Europe","Europe",
                      "Europe","Europe","North America","Europe","Europe","Oceania","Europe","","","South America","Europe","Europe",
                      "Europe","Europe","Asia","Europe","Europe","Africa","Europe","Europe","Europe","Asia","Europe","Europe","North America"]
-
+countries = data['Country\\year']
 
 
 st.header("Step 1")
@@ -114,7 +114,6 @@ else:
 
 #Graph 2:
 #prepare the data
-countries = data['Country\\year']
 df_data_country = data.iloc[:,2:]
 df_data_country = df_data_country.apply(pd.to_numeric, errors='coerce')
 country_stats = pd.DataFrame({'country': countries, 'mean': df_data_country.mean(axis=1),

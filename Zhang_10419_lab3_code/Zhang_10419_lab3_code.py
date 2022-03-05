@@ -52,7 +52,10 @@ scatter_chart = alt.Chart(filter_data).mark_line().encode(
     y = 'emission:Q'
 )
 
-st.altair_chart(bar_chart, use_container_width = True)
+st.altair_chart(scatter_chart, use_container_width = True)
+
+
+
 
 st.header("Step 2")
 st.subheader("Visualize climate data in heatmaps(P1)")

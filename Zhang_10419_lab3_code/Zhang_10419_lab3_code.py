@@ -6,6 +6,7 @@ import numpy as np
 import altair as alt
 
 st.title("Zhang_10419_lab3_code")
+# Set Up
 data = pd.read_csv("https://raw.githubusercontent.com/CSE5544/data/main/ClimateData.csv")
 
 # change ".." to number
@@ -29,11 +30,15 @@ df_1["Continent"] = ["South America","Oceania","Europe","Europe","Europe","South
                      "Europe","Europe","North America","Europe","Europe","Oceania","Europe","","","South America","Europe","Europe",
                      "Europe","Europe","Asia","Europe","Europe","Africa","Europe","Europe","Europe","Asia","Europe","Europe","North America"]
 countries = data['Country\\year']
-
+# chart Data create
+chart_data = data.drop(columns=['Non-OECD Economies'])
+chart_data = pd.melt(chart_data, id_vars=['Country\year'], var_name='year')
+chart_data['value'] = chart_data['value'].apply(pd.to_numeric, errors='coerce')
+chart_data.rename(columns={"Country\year": "country", "value":"emission"}, inplace = True)
 
 st.header("Step 1")
 singleSelect = st.selectbox("select one country", countries)
-filter_data = data[data['Country\\year'] == singleSelect]
+filter_data = data[data['country'] == singleSelect]
 filter_data
 
 st.header("Step 2")
@@ -84,10 +89,6 @@ option1 = st.multiselect("select country", countries,['Canada','Austria','India'
 start_1,end_1 = st.slider('Select Year', 1990, 2019,(1990,1990))
 
 # Pick User choose countries
-chart_data = data.drop(columns=['Non-OECD Economies'])
-chart_data = pd.melt(chart_data, id_vars=['Country\year'], var_name='year')
-chart_data['value'] = chart_data['value'].apply(pd.to_numeric, errors='coerce')
-chart_data.rename(columns={"Country\year": "country", "value":"emission"}, inplace = True)
 year_choose = []
 for i in range(start_1-1990,end_1-1989):
     year = str(1990+i)

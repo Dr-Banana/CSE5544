@@ -30,22 +30,12 @@ countries = data['Country\\year']
 
 st.header("Step 1")
 singleSelect = st.selectbox("select one country", countries)
-mean_list = []
-total_list = []
-year_list = []
 chart_data = pd.DataFrame()
 # df_data_country = df_data_country.apply(pd.to_numeric, errors='coerce')
+df_tmp.index = df_tmp["Country\year"]
 df_tmp = data[data["Country\year"]== singleSelect].iloc[:,2:]
+df_tmp = df_tmp.apply(pd.to_numeric, errors='coerce')
 df_tmp
-for i in range(30):
-  year = str(1990+i)
-  year_list.append(year)
-  total = df_tmp[year].sum()
-  total_list.append(total)
-  mean = df_tmp[year].mean()
-  mean_list.append(mean)
-chart_data = {'year':year_list,singleSelect:mean_list}
-chart_data = pd.DataFrame(data=chart_data,index=year_list)
 plot = chart_data.boxplot(singleSelect)
 plot.ticklabel_format(axis="y", style="sci", scilimits=(0,0))
 plot.grid()

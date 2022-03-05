@@ -45,8 +45,8 @@ upper = alt.Chart(filter_data).mark_boxplot(size=50,extent=0.5).encode(
 ).properties(width=300)
 
 lower = alt.Chart(filter_data).mark_rect().encode(
-    x = 'year:O',
-    y = alt.Y('emission:Q', bin=True),
+    x = alt.X('emission:Q', bin=True),
+    y = 'year:O',
     color = alt.Color('emission:Q', scale=alt.Scale(scheme='greenblue')),
     tooltip=['country', 'year', 'emission']
 ).properties(height=200)

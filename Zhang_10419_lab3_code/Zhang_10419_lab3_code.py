@@ -34,7 +34,7 @@ mean_list = []
 total_list = []
 year_list = []
 chart_data = pd.DataFrame()
-df_data_country = df_data_country.apply(pd.to_numeric, errors='coerce')
+# df_data_country = df_data_country.apply(pd.to_numeric, errors='coerce')
 df_tmp = data[data["Country\year"]== singleSelect].iloc[:,2:]
 df_tmp
 for i in range(30):

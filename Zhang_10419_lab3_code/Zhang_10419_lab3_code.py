@@ -13,8 +13,11 @@ data = data.replace('..',0)
 for i in range(30):
   year = str(1990+i)
   data[year] = data[year].astype(float)
-
-st.markdown("### Emission of Continent vs. Year Heatmap")
+# Create a year list
+year_list = []
+for i in range(30):
+    year = str(1990+i)
+    year_list.append(year)
 # Set a new df_1 without OECD-Total and Non-OCED Economies column
 df_1 = data.drop(data[data['Country\\year']=="OECD - Total"].index)
 df_1.reset_index(inplace=True)
@@ -32,8 +35,8 @@ st.header("Step 1")
 singleSelect = st.selectbox("select one country", countries)
 df_tmp = pd.DataFrame()
 getList = data[data["Country\year"]== singleSelect].iloc[:,2:]
-a = getList.values.tolist()
-a
+df_tmp[singleSelect] = getList.values.tolist()
+df_tmp
 
 
 st.header("Step 2")
@@ -64,11 +67,6 @@ continent_list = ['Asia','Europe','South America','Oceania','North America']
 # User selection part
 options = st.multiselect("Select Continent", continent_list, ['Europe'])
 start,end = st.slider("Select Year", 1990, 2019,(1990,1991))
-# Create a year list
-year_list = []
-for i in range(30):
-    year = str(1990+i)
-    year_list.append(year)
 # Data setup 
 for n in range(len(options)):
   total_list = []

@@ -39,7 +39,7 @@ chart_data.rename(columns={"Country\year": "country", "value":"emission"}, inpla
 st.header("Step 1")
 singleSelect = st.selectbox("select one country", countries)
 filter_data = chart_data[chart_data['country'] == singleSelect]
-boxPlot = alt.Chart(filter_data).mark_boxplot(size=50,extent=0.5).encode(
+upper = alt.Chart(filter_data).mark_boxplot(size=50,extent=0.5).encode(
     x='country',
     y=alt.Y('emission:Q',scale=alt.Scale(zero=False))
 ).properties(width=300).configure_axis(
@@ -47,7 +47,7 @@ boxPlot = alt.Chart(filter_data).mark_boxplot(size=50,extent=0.5).encode(
     titleFontSize=16)
 st.altair_chart(boxPlot, use_container_width = True)
 
-bar_chart = alt.Chart(filter_data).mark_rect().encode(
+lower = alt.Chart(filter_data).mark_rect().encode(
     x = 'year:O',
     y = alt.Y('emission:Q', bin=True),
     color = alt.Color('emission:Q', scale=alt.Scale(scheme='greenblue')),
@@ -55,8 +55,8 @@ bar_chart = alt.Chart(filter_data).mark_rect().encode(
 ).properties(
     height=200
 ).interactive()
-
-st.altair_chart(bar_chart, use_container_width = True)
+output = alt.vconcat(upper, lower)
+st.altair_chart(output, use_container_width = True)
 
 
 

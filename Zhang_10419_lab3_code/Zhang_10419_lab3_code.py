@@ -32,7 +32,7 @@ st.header("Step 1")
 singleSelect = st.selectbox("select one country", countries)
 chart_data = pd.DataFrame()
 df_tmp = data[data["Country\year"]== singleSelect].iloc[:,2:].apply(pd.to_numeric, errors='coerce')
-singleBar = pd.DataFrame({'country': singleSelect, 'mean': df_tmp.mean(axis=1),
+singleBar = pd.DataFrame(index=singleSelect,{'mean': df_tmp.mean(axis=1),
                        'std': df_tmp.std(axis=1)})
 singleBar
 

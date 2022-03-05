@@ -41,7 +41,7 @@ singleSelect = st.selectbox("select one country", countries)
 filter_data = chart_data[chart_data['country'] == singleSelect]
 boxPlot = alt.Chart(filter_data).mark_boxplot().encode(
     x='country',
-    y='emission:Q'
+    y=alt.Y('emission:Q',scale=alt.Scale(zero=False))
 )
 st.altair_chart(boxPlot, use_container_width = True)
 

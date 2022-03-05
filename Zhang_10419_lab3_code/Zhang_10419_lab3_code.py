@@ -51,7 +51,7 @@ bar_chart = alt.Chart(filter_data).mark_bar().encode(
     x = 'year:O',
     y = 'emission:Q'
 ).properties(
-    height=100
+    height=200
 )
 
 st.altair_chart(bar_chart, use_container_width = True)

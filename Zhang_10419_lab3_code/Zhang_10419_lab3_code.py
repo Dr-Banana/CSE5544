@@ -6,8 +6,55 @@ import numpy as np
 import altair as alt
 
 st.title("Zhang_10419_lab3_code")
+data = pd.read_csv("https://raw.githubusercontent.com/CSE5544/data/main/ClimateData.csv")
 
-st.header("Visualize climate data in heatmaps(P1)")
+# change ".." to number
+data = data.replace('..',0)
+for i in range(30):
+  year = str(1990+i)
+  data[year] = data[year].astype(float)
+
+st.markdown("### Emission of Continent vs. Year Heatmap")
+# Set a new df_1 without OECD-Total and Non-OCED Economies column
+df_1 = data.drop(data[data['Country\\year']=="OECD - Total"].index)
+df_1.reset_index(inplace=True)
+df_1 = df_1.drop(columns=['Non-OECD Economies','index'])
+# add corresponding continent
+df_1["Continent"] = ["South America","Oceania","Europe","Europe","Europe","South America","Europe","North America","South America","Asia",
+                     "South America","North America","Europe","Asia","Europe","Europe","Europe","","Europe","Europe","Europe","Europe",
+                     "Europe","Europe","Asia","Asia","Asia","Europe","Asia","Europe","Asia","Asia","Asia","Europe","Europe","Europe",
+                     "Europe","Europe","North America","Europe","Europe","Oceania","Europe","","","South America","Europe","Europe",
+                     "Europe","Europe","Asia","Europe","Europe","Africa","Europe","Europe","Europe","Asia","Europe","Europe","North America"]
+
+
+
+st.header("Step 1")
+singleSelect = st.selectbox("select one country", countries)
+mean_list = []
+total_list = []
+year_list = []
+chart_data = pd.DataFrame()
+df_tmp = data[data["Country\year"]== singleSelect]
+for i in range(30):
+  year = str(1990+i)
+  year_list.append(year)
+  total = df_tmp[year].sum()
+  total_list.append(total)
+  mean = df_tmp[year].mean()
+  mean_list.append(mean)
+chart_data = {'year':year_list,singleSelect:mean_list}
+chart_data = pd.DataFrame(data=chart_data,index=year_list)
+plot = chart_data.boxplot(singleSelect)
+plot.ticklabel_format(axis="y", style="sci", scilimits=(0,0))
+plot.grid()
+plt.show()
+
+
+
+
+
+st.header("Step 2")
+st.subheader("Visualize climate data in heatmaps(P1)")
 
 data = pd.read_csv("https://raw.githubusercontent.com/CSE5544/data/main/ClimateData.csv")
 
@@ -73,10 +120,11 @@ df_data_country = df_data_country.apply(pd.to_numeric, errors='coerce')
 country_stats = pd.DataFrame({'country': countries, 'mean': df_data_country.mean(axis=1),
                        'std': df_data_country.std(axis=1)})
 
+st.markdown("### Emission of Countries vs. Year Heatmap")
+# User Selection
 option1 = st.multiselect("select country", countries,['Canada','Austria','India'])
 start_1,end_1 = st.slider('Select Year', 1990, 2019,(1990,1990))
 
-st.markdown("### Emission of Countries vs. Year Heatmap")
 # Pick User choose countries
 chart_data = data.drop(columns=['Non-OECD Economies'])
 chart_data = pd.melt(chart_data, id_vars=['Country\year'], var_name='year')
@@ -89,8 +137,8 @@ for i in range(start_1-1990,end_1-1989):
     
 df_output = chart_data[(chart_data['country'].isin(option1))& (chart_data['year'].isin(year_choose))]
 df_output.reset_index()
-#render using altair
 
+#render using altair
 heatmap = alt.Chart(df_output).mark_rect().encode(
     x=alt.X('country:N', title = 'country'),
     y=alt.Y('year:O', title = 'year'),

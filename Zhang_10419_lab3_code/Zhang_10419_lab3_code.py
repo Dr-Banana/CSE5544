@@ -43,6 +43,8 @@ boxPlot = alt.Chart(filter_data).mark_boxplot().encode(
     x='country',
     y='emission:Q'
 )
+st.altair_chart(boxPlot, use_container_width = True)
+
 
 st.header("Step 2")
 st.subheader("Visualize climate data in heatmaps(P1)")

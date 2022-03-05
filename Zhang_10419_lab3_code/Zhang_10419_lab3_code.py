@@ -39,7 +39,10 @@ chart_data.rename(columns={"Country\year": "country", "value":"emission"}, inpla
 st.header("Step 1")
 singleSelect = st.selectbox("select one country", countries)
 filter_data = chart_data[chart_data['country'] == singleSelect]
-filter_data
+boxPlot = alt.Chart(filter_data).mark_boxplot().encode(
+    x='country',
+    y='emission:Q'
+)
 
 st.header("Step 2")
 st.subheader("Visualize climate data in heatmaps(P1)")

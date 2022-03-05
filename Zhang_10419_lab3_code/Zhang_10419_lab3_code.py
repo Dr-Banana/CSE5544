@@ -42,9 +42,10 @@ filter_data = chart_data[chart_data['country'] == singleSelect]
 boxPlot = alt.Chart(filter_data).mark_boxplot(extent=0.5).encode(
     x='country',
     y=alt.Y('emission:Q',scale=alt.Scale(zero=False))
-).properties(width=300).configure_axis(
+).properties(width=800).configure_axis(
     labelFontSize=16,
     titleFontSize=16)
+
 st.altair_chart(boxPlot, use_container_width = True)
 
 

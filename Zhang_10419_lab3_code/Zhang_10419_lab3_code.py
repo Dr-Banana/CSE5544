@@ -47,9 +47,10 @@ boxPlot = alt.Chart(filter_data).mark_boxplot(size=50,extent=0.5).encode(
     titleFontSize=16)
 st.altair_chart(boxPlot, use_container_width = True)
 
-bar_chart = alt.Chart(filter_data).mark_bar().encode(
+bar_chart = alt.Chart(filter_data).mark_rect().encode(
     x = 'year:O',
-    y = 'emission:Q'
+    y = alt.Y('emission:Q', bin=True),
+    alt.Color('count()', scale=alt.Scale(scheme='greenblue'))
 ).properties(
     height=200
 )

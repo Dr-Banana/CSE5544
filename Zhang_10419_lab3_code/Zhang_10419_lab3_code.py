@@ -33,7 +33,7 @@ countries = data['Country\\year']
 
 st.header("Step 1")
 singleSelect = st.selectbox("select one country", countries)
-getList = data[data["Country\year"]== singleSelect].iloc[:,2:]
+getList = list(data[data["Country\year"]== singleSelect].iloc[:,2:])
 getList
 df_tmp = pd.DataFrame()
 # a = getList.loc[0]
@@ -42,25 +42,6 @@ df_tmp = pd.DataFrame()
 st.header("Step 2")
 st.subheader("Visualize climate data in heatmaps(P1)")
 
-data = pd.read_csv("https://raw.githubusercontent.com/CSE5544/data/main/ClimateData.csv")
-
-# change ".." to number
-data = data.replace('..',0)
-for i in range(30):
-  year = str(1990+i)
-  data[year] = data[year].astype(float)
-
-st.markdown("### Emission of Continent vs. Year Heatmap")
-# Set a new df_1 without OECD-Total and Non-OCED Economies column
-df_1 = data.drop(data[data['Country\\year']=="OECD - Total"].index)
-df_1.reset_index(inplace=True)
-df_1 = df_1.drop(columns=['Non-OECD Economies','index'])
-# add corresponding continent
-df_1["Continent"] = ["South America","Oceania","Europe","Europe","Europe","South America","Europe","North America","South America","Asia",
-                     "South America","North America","Europe","Asia","Europe","Europe","Europe","","Europe","Europe","Europe","Europe",
-                     "Europe","Europe","Asia","Asia","Asia","Europe","Asia","Europe","Asia","Asia","Asia","Europe","Europe","Europe",
-                     "Europe","Europe","North America","Europe","Europe","Oceania","Europe","","","South America","Europe","Europe",
-                     "Europe","Europe","Asia","Europe","Europe","Africa","Europe","Europe","Europe","Asia","Europe","Europe","North America"]
 # Create a continent VS. year polution dataframe
 chart_data = pd.DataFrame()
 continent_list = ['Asia','Europe','South America','Oceania','North America']

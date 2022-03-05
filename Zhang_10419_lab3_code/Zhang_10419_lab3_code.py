@@ -38,7 +38,7 @@ chart_data.rename(columns={"Country\year": "country", "value":"emission"}, inpla
 
 st.header("Step 1")
 singleSelect = st.selectbox("select one country", countries)
-filter_data = data[data['country'] == singleSelect]
+filter_data = chart_data[chart_data['country'] == singleSelect]
 filter_data
 
 st.header("Step 2")

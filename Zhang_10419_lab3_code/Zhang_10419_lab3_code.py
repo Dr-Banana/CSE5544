@@ -47,12 +47,12 @@ boxPlot = alt.Chart(filter_data).mark_boxplot(size=50,extent=0.5).encode(
     titleFontSize=16)
 st.altair_chart(boxPlot, use_container_width = True)
 
-scatter_chart = alt.Chart(filter_data).mark_line().encode(
+bar_chart = alt.Chart(filter_data).mark_bar().encode(
     x = 'year:O',
     y = 'emission:Q'
 )
 
-st.altair_chart(scatter_chart, use_container_width = True)
+st.altair_chart(bar_chart, use_container_width = True)
 
 
 

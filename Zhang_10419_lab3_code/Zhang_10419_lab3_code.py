@@ -45,11 +45,11 @@ upper = alt.Chart(filter_data).mark_boxplot(size=50,extent=0.5).encode(
 ).properties(width=300)
 
 lower = alt.Chart(filter_data).mark_rect().encode(
-    x = alt.X('emission:Q', bin=True),
-    y = 'year:O',
+    y = alt.Y('emission:Q', bin=True),
+    x = 'year:O',
     color = alt.Color('emission:Q', scale=alt.Scale(scheme='greenblue')),
     tooltip=['country', 'year', 'emission']
-).properties(height=200)
+).properties(width=300,height=200)
 
 obj = alt.vconcat(upper, lower)
 st.altair_chart(obj)

@@ -32,7 +32,7 @@ st.header("Step 1")
 singleSelect = st.selectbox("select one country", countries)
 df_tmp = pd.DataFrame()
 getList = data[data["Country\year"]== singleSelect].iloc[:,2:]
-df_tmp[singleSelect] = getList.tolist()
+getList
 
 
 

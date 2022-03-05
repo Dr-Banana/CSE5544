@@ -35,6 +35,7 @@ total_list = []
 year_list = []
 chart_data = pd.DataFrame()
 df_tmp = data[data["Country\year"]== singleSelect]
+df_tmp
 for i in range(30):
   year = str(1990+i)
   year_list.append(year)

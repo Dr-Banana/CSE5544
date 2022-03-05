@@ -31,7 +31,7 @@ countries = data['Country\\year']
 st.header("Step 1")
 singleSelect = st.selectbox("select one country", countries)
 df_tmp = pd.DataFrame()
-df_tmp[singleSelect] = data[data["Country\year"]== singleSelect].iloc[:,2:]
+df_tmp[singleSelect] = data[data["Country\year"]== singleSelect].iloc[:,2:].tolist()
 df_tmp
 
 

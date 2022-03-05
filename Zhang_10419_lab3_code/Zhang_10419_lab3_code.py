@@ -31,8 +31,8 @@ countries = data['Country\\year']
 st.header("Step 1")
 singleSelect = st.selectbox("select one country", countries)
 df_tmp.set_index = [singleSelect]
-df_tmp = data[data["Country\year"]== singleSelect].iloc[:,2:]
-df_tmp = df_tmp.apply(pd.to_numeric, errors='coerce')
+df_tmp = pd.DataFrame()
+df_tmp[singleSelect] = data[data["Country\year"]== singleSelect].iloc[:,2:]
 df_tmp
 
 

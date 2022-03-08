@@ -129,38 +129,39 @@ st.altair_chart(heatmap, use_container_width = True)
 
 st.subheader("P2: dishonest/unethical/deceiving")
 
-# chart_data = df_1
-# chart_data = pd.melt(chart_data, id_vars=['Country\year'], var_name='year')
-# chart_data['value'] = chart_data['value'].apply(pd.to_numeric, errors='coerce')
-# chart_data.rename(columns={"Country\year": "country", "value":"emission"}, inplace = True)
+chart_data = df_1
+chart_data = pd.melt(chart_data, id_vars=['Country\year'], var_name='year')
+chart_data['value'] = chart_data['value'].apply(pd.to_numeric, errors='coerce')
+chart_data.rename(columns={"Country\year": "country", "value":"emission"}, inplace = True)
 
-# #Graph 2:
-# #prepare the data
-# df_data_country = data.iloc[:,2:]
-# df_data_country = df_data_country.apply(pd.to_numeric, errors='coerce')
-# country_stats = pd.DataFrame({'country': countries, 'mean': df_data_country.mean(axis=1),
-#                        'std': df_data_country.std(axis=1)})
+#Graph 2:
+#prepare the data
+df_data_country = data.iloc[:,2:]
+df_data_country = df_data_country.apply(pd.to_numeric, errors='coerce')
+country_stats = pd.DataFrame({'country': countries, 'mean': df_data_country.mean(axis=1),
+                       'std': df_data_country.std(axis=1)})
 
-# st.markdown("### Emission of Countries vs. Year Heatmap")
-# # User Selection
-# option2 = st.multiselect("select country", countries,['Canada','Austria','India'])
-# start_2,end_2 = st.slider('Select Year', 0, 30,(0,9))
+st.markdown("### Emission of Countries vs. Year Heatmap")
+# User Selection
+option2 = st.multiselect("select country", countries,['Canada','Austria','India'])
+start_2,end_2 = st.slider('Select Year', 0, 30,(0,9))
 
-# # Pick User choose countries
-# year_choose = []
-# for i in range(start_1-1990,end_1-1989):
-#     year = str(1990+i)
-#     year_choose.append(year)
+# Pick User choose countries
+chart_data['year'] = [x for x in range(30)]
+year_choose = []
+for i in range(start_1,end_1):
+    year = i
+    year_choose.append(year)
     
-# df_output = chart_data[(chart_data['country'].isin(option1))& (chart_data['year'].isin(year_choose))]
-# df_output.reset_index()
+df_output = chart_data[(chart_data['country'].isin(option1))& (chart_data['year'].isin(year_choose))]
+df_output.reset_index()
 
-# #render using altair
-# heatmap = alt.Chart(df_output).mark_rect().encode(
-#     x=alt.X('country:N', title = 'country'),
-#     y=alt.Y('year:O', title = 'year'),
-#     color=alt.Color('emission:Q',scale=alt.Scale(scheme=' paired')),
-#     tooltip=['country', 'year', 'emission']
-# )
+#render using altair
+heatmap = alt.Chart(df_output).mark_rect().encode(
+    x=alt.X('country:N', title = 'country'),
+    y=alt.Y('year:O', title = 'year'),
+    color=alt.Color('emission:Q',scale=alt.Scale(scheme=' paired')),
+    tooltip=['country', 'year', 'emission']
+)
 
-# st.altair_chart(heatmap, use_container_width = True)
+st.altair_chart(heatmap, use_container_width = True)

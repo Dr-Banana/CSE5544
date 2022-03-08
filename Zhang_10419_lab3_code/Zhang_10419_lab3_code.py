@@ -43,6 +43,11 @@ st.header("Step 2")
 st.subheader("P1: honest/ethical/truthful")
 singleSelect = st.selectbox("select one country", countries)
 filter_data = chart_data[chart_data['country'] == singleSelect]
+texts = alt.Chart().mark_text(dy=-200, size=20).encode(
+    text='Origin:N'
+).transform_filter(
+    brush
+)
 upper = alt.Chart(filter_data).mark_rect().encode(
     y = alt.Y('emission:Q', bin=alt.Bin(maxbins=30)),
     x = 'year:O',
@@ -54,7 +59,7 @@ lower = alt.Chart(filter_data).mark_boxplot(size=50,extent=0.5).encode(
     y=alt.Y('emission:Q',scale=alt.Scale(zero=False))
 ).properties(width=550)
 
-obj = alt.vconcat(upper, lower, title="This is the Chart Title")
+obj = alt.vconcat(texts+upper, lower)
 st.altair_chart(obj)
 
 # Create a continent VS. year polution dataframe

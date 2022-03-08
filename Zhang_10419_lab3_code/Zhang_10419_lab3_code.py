@@ -82,12 +82,12 @@ for i in range(start-1990,end-1989):
 chart_data.index = year_choose_list
 # display chart
 if(len(options)!=0 and (start-1990)>=0):
-  fig, ax = plt.subplots()
+  fig, ax = plt.subplots(2,1)
   sns.set()
-  ax = sns.heatmap(chart_data,cmap="coolwarm")
-  ax.set_xlabel("Continent", fontsize = 15)
-  ax.set_ylabel("Year", fontsize = 15)
-  st.pyplot(plt)
+  ax[1,1] = sns.heatmap(chart_data,cmap="coolwarm")
+  ax[1,1].set_xlabel("Continent", fontsize = 15)
+  ax[1.1].set_ylabel("Year", fontsize = 15)
+  st.pyplot(fig)
 else:
   st.write("Country and Year cannot be null!!!")
 
@@ -127,47 +127,3 @@ heatmap = alt.Chart(df_output).mark_rect().encode(
 )
 
 st.altair_chart(heatmap, use_container_width = True)
-
-
-# Implementation of matplotlib function
-import matplotlib.pyplot as pt
-import matplotlib.tri as tri
-import numpy as np
-	
-ang = 40
-rad = 10
-radm = 0.35
-radii = np.linspace(radm, 0.95, rad)
-	
-angles = np.linspace(0, 4 * np.pi, ang)
-angles = np.repeat(angles[..., np.newaxis], rad, axis = 1)
-angles[:, 1::2] += np.pi / ang
-	
-x = (radii * np.cos(angles)).flatten()
-y = (radii * np.sin(angles)).flatten()
-z = (np.sin(4 * radii) * np.cos(4 * angles)).flatten()
-	
-triang = tri.Triangulation(x, y)
-triang.set_mask(np.hypot(x[triang.triangles].mean(axis = 1),
-						y[triang.triangles].mean(axis = 1))
-					< radm)
-	
-tpc = pt.tripcolor(triang, z, shading ='flat')
-pt.colorbar(tpc)
-pt.inferno()
-pt.title('matplotlib.pyplot.inferno() function Example',
-									fontweight ="bold")
-st.pyplot(pt)
-
-
-# st.subheader("interactive altair chart")
-
-# option = st.selectbox("select one country", countries)
-
-# filter_data = chart_data[chart_data['country'] == option]
-# bar_chart = alt.Chart(filter_data).mark_bar().encode(
-#     x = 'year:O',
-#     y = 'emission:Q'
-# )
-
-# st.altair_chart(bar_chart, use_container_width = True)

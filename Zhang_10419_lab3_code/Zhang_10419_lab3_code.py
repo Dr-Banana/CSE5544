@@ -128,8 +128,6 @@ heatmap = alt.Chart(df_output).mark_rect().encode(
 st.altair_chart(heatmap, use_container_width = True)
 
 st.subheader("P2: dishonest/unethical/deceiving")
-for i in df_1['1990']:
-  st.write(i)
 chart_data = df_1
 chart_data = pd.melt(chart_data, id_vars=['Country\year'], var_name='year')
 chart_data['value'] = chart_data['value'].apply(pd.to_numeric, errors='coerce')
@@ -153,7 +151,8 @@ year_choose = []
 for i in range(start_1,end_1):
     year = i
     year_choose.append(year)
-    
+for i in chart_data['year']:
+  i = i - 1990   
 df_output = chart_data[(chart_data['country'].isin(option1))& (chart_data['year'].isin(year_choose))]
 df_output.reset_index()
 

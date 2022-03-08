@@ -157,7 +157,7 @@ plt.colorbar(tpc)
 plt.inferno()
 plt.title('matplotlib.pyplot.inferno() function Example',
 									fontweight ="bold")
-plt.show()
+st.pyplot(plt)
 
 
 # st.subheader("interactive altair chart")

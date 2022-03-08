@@ -143,7 +143,8 @@ country_stats = pd.DataFrame({'country': countries, 'mean': df_data_country.mean
 
 st.markdown("### Emission of Countries vs. Year Heatmap")
 # User Selection
-option2 = st.multiselect("select country", countries,['Canada','Austria','India'])
+
+option2 = st.multiselect("select country", countries,['Austria','India'])
 start_2,end_2 = st.slider('Select Year', 0, 30,(0,9))
 
 # Pick User choose countries

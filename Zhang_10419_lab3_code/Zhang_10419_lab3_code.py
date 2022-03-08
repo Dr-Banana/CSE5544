@@ -54,7 +54,7 @@ lower = alt.Chart(filter_data).mark_boxplot(size=50,extent=0.5).encode(
     y=alt.Y('emission:Q',scale=alt.Scale(zero=False))
 ).properties(width=550)
 
-obj = alt.vconcat(upper, lower, title="This is the Chart Title"))
+obj = alt.vconcat(upper, lower, title="This is the Chart Title")
 st.altair_chart(obj)
 
 # Create a continent VS. year polution dataframe

@@ -91,6 +91,12 @@ if(len(options)!=0 and (start-1990)>=0):
 else:
   st.write("Country and Year cannot be null!!!")
 
+# chart Data create
+chart_data = data.drop(columns=['Non-OECD Economies'])
+chart_data = pd.melt(chart_data, id_vars=['Country\year'], var_name='year')
+chart_data['value'] = chart_data['value'].apply(pd.to_numeric, errors='coerce')
+chart_data.rename(columns={"Country\year": "country", "value":"emission"}, inplace = True)
+
 #Graph 2:
 #prepare the data
 df_data_country = data.iloc[:,2:]

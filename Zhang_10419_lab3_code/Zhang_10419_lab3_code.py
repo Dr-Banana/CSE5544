@@ -84,9 +84,9 @@ chart_data.index = year_choose_list
 if(len(options)!=0 and (start-1990)>=0):
   fig, ax = plt.subplots(2,1)
   sns.set()
-  ax[1,1] = sns.heatmap(chart_data,cmap="coolwarm")
-  ax[1,1].set_xlabel("Continent", fontsize = 15)
-  ax[1.1].set_ylabel("Year", fontsize = 15)
+  ax[0,0] = sns.heatmap(chart_data,cmap="coolwarm")
+  ax[0,0].set_xlabel("Continent", fontsize = 15)
+  ax[0,0].set_ylabel("Year", fontsize = 15)
   st.pyplot(fig)
 else:
   st.write("Country and Year cannot be null!!!")

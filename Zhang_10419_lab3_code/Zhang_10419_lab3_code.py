@@ -129,7 +129,7 @@ st.altair_chart(heatmap, use_container_width = True)
 
 st.subheader("P2: dishonest/unethical/deceiving")
 for i in df_1['1990']:
-  print(i)
+  st.write(i)
 chart_data = df_1
 chart_data = pd.melt(chart_data, id_vars=['Country\year'], var_name='year')
 chart_data['value'] = chart_data['value'].apply(pd.to_numeric, errors='coerce')

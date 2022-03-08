@@ -148,6 +148,7 @@ option2 = st.multiselect("select country", countries,['Austria','India'])
 start_2,end_2 = st.slider('Select Year', 0, 30,(0,9))
 
 # Pick User choose countries
+chart_data['year']
 chart_data['year'] = [x for x in range(30)]
 year_choose = []
 for i in range(start_1,end_1):

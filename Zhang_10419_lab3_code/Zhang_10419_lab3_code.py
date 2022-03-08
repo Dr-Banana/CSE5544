@@ -89,10 +89,6 @@ if(len(options)!=0 and (start-1990)>=0):
   ax1.set_ylabel("Year")
   st.pyplot(fig1)
 #   P2 miss use plots
-  for i in range(start,end):
-      year = str(i)
-      year_choose_list.append(year)
-  chart_data.index = year_choose_list
   fig2, ax2 = plt.subplots()
   ax2 = sns.heatmap(chart_data,cmap="tab10")
   ax2.set_xlabel("Continent")
@@ -101,39 +97,39 @@ if(len(options)!=0 and (start-1990)>=0):
 else:
   st.write("Country and Year cannot be null!!!")
 
-# # chart Data create
-# chart_data = data.drop(columns=['Non-OECD Economies'])
-# chart_data = pd.melt(chart_data, id_vars=['Country\year'], var_name='year')
-# chart_data['value'] = chart_data['value'].apply(pd.to_numeric, errors='coerce')
-# chart_data.rename(columns={"Country\year": "country", "value":"emission"}, inplace = True)
+# chart Data create
+chart_data = df_1.drop(columns=['Non-OECD Economies'])
+chart_data = pd.melt(chart_data, id_vars=['Country\year'], var_name='year')
+chart_data['value'] = chart_data['value'].apply(pd.to_numeric, errors='coerce')
+chart_data.rename(columns={"Country\year": "country", "value":"emission"}, inplace = True)
 
-# #Graph 2:
-# #prepare the data
-# df_data_country = data.iloc[:,2:]
-# df_data_country = df_data_country.apply(pd.to_numeric, errors='coerce')
-# country_stats = pd.DataFrame({'country': countries, 'mean': df_data_country.mean(axis=1),
-#                        'std': df_data_country.std(axis=1)})
+#Graph 2:
+#prepare the data
+df_data_country = data.iloc[:,2:]
+df_data_country = df_data_country.apply(pd.to_numeric, errors='coerce')
+country_stats = pd.DataFrame({'country': countries, 'mean': df_data_country.mean(axis=1),
+                       'std': df_data_country.std(axis=1)})
 
-# st.markdown("### Emission of Countries vs. Year Heatmap")
-# # User Selection
-# option1 = st.multiselect("select country", countries,['Canada','Austria','India'])
-# start_1,end_1 = st.slider('Select Year', 1990, 2019,(1990,1990))
+st.markdown("### Emission of Countries vs. Year Heatmap")
+# User Selection
+option1 = st.multiselect("select country", countries,['Canada','Austria','India'])
+start_1,end_1 = st.slider('Select Year', 1990, 2019,(1990,1990))
 
-# # Pick User choose countries
-# year_choose = []
-# for i in range(start_1-1990,end_1-1989):
-#     year = str(1990+i)
-#     year_choose.append(year)
+# Pick User choose countries
+year_choose = []
+for i in range(start_1-1990,end_1-1989):
+    year = str(1990+i)
+    year_choose.append(year)
     
-# df_output = chart_data[(chart_data['country'].isin(option1))& (chart_data['year'].isin(year_choose))]
-# df_output.reset_index()
+df_output = chart_data[(chart_data['country'].isin(option1))& (chart_data['year'].isin(year_choose))]
+df_output.reset_index()
 
-# #render using altair
-# heatmap = alt.Chart(df_output).mark_rect().encode(
-#     x=alt.X('country:N', title = 'country'),
-#     y=alt.Y('year:O', title = 'year'),
-#     color='emission:Q',
-#     tooltip=['country', 'year', 'emission']
-# )
+#render using altair
+heatmap = alt.Chart(df_output).mark_rect().encode(
+    x=alt.X('country:N', title = 'country'),
+    y=alt.Y('year:O', title = 'year'),
+    color='emission:Q',
+    tooltip=['country', 'year', 'emission']
+)
 
-# st.altair_chart(heatmap, use_container_width = True)
+st.altair_chart(heatmap, use_container_width = True)

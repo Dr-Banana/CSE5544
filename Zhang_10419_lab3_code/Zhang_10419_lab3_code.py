@@ -37,6 +37,10 @@ chart_data['value'] = chart_data['value'].apply(pd.to_numeric, errors='coerce')
 chart_data.rename(columns={"Country\year": "country", "value":"emission"}, inplace = True)
 
 st.header("Step 1")
+st.markdown("# The following lab work I use climate data from lab1 to make the visualization.")
+
+st.header("Step 2")
+st.subheader("P1: honest/ethical/truthful")
 singleSelect = st.selectbox("select one country", countries)
 filter_data = chart_data[chart_data['country'] == singleSelect]
 upper = alt.Chart(filter_data).mark_rect().encode(
@@ -53,12 +57,6 @@ lower = alt.Chart(filter_data).mark_boxplot(size=50,extent=0.5).encode(
 obj = alt.vconcat(upper, lower)
 st.altair_chart(obj)
 
-
-
-
-st.header("Step 2")
-st.subheader("Visualize climate data in heatmaps(P1)")
-
 # Create a continent VS. year polution dataframe
 chart_data = pd.DataFrame()
 continent_list = ['Asia','Europe','South America','Oceania','North America']
@@ -73,7 +71,6 @@ for n in range(len(options)):
     year = year_list[i]
     total = df_tmp[year].sum()
     total_list.append(total)
-  
   chart_data[options[n]] = total_list
 year_choose_list = []
 for i in range(start-1990,end-1989):
@@ -123,6 +120,44 @@ heatmap = alt.Chart(df_output).mark_rect().encode(
     x=alt.X('country:N', title = 'country'),
     y=alt.Y('year:O', title = 'year'),
     color=alt.Color('emission:Q',scale=alt.Scale(scheme='inferno')),
+    tooltip=['country', 'year', 'emission']
+)
+
+st.altair_chart(heatmap, use_container_width = True)
+
+st.subheader("P2: dishonest/unethical/deceiving")
+
+chart_data = df_1
+chart_data = pd.melt(chart_data, id_vars=['Country\year'], var_name='year')
+chart_data['value'] = chart_data['value'].apply(pd.to_numeric, errors='coerce')
+chart_data.rename(columns={"Country\year": "country", "value":"emission"}, inplace = True)
+
+#Graph 2:
+#prepare the data
+df_data_country = data.iloc[:,2:]
+df_data_country = df_data_country.apply(pd.to_numeric, errors='coerce')
+country_stats = pd.DataFrame({'country': countries, 'mean': df_data_country.mean(axis=1),
+                       'std': df_data_country.std(axis=1)})
+
+st.markdown("### Emission of Countries vs. Year Heatmap")
+# User Selection
+option1 = st.multiselect("select country", countries,['Canada','Austria','India'])
+start_1,end_1 = st.slider('Select Year', 1990, 2019,(1990,1999))
+
+# Pick User choose countries
+year_choose = []
+for i in range(start_1-1990,end_1-1989):
+    year = str(1990+i)
+    year_choose.append(year)
+    
+df_output = chart_data[(chart_data['country'].isin(option1))& (chart_data['year'].isin(year_choose))]
+df_output.reset_index()
+
+#render using altair
+heatmap = alt.Chart(df_output).mark_rect().encode(
+    x=alt.X('country:N', title = 'country'),
+    y=alt.Y('year:O', title = 'year'),
+    color=alt.Color('emission:Q',scale=alt.Scale(scheme=' paired')),
     tooltip=['country', 'year', 'emission']
 )
 

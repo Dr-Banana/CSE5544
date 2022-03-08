@@ -143,11 +143,8 @@ option2 = st.multiselect("select country", countries,['Austria','India'])
 start_2,end_2 = st.slider('Select Year', 0, 30,(0,9))
 
 # Pick User choose countries
-year_choose = []
-for i in range(start_2,end_2):
-    year = i
-    year_choose.append(year)
-
+year_choose = [x for x in range(start_2,end_2)]
+year_choose
 for i in chart_data.index:
   x = chart_data.at[i,'year']
   chart_data.at[i,'year'] = int(x) - 1990

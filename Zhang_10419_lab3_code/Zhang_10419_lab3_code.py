@@ -88,12 +88,6 @@ if(len(options)!=0 and (start-1990)>=0):
   ax1.set_xlabel("Continent")
   ax1.set_ylabel("Year")
   st.pyplot(fig1)
-#   P2 miss use plots
-  fig2, ax2 = plt.subplots()
-  ax2 = sns.heatmap(chart_data,cmap="tab10")
-  ax2.set_xlabel("Continent")
-  ax2.set_ylabel("Year")
-  st.pyplot(fig2)
 else:
   st.write("Country and Year cannot be null!!!")
 

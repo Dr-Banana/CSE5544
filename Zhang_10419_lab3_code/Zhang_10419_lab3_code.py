@@ -82,11 +82,11 @@ for i in range(start-1990,end-1989):
 chart_data.index = year_choose_list
 # display chart
 if(len(options)!=0 and (start-1990)>=0):
-  fig, ax = plt.subplots(2,1)
+  fig, ax = plt.subplots()
   sns.set()
-  ax[0,0] = sns.heatmap(chart_data,cmap="coolwarm")
-  ax[0,0].set_xlabel("Continent", fontsize = 15)
-  ax[0,0].set_ylabel("Year", fontsize = 15)
+  ax = sns.heatmap(chart_data,cmap="coolwarm")
+  ax.set_xlabel("Continent", fontsize = 15)
+  ax.set_ylabel("Year", fontsize = 15)
   st.pyplot(fig)
 else:
   st.write("Country and Year cannot be null!!!")

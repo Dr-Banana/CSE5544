@@ -154,7 +154,7 @@ for i in range(start_1,end_1):
 
 for i in chart_data.index:
   chart_data.at[i,'year'] = int(i) - 1990
-  
+chart_data 
 df_output = chart_data[(chart_data['country'].isin(option1))& (chart_data['year'].isin(year_choose))]
 df_output.reset_index()
 

@@ -41,8 +41,10 @@ st.markdown("# The following lab work I use climate data from lab1 to make the v
 
 st.header("Step 2")
 st.subheader("P1: honest/ethical/truthful")
+
 singleSelect = st.selectbox("select one country", countries)
 filter_data = chart_data[chart_data['country'] == singleSelect]
+brush = alt.selection(type='single', encodings=['color'])
 texts = alt.Chart().mark_text(dy=-200, size=20).encode(
     text='Origin:N'
 ).transform_filter(

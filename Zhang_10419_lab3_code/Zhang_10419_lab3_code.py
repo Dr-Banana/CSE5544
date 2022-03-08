@@ -84,7 +84,7 @@ chart_data.index = year_choose_list
 if(len(options)!=0 and (start-1990)>=0):
   fig1, ax1 = plt.subplots()
   sns.set()
-  ax1 = sns.heatmap(chart_data,cmap="inferno")
+  ax1 = sns.heatmap(chart_data,cmap="heatworm")
   ax1.set_xlabel("Continent")
   ax1.set_ylabel("Year")
   st.pyplot(fig1)

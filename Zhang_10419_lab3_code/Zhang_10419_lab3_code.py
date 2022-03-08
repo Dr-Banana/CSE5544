@@ -136,11 +136,11 @@ chart_data.rename(columns={"Country\year": "country", "value":"emission"}, inpla
 #Graph 2:
 #prepare the data
 
-st.markdown("### Emission of Countries vs. Year Heatmap")
+st.markdown("### a vs. c")
 # User Selection
 
-option2 = st.multiselect("select country", countries,['Austria','India'])
-start_2,end_2 = st.slider('Select Year', 30, 60,(40,50))
+option2 = st.multiselect("S", countries,['Austria','India'])
+start_2,end_2 = st.slider('N', 30, 60,(40,50))
 
 # Pick User choose countries
 year_choose1 = [x for x in range(start_2-30,end_2-30)]
@@ -159,3 +159,5 @@ heatmap = alt.Chart(df_output).mark_rect().encode(
 )
 
 st.altair_chart(heatmap, use_container_width = True)
+
+st.header("Conclusion")

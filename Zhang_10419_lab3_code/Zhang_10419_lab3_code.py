@@ -44,9 +44,10 @@ st.subheader("P1: honest/ethical/truthful")
 
 singleSelect = st.selectbox("select one country", countries)
 filter_data = chart_data[chart_data['country'] == singleSelect]
+
 brush = alt.selection(type='single', encodings=['color'])
-texts = alt.Chart().mark_text(dy=-200, size=20).encode(
-    text='Origin:N'
+texts = alt.Chart(filter_data).mark_text(dy=-200, size=20).encode(
+    text='country'
 ).transform_filter(
     brush
 )

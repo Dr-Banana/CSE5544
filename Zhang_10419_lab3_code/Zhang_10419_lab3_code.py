@@ -152,13 +152,13 @@ for i in chart_data.index:
   x = chart_data.at[i,'year']
   chart_data.at[i,'year'] = int(x) - 1990
  
-df_output1 = chart_data[(chart_data['country'].isin(option2))& (chart_data['year'].isin(year_choose))]
-df_output1.reset_index()
+df_output = chart_data[(chart_data['country'].isin(option2))& (chart_data['year'].isin(year_choose))]
+df_output.reset_index()
 
 #render using altair
-heatmap = alt.Chart(df_output1).mark_rect().encode(
-    x=alt.X('country:N', title = 'country'),
-    y=alt.Y('year:O', title = 'year'),
+heatmap = alt.Chart(df_output).mark_rect().encode(
+    x=alt.X('country:N', title = 'c'),
+    y=alt.Y('year:O', title = 'idx'),
     color=alt.Color('emission:Q',scale=alt.Scale(scheme=' paired')),
     tooltip=['country', 'year', 'emission']
 )

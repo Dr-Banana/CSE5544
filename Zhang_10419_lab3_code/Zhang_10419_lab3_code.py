@@ -143,8 +143,8 @@ option2 = st.multiselect("select country", countries,['Austria','India'])
 start_2,end_2 = st.slider('Select Year', 0, 30,(0,9))
 
 # Pick User choose countries
-year_choose = [x for x in range(start_2,end_2)]
-year_choose
+year_choose1 = [x for x in range(start_2,end_2)]
+year_choose1
 for i in chart_data.index:
   x = chart_data.at[i,'year']
   chart_data.at[i,'year'] = int(x) - 1990
@@ -155,9 +155,9 @@ df_output.reset_index()
 
 #render using altair
 heatmap = alt.Chart(df_output).mark_rect().encode(
-    x=alt.X('country:N', title = 'c'),
-    y=alt.Y('year:O', title = 'idx'),
-    color=alt.Color('emission:Q',scale=alt.Scale(scheme=' paired')),
+    x=alt.X('country:N', title = 'country'),
+    y=alt.Y('year:O', title = 'year'),
+    color=alt.Color('emission:Q',scale=alt.Scale(scheme='inferno')),
     tooltip=['country', 'year', 'emission']
 )
 

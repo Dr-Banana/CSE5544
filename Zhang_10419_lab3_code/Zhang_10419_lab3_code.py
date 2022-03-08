@@ -130,7 +130,7 @@ st.altair_chart(heatmap, use_container_width = True)
 
 
 # Implementation of matplotlib function
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as pt
 import matplotlib.tri as tri
 import numpy as np
 	
@@ -152,12 +152,12 @@ triang.set_mask(np.hypot(x[triang.triangles].mean(axis = 1),
 						y[triang.triangles].mean(axis = 1))
 					< radm)
 	
-tpc = plt.tripcolor(triang, z, shading ='flat')
-plt.colorbar(tpc)
-plt.inferno()
-plt.title('matplotlib.pyplot.inferno() function Example',
+tpc = pt.tripcolor(triang, z, shading ='flat')
+pt.colorbar(tpc)
+pt.inferno()
+pt.title('matplotlib.pyplot.inferno() function Example',
 									fontweight ="bold")
-st.pyplot(plt)
+st.pyplot(pt)
 
 
 # st.subheader("interactive altair chart")

@@ -140,10 +140,10 @@ st.markdown("### Emission of Countries vs. Year Heatmap")
 # User Selection
 
 option2 = st.multiselect("select country", countries,['Austria','India'])
-start_2,end_2 = st.slider('Select Year', 0, 30,(0,9))
+start_2,end_2 = st.slider('Select Year', 30, 60,(0,9))
 
 # Pick User choose countries
-year_choose1 = [x for x in range(start_2,end_2)]
+year_choose1 = [x for x in range(start_2-30,end_2-30)]
 for i in chart_data.index:
   x = chart_data.at[i,'year']
   chart_data.at[i,'year'] = int(x) - 1990
@@ -153,10 +153,9 @@ df_output.reset_index()
 
 #render using altair
 heatmap = alt.Chart(df_output).mark_rect().encode(
-    x=alt.X('country:N', title = 'country'),
-    y=alt.Y('year:O', title = 'year'),
-    color=alt.Color('emission:Q',scale=alt.Scale(scheme='accent')),
-    tooltip=['country', 'year', 'emission']
+    x=alt.X('country:N', title = 'a'),
+    y=alt.Y('year:O', title = 'c'),
+    color=alt.Color('emission:Q',scale=alt.Scale(scheme='accent'))
 )
 
 st.altair_chart(heatmap, use_container_width = True)

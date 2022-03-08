@@ -98,7 +98,7 @@ else:
   st.write("Country and Year cannot be null!!!")
 
 # chart Data create
-chart_data = df_1.drop(columns=['Non-OECD Economies'])
+chart_data = df_1
 chart_data = pd.melt(chart_data, id_vars=['Country\year'], var_name='year')
 chart_data['value'] = chart_data['value'].apply(pd.to_numeric, errors='coerce')
 chart_data.rename(columns={"Country\year": "country", "value":"emission"}, inplace = True)

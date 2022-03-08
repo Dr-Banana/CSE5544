@@ -148,7 +148,8 @@ year_choose
 for i in chart_data.index:
   x = chart_data.at[i,'year']
   chart_data.at[i,'year'] = int(x) - 1990
- 
+  
+chart_data 
 df_output = chart_data[(chart_data['country'].isin(option2))& (chart_data['year'].isin(year_choose))]
 df_output.reset_index()
 

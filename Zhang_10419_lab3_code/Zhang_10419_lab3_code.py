@@ -128,8 +128,9 @@ heatmap = alt.Chart(df_output).mark_rect().encode(
 st.altair_chart(heatmap, use_container_width = True)
 
 st.subheader("P2: dishonest/unethical/deceiving")
-data
-chart_data = data.rename(value-1990, axis='columns')
+for i in df_1['1990']:
+  print(i)
+chart_data = df_1
 chart_data = pd.melt(chart_data, id_vars=['Country\year'], var_name='year')
 chart_data['value'] = chart_data['value'].apply(pd.to_numeric, errors='coerce')
 chart_data.rename(columns={"Country\year": "country", "value":"emission"}, inplace = True)

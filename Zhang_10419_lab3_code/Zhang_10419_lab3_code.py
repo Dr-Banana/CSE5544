@@ -128,7 +128,7 @@ df_output.reset_index()
 heatmap = alt.Chart(df_output).mark_rect().encode(
     x=alt.X('country:N', title = 'country'),
     y=alt.Y('year:O', title = 'year'),
-    color='emission:Q',
+    color=alt.Color('emission:Q',scale=alt.Scale(type='log',scheme='inferno')),
     tooltip=['country', 'year', 'emission']
 )
 

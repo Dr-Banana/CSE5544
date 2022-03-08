@@ -46,11 +46,6 @@ singleSelect = st.selectbox("select one country", countries)
 filter_data = chart_data[chart_data['country'] == singleSelect]
 
 brush = alt.selection(type='single', encodings=['color'])
-texts = alt.Chart(filter_data).mark_text(dy=-200, size=20).encode(
-    text='country'
-).transform_filter(
-    brush
-)
 upper = alt.Chart(filter_data).mark_rect().encode(
     y = alt.Y('emission:Q', bin=alt.Bin(maxbins=30)),
     x = 'year:O',

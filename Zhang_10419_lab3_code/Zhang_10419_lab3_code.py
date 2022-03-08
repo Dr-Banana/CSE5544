@@ -140,7 +140,7 @@ st.markdown("### Emission of Countries vs. Year Heatmap")
 # User Selection
 
 option2 = st.multiselect("select country", countries,['Austria','India'])
-start_2,end_2 = st.slider('Select Year', 30, 60,(0,9))
+start_2,end_2 = st.slider('Select Year', 30, 60,(40,50))
 
 # Pick User choose countries
 year_choose1 = [x for x in range(start_2-30,end_2-30)]

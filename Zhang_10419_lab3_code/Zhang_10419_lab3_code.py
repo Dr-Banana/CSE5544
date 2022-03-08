@@ -135,10 +135,6 @@ chart_data.rename(columns={"Country\year": "country", "value":"emission"}, inpla
 
 #Graph 2:
 #prepare the data
-df_data_country = data.iloc[:,2:]
-df_data_country = df_data_country.apply(pd.to_numeric, errors='coerce')
-country_stats = pd.DataFrame({'country': countries, 'mean': df_data_country.mean(axis=1),
-                       'std': df_data_country.std(axis=1)})
 
 st.markdown("### Emission of Countries vs. Year Heatmap")
 # User Selection
@@ -148,7 +144,7 @@ start_2,end_2 = st.slider('Select Year', 0, 30,(0,9))
 
 # Pick User choose countries
 year_choose = []
-for i in range(start_1,end_1):
+for i in range(start_2,end_2):
     year = i
     year_choose.append(year)
 
@@ -156,7 +152,7 @@ for i in chart_data.index:
   x = chart_data.at[i,'year']
   chart_data.at[i,'year'] = int(x) - 1990
  
-df_output1 = chart_data[(chart_data['country'].isin(option1))& (chart_data['year'].isin(year_choose))]
+df_output1 = chart_data[(chart_data['country'].isin(option2))& (chart_data['year'].isin(year_choose))]
 df_output1.reset_index()
 
 #render using altair

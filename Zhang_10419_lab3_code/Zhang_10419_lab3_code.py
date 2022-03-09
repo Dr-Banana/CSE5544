@@ -88,9 +88,7 @@ chart_data.index = year_choose_list
 if(len(options)!=0 and (start-1990)>=0):
   fig1, ax1 = plt.subplots()
   sns.set()
-  ax1 = sns.heatmap(chart_data,cmap="coolwarm").set(title='Yearly emission vs. continent')
-  ax1.set_xlabel("Continent")
-  ax1.set_ylabel("Year")
+  ax1 = sns.heatmap(chart_data, x="Continent", y="Year",cmap="coolwarm").set(title='Yearly emission vs. continent')
   st.pyplot(fig1)
 else:
   st.write("Country and Year cannot be null!!!")

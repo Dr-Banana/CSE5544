@@ -37,11 +37,11 @@ chart_data['value'] = chart_data['value'].apply(pd.to_numeric, errors='coerce')
 chart_data.rename(columns={"Country\year": "country", "value":"emission"}, inplace = True)
 
 st.header("Step 1")
-st.markdown("# The following lab work I use climate data from lab1 to make the visualization.")
+st.write("The following lab work I use climate data from lab1 to make the visualization.")
 
 st.header("Step 2")
 st.subheader("P1: honest/ethical/truthful")
-
+st.subheader("Emission vs Year for the chosen country and it's corresponding boxplot")
 singleSelect = st.selectbox("select one country", countries)
 filter_data = chart_data[chart_data['country'] == singleSelect]
 

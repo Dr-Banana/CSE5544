@@ -141,8 +141,6 @@ chart_data.rename(columns={"Country\year": "country", "value":"emission"}, inpla
 
 #Graph 2:
 #prepare the data
-
-st.markdown("### a vs. c")
 # User Selection
 
 option2 = st.multiselect("S", countries,['Austria','India'])
@@ -159,7 +157,7 @@ df_output.reset_index()
 
 #render using altair
 heatmap = alt.Chart(df_output).mark_rect().encode(
-    x=alt.X('country:N', title = 'a'),
+    x=alt.X('country:N', title = 'a',axis=alt.Axis(labels=False)),
     y=alt.Y('year:O', title = 'c'),
     color=alt.Color('emission:Q',scale=alt.Scale(scheme='accent'))
 ).properties(title= "abc")
@@ -167,3 +165,4 @@ heatmap = alt.Chart(df_output).mark_rect().encode(
 st.altair_chart(heatmap, use_container_width = True)
 
 st.header("Conclusion")
+st.write("Comparing to the graph 'Emission of Countries vs. Year Heatmap' and graph 'a vs. c' we can see that first graph is much better. First, the title and labels used for 'Emission of Countries vs. Year Heatmap' is much more perceptual than the second graph. Second is the different in color use for heatmap. The second graph is hard to understand the change in quantity base on to much color. Third, the index used to label y axis is hard for user to interpret, as the number can stands for a lot of attribues. ")

@@ -51,6 +51,10 @@ upper = alt.Chart(filter_data).mark_rect().encode(
     color = alt.Color('emission:Q', scale=alt.Scale(scheme='greenblue')),
     tooltip=['country', 'year', 'emission']
 ).properties(width=550,height=200)
+upper.configure_header(
+    titleColor='green',
+    titleFontSize=14,
+)
 lower = alt.Chart(filter_data).mark_boxplot(size=50,extent=0.5).encode(
     x='country',
     y=alt.Y('emission:Q',scale=alt.Scale(zero=False))

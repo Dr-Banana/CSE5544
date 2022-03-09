@@ -44,16 +44,14 @@ st.subheader("P1: honest/ethical/truthful")
 st.subheader("Emission vs Year for the chosen country and it's corresponding boxplot")
 singleSelect = st.selectbox("select one country", countries)
 filter_data = chart_data[chart_data['country'] == singleSelect]
-
+tit = "Scatter plot of Emission vs Year for" + singleSelect 
 upper = alt.Chart(filter_data).mark_rect().encode(
     y = alt.Y('emission:Q', bin=alt.Bin(maxbins=30)),
     x = 'year:O',
     color = alt.Color('emission:Q', scale=alt.Scale(scheme='greenblue')),
     tooltip=['country', 'year', 'emission']
-).properties(width=550,height=200)
-upper.configure_header(
-    titleColor='green',
-    titleFontSize=14,
+).properties(width=550,height=200,
+    title= tit
 )
 lower = alt.Chart(filter_data).mark_boxplot(size=50,extent=0.5).encode(
     x='country',

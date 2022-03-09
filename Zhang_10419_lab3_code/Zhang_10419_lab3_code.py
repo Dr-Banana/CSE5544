@@ -165,4 +165,4 @@ heatmap = alt.Chart(df_output).mark_rect().encode(
 st.altair_chart(heatmap, use_container_width = True)
 
 st.header("Conclusion")
-st.write("Comparing to the graph 'Emission of Countries vs. Year Heatmap' and graph 'a vs. c' we can see that first graph is much better. First, the title and labels used for 'Emission of Countries vs. Year Heatmap' is much more perceptual than the second graph. Second is the different in color use for heatmap. The second graph is hard to understand the change in quantity base on to much color. Third, the index used to label y axis is hard for user to interpret, as the number can stands for a lot of attribues. ")
+st.write("Compared the graph 'Emission of Countries vs. Year Heatmap' and graph 'a vs. c' we can see that the first graph is much better. First, the title and labels used for 'Emission of Countries vs. Year Heatmap' is much more perceptual than the second graph. Second, the difference in color used for heatmap. The second graph is hard to understand the change in quantity based on too many colors. Third, the index used to label y-axis is hard for user to interpret, as the number can stand for a lot of attributes. ")

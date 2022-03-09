@@ -109,7 +109,6 @@ df_data_country = df_data_country.apply(pd.to_numeric, errors='coerce')
 country_stats = pd.DataFrame({'country': countries, 'mean': df_data_country.mean(axis=1),
                        'std': df_data_country.std(axis=1)})
 
-st.markdown("### Emission of Countries vs. Year Heatmap")
 # User Selection
 option1 = st.multiselect("select country", countries,['Canada','Austria','India'])
 start_1,end_1 = st.slider('Select Year', 1990, 2019,(1990,1999))
@@ -165,4 +164,4 @@ heatmap = alt.Chart(df_output).mark_rect().encode(
 st.altair_chart(heatmap, use_container_width = True)
 
 st.header("Conclusion")
-st.write("Compared the graph 'Emission of Countries vs. Year Heatmap' and graph 'a vs. c' we can see that the first graph is much better. First, the title and labels used for 'Emission of Countries vs. Year Heatmap' is much more perceptual than the second graph. Second, the difference in color used for heatmap. The second graph is hard to understand the change in quantity based on too many colors. Third, the index used to label y-axis is hard for user to interpret, as the number can stand for a lot of attributes. ")
+st.write("Compared the graph 'Yearly emmision for each country' and graph 'abc' we can see that the first graph is much better. First, the title and labels used for 'Yearly emmision for each country' is much more perceptual than the second graph. Second, the difference in color used for heatmap. The second graph is hard to understand the change in quantity based on too many colors. Third, the index used to label y-axis is hard for user to interpret, as the number can stand for a lot of attributes. ")

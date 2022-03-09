@@ -129,7 +129,7 @@ heatmap = alt.Chart(df_output).mark_rect().encode(
     y=alt.Y('year:O', title = 'year'),
     color=alt.Color('emission:Q',scale=alt.Scale(scheme='inferno')),
     tooltip=['country', 'year', 'emission']
-)
+).properties(title= "Yearly emmision for each country")
 
 st.altair_chart(heatmap, use_container_width = True)
 
@@ -162,7 +162,7 @@ heatmap = alt.Chart(df_output).mark_rect().encode(
     x=alt.X('country:N', title = 'a'),
     y=alt.Y('year:O', title = 'c'),
     color=alt.Color('emission:Q',scale=alt.Scale(scheme='accent'))
-)
+).properties(title= "abc")
 
 st.altair_chart(heatmap, use_container_width = True)
 

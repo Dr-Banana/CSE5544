@@ -35,6 +35,7 @@ chart_data = data.drop(columns=['Non-OECD Economies'])
 chart_data = pd.melt(chart_data, id_vars=['Country\year'], var_name='year')
 chart_data['value'] = chart_data['value'].apply(pd.to_numeric, errors='coerce')
 chart_data.rename(columns={"Country\year": "country", "value":"emission"}, inplace = True)
+chart_data
 
 st.header("Step 1")
 st.write("The following lab work I use climate data from lab1 to make the visualization.")

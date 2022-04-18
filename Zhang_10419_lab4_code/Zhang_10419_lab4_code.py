@@ -14,7 +14,7 @@ country_codes.set_index('English short name', inplace = True)
 
 
 #Reading file 
-university_df = pd.read_csv('https://raw.githubusercontent.com/Dr-Banana/CSE5544/main/Zhang_10419_lab4_code/qs-world-university-rankings-2017-to-2022-V2.csv',sep=',', encoding='latin-1')
+university_df = pd.read_csv('https://raw.githubusercontent.com/Dr-Banana/CSE5544/main/Zhang_10419_lab4_code/qs-world-university-rankings-2017-to-2022-V2.csv' ,sep=',', encoding='latin-1')
 
 
 d = pd.DataFrame(university_df.pivot_table(columns=['country'], aggfunc='size'))

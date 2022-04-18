@@ -17,20 +17,16 @@ country_codes.set_index('English short name', inplace = True)
 university_df = pd.read_csv('https://raw.githubusercontent.com/Dr-Banana/CSE5544/main/Zhang_10419_lab4_code/qs-world-university-rankings-2017-to-2022-V2.csv',sep=',', encoding='latin-1')
 
 st.dataframe(university_df)
-university_df.set_index('country', inplace = True)
-university_df['id'] = country_codes['Numeric']
-st.dataframe(university_df)
-# university_df.set_index('country')
-# st.dataframe(university_df)
+# university_df.set_index('country', inplace = True)
+# university_df['id'] = country_codes['Numeric']
 
 # duplicateRows = pd.DataFrame({'country':university_df['country'].unique()})
 # st.dataframe(duplicateRows)
 
-# d = pd.DataFrame(university_df.pivot_table(columns=['country'], aggfunc='size'))
-# # d.reset_index(inplace=True)
-# d.columns = ['count']
-# d['id'] = country_codes['Numeric']
-# st.dataframe(d)
+d = pd.DataFrame(university_df.pivot_table(columns=['country'], aggfunc='size'))
+d.columns = ['count']
+d['id'] = country_codes['Numeric']
+st.dataframe(d)
 # from vega_datasets import data
 
 # def draw_map(mtype='country'):

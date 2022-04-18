@@ -4,11 +4,11 @@ from vega_datasets import data
 import streamlit as st
 
 #Country codes are needed for building map visualization in Altair
-country_codes = pd.read_csv('country_codes.csv',sep=',', encoding='latin-1')
+country_codes = pd.read_csv('https://raw.githubusercontent.com/mariapaskevich/Tokyo2020/main/country_codes.csv',sep=',', encoding='latin-1')
 country_codes.set_index('Alpha-3 code', inplace = True)
 
 #Reading file with total medals
-olympic_medal_map = pd.read_csv('olympic_medal_count.csv',sep=',', encoding='latin-1')
+olympic_medal_map = pd.read_csv('https://raw.githubusercontent.com/mariapaskevich/Tokyo2020/main/olympic_medal_count.csv',sep=',', encoding='latin-1')
 
 # Russia was participating as ROC that year, so need to change NOCCode in the table to match with country_codes
 olympic_medal_map.loc[olympic_medal_map['Team/NOC']=='ROC','NOCCode'] = 'RUS' 
@@ -21,61 +21,61 @@ medal_count_by_gender = pd.read_csv('medal_count_by_gender.csv',sep=',', encodin
 
 ###Drawing a map
 
-def draw_map(mtype='Total'):
+# def draw_map(mtype='Total'):
     
-    COLOR_THEME = {'Total':"lightgreyred",
-                   'Gold':"lightorange",
-                   'Silver':"lightgreyteal",
-                   'Bronze':"lightgreyred"}
+#     COLOR_THEME = {'Total':"lightgreyred",
+#                    'Gold':"lightorange",
+#                    'Silver':"lightgreyteal",
+#                    'Bronze':"lightgreyred"}
     
-    olympic_medal_map['Medals'] = olympic_medal_map[mtype]
+#     olympic_medal_map['Medals'] = olympic_medal_map[mtype]
 
-    source = alt.topo_feature(data.world_110m.url, "countries")
+#     source = alt.topo_feature(data.world_110m.url, "countries")
 
-    world_map = (
-        alt.Chart(source, title=f'Countries by number of {mtype} medals')
-        .mark_geoshape(stroke="black", strokeWidth=0.15)
-        .encode(
-            color=alt.Color(
-                "Medals:N", 
-                scale=alt.Scale(scheme=COLOR_THEME[mtype]), 
-                legend=None),
-            tooltip=[
-                alt.Tooltip("Team/NOC:N", title="Team"),
-                alt.Tooltip("Medals:Q", title="Medals"),
-            ],
-        )
-        .transform_lookup(
-            lookup="id",
-            from_=alt.LookupData(olympic_medal_map, "id", ["Team/NOC", "Medals"]),
-        )
-    ).configure_view(strokeWidth=0).properties(width=700, height=400).project("naturalEarth1")
+#     world_map = (
+#         alt.Chart(source, title=f'Countries by number of {mtype} medals')
+#         .mark_geoshape(stroke="black", strokeWidth=0.15)
+#         .encode(
+#             color=alt.Color(
+#                 "Medals:N", 
+#                 scale=alt.Scale(scheme=COLOR_THEME[mtype]), 
+#                 legend=None),
+#             tooltip=[
+#                 alt.Tooltip("Team/NOC:N", title="Team"),
+#                 alt.Tooltip("Medals:Q", title="Medals"),
+#             ],
+#         )
+#         .transform_lookup(
+#             lookup="id",
+#             from_=alt.LookupData(olympic_medal_map, "id", ["Team/NOC", "Medals"]),
+#         )
+#     ).configure_view(strokeWidth=0).properties(width=700, height=400).project("naturalEarth1")
     
-    return world_map
+#     return world_map
 
-### Medals by gender
+# ### Medals by gender
 
-def medals_by_gender(countries=['Japan']):
-    chart = alt.Chart(medal_count_by_gender.loc[(medal_count_by_gender['Team/NOC'].isin(countries))], title='Total medals earned by female and male athlets').mark_circle(size=300).encode(
-        x=alt.X('count_male', title='Male Athlets'),
-        y=alt.Y('count_female', title='Female Athlets'),
-        color=alt.Color('Medal type',
-                        scale=alt.Scale(domain=['Gold','Silver','Bronze'],
-                                        range=['orange','grey','brown'])),
-        tooltip=['Team/NOC', 'Medal type','count_female','count_male']
-    ).properties(
-        width=600,
-        height=400
-    )
+# def medals_by_gender(countries=['Japan']):
+#     chart = alt.Chart(medal_count_by_gender.loc[(medal_count_by_gender['Team/NOC'].isin(countries))], title='Total medals earned by female and male athlets').mark_circle(size=300).encode(
+#         x=alt.X('count_male', title='Male Athlets'),
+#         y=alt.Y('count_female', title='Female Athlets'),
+#         color=alt.Color('Medal type',
+#                         scale=alt.Scale(domain=['Gold','Silver','Bronze'],
+#                                         range=['orange','grey','brown'])),
+#         tooltip=['Team/NOC', 'Medal type','count_female','count_male']
+#     ).properties(
+#         width=600,
+#         height=400
+#     )
     
-    line = alt.Chart(pd.DataFrame({'var1': [0, 30], 'var2': [0, 30]})
-                    ).mark_line(color='grey',
-                                opacity=.3,
-                                strokeDash=[5,5]
-                               ).encode(alt.X('var1'),
-                                        alt.Y('var2')
-                                       )
-    return chart+line
+#     line = alt.Chart(pd.DataFrame({'var1': [0, 30], 'var2': [0, 30]})
+#                     ).mark_line(color='grey',
+#                                 opacity=.3,
+#                                 strokeDash=[5,5]
+#                                ).encode(alt.X('var1'),
+#                                         alt.Y('var2')
+#                                        )
+#     return chart+line
 
 #---------- STREAMLIT APP ---------------
 

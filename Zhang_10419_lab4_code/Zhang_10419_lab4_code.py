@@ -57,4 +57,4 @@ d.columns = ['count']
 d['id'] = country_codes['Numeric']
 d['country'] = d.index
 
-st.write(draw_map('count',y))
+st.write(draw_map('count',YEAR))

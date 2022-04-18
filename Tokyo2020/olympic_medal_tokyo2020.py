@@ -79,40 +79,40 @@ def medals_by_gender(countries=['Japan']):
 
 #---------- STREAMLIT APP ---------------
 
-#Display page title and some text about the app
-st.image('logo.png', width=100)
-st.title('Tokyo Olympics 2020')
-st.write('')
-st.write('This interactive dashboard includes data from <a href="https://olympics.com/tokyo-2020/olympic-games/en/results/all-sports/medal-standings.htm">Tokyo 2020 Olympics Website</a>. You can switch between two views in the side menu: total medals by country or check statistics by gender',unsafe_allow_html=True)
+# #Display page title and some text about the app
+# st.image('logo.png', width=100)
+# st.title('Tokyo Olympics 2020')
+# st.write('')
+# st.write('This interactive dashboard includes data from <a href="https://olympics.com/tokyo-2020/olympic-games/en/results/all-sports/medal-standings.htm">Tokyo 2020 Olympics Website</a>. You can switch between two views in the side menu: total medals by country or check statistics by gender',unsafe_allow_html=True)
 
-#Display sidebar menu to choose between two views
+# #Display sidebar menu to choose between two views
 
-MODE = st.sidebar.radio('Select view',['Total Medals by country','Statistics by by gender'])
+# MODE = st.sidebar.radio('Select view',['Total Medals by country','Statistics by by gender'])
 
-#If Map view was chosen
+# #If Map view was chosen
 
-if MODE == 'Total Medals by country':
+# if MODE == 'Total Medals by country':
     
-    #add select for type of medal. The first one in options is the default value
-    MEDALS = st.selectbox('Type of medals',
-               options = ['Total','Gold','Silver','Bronze'])
+#     #add select for type of medal. The first one in options is the default value
+#     MEDALS = st.selectbox('Type of medals',
+#                options = ['Total','Gold','Silver','Bronze'])
     
 
-    #display the map
-    st.write(draw_map(MEDALS))
-    #display the datatable below the map
-    st.table(olympic_medal_map.reset_index().set_index('Team/NOC')[['Medals']].sort_values(by='Medals', ascending=False))
+#     #display the map
+#     st.write(draw_map(MEDALS))
+#     #display the datatable below the map
+#     st.table(olympic_medal_map.reset_index().set_index('Team/NOC')[['Medals']].sort_values(by='Medals', ascending=False))
 
-#If split by gender was chosen
-else:
+# #If split by gender was chosen
+# else:
     
-    #add select option for countries with multiple choice. Default values would be Japan, ROC and Sweden
-    COUNTRY = st.multiselect('Select a team',
-               list(medal_count_by_gender['Team/NOC'].drop_duplicates().values),
-                            ['Japan','ROC','Sweden'])
+#     #add select option for countries with multiple choice. Default values would be Japan, ROC and Sweden
+#     COUNTRY = st.multiselect('Select a team',
+#                list(medal_count_by_gender['Team/NOC'].drop_duplicates().values),
+#                             ['Japan','ROC','Sweden'])
     
-    #display the graph and table with the results
-    st.write(medals_by_gender(COUNTRY))
-    st.write('Medals won by selected countries')
-    st.table(medal_count_by_gender.loc[medal_count_by_gender['Team/NOC'].isin(COUNTRY),['Team/NOC','Medal type','count_female','count_male']])
+#     #display the graph and table with the results
+#     st.write(medals_by_gender(COUNTRY))
+#     st.write('Medals won by selected countries')
+#     st.table(medal_count_by_gender.loc[medal_count_by_gender['Team/NOC'].isin(COUNTRY),['Team/NOC','Medal type','count_female','count_male']])
     

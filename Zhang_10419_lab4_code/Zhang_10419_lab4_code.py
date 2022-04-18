@@ -11,16 +11,13 @@ university_df = pd.read_csv("https://raw.githubusercontent.com/Dr-Banana/CSE5544
 university_df.set_index('country', inplace = True)
 st.dataframe(university_df)
 
+from vega_datasets import data
 
-
-# def draw_map(mtype='Total'):
+def draw_map(mtype='Total'):
     
-#     COLOR_THEME = {'Total':"lightgreyred",
-#                    'Gold':"lightorange",
-#                    'Silver':"lightgreyteal",
-#                    'Bronze':"lightgreyred"}
+    COLOR_THEME = {'Total':"lightgreyred"}
     
-#     olympic_medal_map['Medals'] = olympic_medal_map[mtype]
+    university_df['num'] = university_df[mtype]
 
 #     source = alt.topo_feature(data.world_110m.url, "countries")
 

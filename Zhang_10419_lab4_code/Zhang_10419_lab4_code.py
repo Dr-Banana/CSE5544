@@ -43,7 +43,7 @@ def draw_map(mtype,y):
             from_=alt.LookupData(d, "id", ["country", "num"]),
         )
     ).configure_view(strokeWidth=0).properties(width=700, height=400).project("naturalEarth1").configure_legend(
-    gradientLength=400,
+    gradientLength=300,
     gradientThickness=30
     ) 
     

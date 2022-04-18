@@ -49,15 +49,21 @@ def draw_map(mtype,y):
     
     return world_map
   
-  
-YEAR = st.selectbox('Select a year',
-               options = [2017,2018,2019,2020,2021,2022])
-year_university_df = university_df.loc[university_df['year'] == YEAR]
-d = pd.DataFrame(year_university_df.pivot_table(columns=['country'], aggfunc='size'))
+#  --------------------------------------------------------------------
+MODE = st.sidebar.radio('Select view',['Total number of universities in ranking by country','portion of public vs private university by by year'])
 
-d.columns = ['count']
-d['id'] = country_codes['Numeric']
-d['country'] = d.index
+#  --------------------------------------------------------------------
+if MODE == 'Total number of universities in ranking by country':
+    YEAR = st.selectbox('Select a year',
+                   options = [2017,2018,2019,2020,2021,2022])
+    year_university_df = university_df.loc[university_df['year'] == YEAR]
+    d = pd.DataFrame(year_university_df.pivot_table(columns=['country'], aggfunc='size'))
 
-st.write(draw_map('count',YEAR))
+    d.columns = ['count']
+    d['id'] = country_codes['Numeric']
+    d['country'] = d.index
 
+    st.write(draw_map('count',YEAR))
+
+else:
+    st.write(1)

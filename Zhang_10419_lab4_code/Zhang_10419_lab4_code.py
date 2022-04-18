@@ -9,7 +9,7 @@ import altair as alt
 # Set Up
 # university_df = pd.read_csv("https://raw.githubusercontent.com/Dr-Banana/CSE5544/main/Zhang_10419_lab4_code/qs-world-university-rankings-2017-to-2022-V2.csv")
 #Country codes are needed for building map visualization in Altair
-country_codes = pd.read_csv('https://raw.githubusercontent.com/mariapaskevich/Tokyo2020/main/country_codes.csv',sep=',', encoding='latin-1')
+country_codes = pd.read_csv('https://raw.githubusercontent.com/Dr-Banana/CSE5544/main/Zhang_10419_lab4_code/country_codes.csv',sep=',', encoding='latin-1')
 country_codes.set_index('English short name', inplace = True)
 
 

@@ -41,7 +41,7 @@ def draw_map(mtype='count'):
                 legend=None),
             tooltip=[
                 alt.Tooltip("country:N", title="country"),
-                alt.Tooltip("num:N", title="count"),
+                alt.Tooltip("count:Q", title="count"),
             ],
         )
         .transform_lookup(

@@ -32,7 +32,7 @@ def draw_map(mtype,y):
             color=alt.Color(
                 "num:N", 
                 scale=alt.Scale(scheme=COLOR_THEME[mtype]), 
-                legend=None),
+                legend=alt.Legend(title="Number of college", tickCount=6)),
             tooltip=[
                 alt.Tooltip("country:N", title="Country"),
                 alt.Tooltip("num:Q", title="Number of College"),
@@ -57,3 +57,4 @@ d['id'] = country_codes['Numeric']
 d['country'] = d.index
 
 st.write(draw_map('count',YEAR))
+

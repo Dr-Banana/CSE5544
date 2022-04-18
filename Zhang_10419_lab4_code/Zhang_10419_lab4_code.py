@@ -53,6 +53,4 @@ def draw_map(mtype='count',year):
     ).configure_view(strokeWidth=0).properties(width=700, height=400).project("naturalEarth1")
     
     return world_map
-st.write(draw_map('count'))
-
-st.write(university_df['size'].value_counts()['XL'])
+st.write(draw_map('count',YEAR))

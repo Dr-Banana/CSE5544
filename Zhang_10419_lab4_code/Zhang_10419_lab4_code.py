@@ -27,11 +27,11 @@ from vega_datasets import data
 def draw_map(mtype='count'):
     
     COLOR_THEME = {'count':"lightgreyred"}
-
+    d['num'] = d[mtype]
     source = alt.topo_feature(data.world_110m.url, "countries")
 
     world_map = (
-        alt.Chart(source, title=f'Countries by nunummber of {mtype} medals')
+        alt.Chart(source, title=f'Countries by number of {mtype} universities')
         .mark_geoshape(stroke="black", strokeWidth=0.15)
         .encode(
             color=alt.Color(
@@ -45,8 +45,9 @@ def draw_map(mtype='count'):
         )
         .transform_lookup(
             lookup="id",
-            from_=alt.LookupData(olympic_medal_map, "id", ["Team/NOC", "Medals"]),
+            from_=alt.LookupData(d, "id", ["country", "num"]),
         )
     ).configure_view(strokeWidth=0).properties(width=700, height=400).project("naturalEarth1")
     
     return world_map
+st.write(draw_map('count'))

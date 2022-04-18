@@ -20,7 +20,7 @@ university_df = pd.read_csv('https://raw.githubusercontent.com/Dr-Banana/CSE5544
 d = pd.DataFrame(university_df.pivot_table(columns=['country'], aggfunc='size'))
 d.columns = ['count']
 d['id'] = country_codes['Numeric']
-d.reset_index()
+d.reset_index(inplace=True)
 d = d.rename(columns = {'index':'country'})
 st.dataframe(d)
 from vega_datasets import data

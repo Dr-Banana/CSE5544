@@ -24,14 +24,14 @@ d['country'] = d.index
 
 from vega_datasets import data
 
-def draw_map(mtype='count',year='2017'):
+def draw_map(mtype='count'):
     
     COLOR_THEME = {'count':"lightorange"}
     d['num'] = d[mtype]
     source = alt.topo_feature(data.world_110m.url, "countries")
     
     world_map = (
-        alt.Chart(source, title=f'Countries by number of universities in {year}')
+        alt.Chart(source, title=f'Countries by number of universities')
         .mark_geoshape(stroke="black", strokeWidth=0.15)
         .encode(
             color=alt.Color(
@@ -58,4 +58,4 @@ year_university_df = university_df.loc[university_df['year'] == YEAR]
 
 st.dataframe(year_university_df)
 
-st.write(draw_map('count',YEAR))
+st.write(draw_map('count'))

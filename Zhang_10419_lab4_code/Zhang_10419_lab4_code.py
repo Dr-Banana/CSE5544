@@ -37,8 +37,7 @@ def draw_map(mtype='count'):
         .encode(
             color=alt.Color(
                 "num:N", 
-                scale=alt.Scale(scheme=COLOR_THEME[mtype]), 
-                legend=None),
+                scale=alt.Scale(scheme=COLOR_THEME[mtype])),
             tooltip=[
                 alt.Tooltip("country:N", title="Country"),
                 alt.Tooltip("num:Q", title="Number of College"),

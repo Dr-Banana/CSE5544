@@ -25,7 +25,7 @@ st.dataframe(d)
 
 YEAR = st.selectbox('Select a year',
                options = [2017,2018,2019,2020,2021,2022])
-year_university_df = university_df.loc[university_df[‘year’] == YEAR]
+year_university_df = university_df.loc[university_df['year'] == YEAR]
 st.dataframe(YEAR)
 from vega_datasets import data
 def draw_map(mtype='count'):

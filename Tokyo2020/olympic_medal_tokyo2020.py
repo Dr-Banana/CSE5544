@@ -6,7 +6,7 @@ import streamlit as st
 #Country codes are needed for building map visualization in Altair
 country_codes = pd.read_csv('https://raw.githubusercontent.com/mariapaskevich/Tokyo2020/main/country_codes.csv',sep=',', encoding='latin-1')
 country_codes.set_index('Alpha-3 code', inplace = True)
-
+st.Dataframe(country_codes)
 
 # #Reading file with total medals
 # olympic_medal_map = pd.read_csv('https://raw.githubusercontent.com/mariapaskevich/Tokyo2020/main/olympic_medal_count.csv',sep=',', encoding='latin-1')

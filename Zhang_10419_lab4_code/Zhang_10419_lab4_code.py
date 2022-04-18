@@ -66,4 +66,23 @@ if MODE == 'Total number of universities in ranking by country':
     st.write(draw_map('count',YEAR))
 
 else:
-    st.write(1)
+    type_df = university_df['type'].value_counts()
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10,5))
+
+    pie_bar_colors = ['#FB8E7E','#8EC9BB']
+    explode = [0,0.1]
+    ax1.pie(university_df['type'].value_counts().values, labels = university_df['type'].value_counts().index, explode=explode, colors=pie_bar_colors, autopct='%1.1f%%') 
+    ax1.axis('equal')
+
+    ax2.bar(university_df['type'].value_counts().index, university_df['type'].value_counts().values, color=pie_bar_colors) 
+    ax2.spines['top'].set_visible(False)
+    ax2.spines['right'].set_visible(False)
+    ax2.spines['left'].set_visible(False)
+    ax2.tick_params(axis='both', which='both', labelsize=10, left=False, bottom=False)
+    ax2.get_yaxis().set_visible(False)
+    plt.title("University Types", fontsize=15, color = '#ff4800');
+
+    ax2.bar_label(ax2.containers[0])
+
+    fig.tight_layout()
+    fig.subplots_adjust(wspace=0.7)

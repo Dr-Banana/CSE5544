@@ -5,10 +5,21 @@ import seaborn as sns
 import numpy as np
 import altair as alt
 
-st.title("Zhang_10419_lab3_code")
+
 # Set Up
 # university_df = pd.read_csv("https://raw.githubusercontent.com/Dr-Banana/CSE5544/main/Zhang_10419_lab4_code/qs-world-university-rankings-2017-to-2022-V2.csv")
-# country_codes = pd.read_csv("https://raw.githubusercontent.com/mariapaskevich/Tokyo2020/main/country_codes.csv")
+#Country codes are needed for building map visualization in Altair
+country_codes = pd.read_csv('https://raw.githubusercontent.com/mariapaskevich/Tokyo2020/main/country_codes.csv',sep=',', encoding='latin-1')
+country_codes.set_index('English short name', inplace = True)
+
+
+#Reading file with total medals
+university_df = pd.read_csv('https://raw.githubusercontent.com/Dr-Banana/CSE5544/main/Zhang_10419_lab4_code/qs-world-university-rankings-2017-to-2022-V2.csv',sep=',', encoding='latin-1')
+
+st.dataframe(university_df)
+university_df.set_index('country', inplace = True)
+university_df['id'] = country_codes['Numeric']
+st.dataframe(university_df)
 # university_df.set_index('country')
 # st.dataframe(university_df)
 

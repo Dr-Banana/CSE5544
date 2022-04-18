@@ -17,11 +17,6 @@ country_codes.set_index('English short name', inplace = True)
 university_df = pd.read_csv('https://raw.githubusercontent.com/Dr-Banana/CSE5544/main/Zhang_10419_lab4_code/qs-world-university-rankings-2017-to-2022-V2.csv' ,sep=',', encoding='latin-1')
 
 
-d = pd.DataFrame(year_university_df.pivot_table(columns=['country'], aggfunc='size'))
-d.columns = ['count']
-d['id'] = country_codes['Numeric']
-d['country'] = d.index
-
 from vega_datasets import data
 
 def draw_map(mtype='count'):
@@ -55,7 +50,10 @@ def draw_map(mtype='count'):
 YEAR = st.selectbox('Select a year',
                options = [2017,2018,2019,2020,2021,2022])
 year_university_df = university_df.loc[university_df['year'] == YEAR]
-
+d = pd.DataFrame(year_university_df.pivot_table(columns=['country'], aggfunc='size'))
 st.dataframe(year_university_df)
+d.columns = ['count']
+d['id'] = country_codes['Numeric']
+d['country'] = d.index
 
 st.write(draw_map('count'))

@@ -15,7 +15,8 @@ duplicateRows = pd.DataFrame({'country':university_df['country'].unique()})
 st.dataframe(duplicateRows)
 
 d = pd.DataFrame(university_df.pivot_table(columns=['country'], aggfunc='size'))
-d.reset_index()
+d.reset_index(inplace=True)
+d.columns = ['country', 'count']
 st.dataframe(d)
 from vega_datasets import data
 

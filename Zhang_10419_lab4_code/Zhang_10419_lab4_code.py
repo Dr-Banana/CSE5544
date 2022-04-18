@@ -24,7 +24,7 @@ d['country'] = d.index
 
 from vega_datasets import data
 
-def draw_map(mtype='count',year):
+def draw_map(mtype='count',year='2017'):
     
     COLOR_THEME = {'count':"lightorange"}
     d['num'] = d[mtype]

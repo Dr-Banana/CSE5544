@@ -13,25 +13,24 @@ st.dataframe(university_df)
 
 from vega_datasets import data
 
-def draw_map(mtype='Total'):
+# def draw_map(mtype='Total'):
     
-    COLOR_THEME = {'Total':"lightgreyred"}
+#     COLOR_THEME = {'Total':"lightgreyred"}
     
-    university_df['num'] = university_df[mtype]
+#     university_df['num'] = university_df[mtype]
 
-    source = alt.topo_feature(data.world_110m.url, "countries")
+#     source = alt.topo_feature(data.world_110m.url, "countries")
 
 #     world_map = (
-#         alt.Chart(source, title=f'Countries by number of {mtype} medals')
+#         alt.Chart(source, title=f'Countries by nunummber of {mtype} medals')
 #         .mark_geoshape(stroke="black", strokeWidth=0.15)
 #         .encode(
 #             color=alt.Color(
-#                 "Medals:N", 
+#                 "num:N", 
 #                 scale=alt.Scale(scheme=COLOR_THEME[mtype]), 
 #                 legend=None),
 #             tooltip=[
-#                 alt.Tooltip("Team/NOC:N", title="Team"),
-#                 alt.Tooltip("Medals:Q", title="Medals"),
+#                 alt.Tooltip("country:N", title="country"),
 #             ],
 #         )
 #         .transform_lookup(

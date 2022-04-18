@@ -19,14 +19,14 @@ university_df = pd.read_csv('https://raw.githubusercontent.com/Dr-Banana/CSE5544
 
 from vega_datasets import data
 
-def draw_map(mtype):
+def draw_map(mtype,y):
     
     COLOR_THEME = {'count':"lightorange"}
     d['num'] = d[mtype]
     source = alt.topo_feature(data.world_110m.url, "countries")
     
     world_map = (
-        alt.Chart(source, title=f'Countries by number of universities')
+        alt.Chart(source, title=f'Countries by number of universities in {y}')
         .mark_geoshape(stroke="black", strokeWidth=0.15)
         .encode(
             color=alt.Color(
@@ -34,6 +34,7 @@ def draw_map(mtype):
                 scale=alt.Scale(scheme=COLOR_THEME[mtype]), 
                 legend=None),
             tooltip=[
+                alt.Tooltip("y:N", title="Year"),
                 alt.Tooltip("country:N", title="Country"),
                 alt.Tooltip("num:Q", title="Number of College"),
             ],
@@ -56,4 +57,4 @@ d.columns = ['count']
 d['id'] = country_codes['Numeric']
 d['country'] = d.index
 
-st.write(draw_map('count'))
+st.write(draw_map('count',y))

@@ -36,7 +36,7 @@ def draw_map(mtype='count'):
         .mark_geoshape(stroke="black", strokeWidth=0.15)
         .encode(
             color=alt.Color(
-                "num:Q", 
+                "num:N", 
                 scale=alt.Scale(scheme=COLOR_THEME[mtype]), 
                 legend=None),
             tooltip=[

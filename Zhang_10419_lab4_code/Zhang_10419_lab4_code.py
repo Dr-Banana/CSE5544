@@ -8,6 +8,7 @@ import altair as alt
 st.title("Zhang_10419_lab3_code")
 # Set Up
 university_df = pd.read_csv("https://raw.githubusercontent.com/Dr-Banana/CSE5544/main/Zhang_10419_lab4_code/qs-world-university-rankings-2017-to-2022-V2.csv")
+country_codes = pd.read_csv("https://raw.githubusercontent.com/mariapaskevich/Tokyo2020/main/country_codes.csv")
 university_df.set_index('country')
 st.dataframe(university_df)
 
@@ -15,8 +16,9 @@ duplicateRows = pd.DataFrame({'country':university_df['country'].unique()})
 st.dataframe(duplicateRows)
 
 d = pd.DataFrame(university_df.pivot_table(columns=['country'], aggfunc='size'))
-d.reset_index(inplace=True)
-d.columns = ['country', 'count']
+# d.reset_index(inplace=True)
+d.columns = ['count']
+d['id'] = country_codes['Numeric']
 st.dataframe(d)
 from vega_datasets import data
 

@@ -20,30 +20,29 @@ d.columns = ['country', 'count']
 st.dataframe(d)
 from vega_datasets import data
 
-# def draw_map(mtype='Total'):
+def draw_map(mtype='country'):
     
-#     COLOR_THEME = {'Total':"lightgreyred"}
-    
-#     university_df['num'] = university_df[mtype]
+    COLOR_THEME = {'country':"lightgreyred"}
 
-#     source = alt.topo_feature(data.world_110m.url, "countries")
+    source = alt.topo_feature(data.world_110m.url, "countries")
 
-#     world_map = (
-#         alt.Chart(source, title=f'Countries by nunummber of {mtype} medals')
-#         .mark_geoshape(stroke="black", strokeWidth=0.15)
-#         .encode(
-#             color=alt.Color(
-#                 "num:N", 
-#                 scale=alt.Scale(scheme=COLOR_THEME[mtype]), 
-#                 legend=None),
-#             tooltip=[
-#                 alt.Tooltip("country:N", title="country"),
-#             ],
-#         )
+    world_map = (
+        alt.Chart(source, title=f'Countries by nunummber of {mtype} medals')
+        .mark_geoshape(stroke="black", strokeWidth=0.15)
+        .encode(
+            color=alt.Color(
+                "num:N", 
+                scale=alt.Scale(scheme=COLOR_THEME[mtype]), 
+                legend=None),
+            tooltip=[
+                alt.Tooltip("country:N", title="country"),
+                alt.Tooltip("count:Q", title="count"),
+            ],
+        )
 #         .transform_lookup(
 #             lookup="id",
 #             from_=alt.LookupData(olympic_medal_map, "id", ["Team/NOC", "Medals"]),
 #         )
-#     ).configure_view(strokeWidth=0).properties(width=700, height=400).project("naturalEarth1")
+    ).configure_view(strokeWidth=0).properties(width=700, height=400).project("naturalEarth1")
     
-#     return world_map
+    return world_map

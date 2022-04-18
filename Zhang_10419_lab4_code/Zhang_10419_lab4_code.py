@@ -29,6 +29,7 @@ def draw_map(mtype='count'):
     
     COLOR_THEME = {'count':"lightgreyred"}
     d['num'] = d[mtype]
+    st.write(1)
     source = alt.topo_feature(data.world_110m.url, "countries")
     st.dataframe(source)
     world_map = (

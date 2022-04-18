@@ -11,7 +11,7 @@ university_df = pd.read_csv("https://raw.githubusercontent.com/Dr-Banana/CSE5544
 university_df.set_index('country')
 st.dataframe(university_df)
 
-duplicateRows = pd.DataFrame(university_df['country'].unique())
+duplicateRows = pd.DataFrame("country":university_df['country'].unique())
 st.dataframe(duplicateRows)
 from vega_datasets import data
 

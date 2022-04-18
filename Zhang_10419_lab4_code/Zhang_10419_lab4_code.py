@@ -53,3 +53,4 @@ def draw_map(mtype='count'):
     return world_map
 st.write(draw_map('count'))
 
+st.write(university_df[d['country']].value_counts())

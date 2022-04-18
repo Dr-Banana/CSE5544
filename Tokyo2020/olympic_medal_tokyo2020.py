@@ -14,8 +14,10 @@ olympic_medal_map = pd.read_csv('https://raw.githubusercontent.com/mariapaskevic
 # Russia was participating as ROC that year, so need to change NOCCode in the table to match with country_codes
 olympic_medal_map.loc[olympic_medal_map['Team/NOC']=='ROC','NOCCode'] = 'RUS' 
 
+st.dataframe(olympic_medal_map)
 olympic_medal_map.set_index('NOCCode', inplace = True)
 olympic_medal_map['id'] = country_codes['Numeric']
+st.dataframe(olympic_medal_map)
 
 # #Reading data by gender
 # medal_count_by_gender = pd.read_csv('medal_count_by_gender.csv',sep=',', encoding='latin-1')

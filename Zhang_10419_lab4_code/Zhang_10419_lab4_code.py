@@ -36,7 +36,7 @@ def draw_map(mtype='count'):
         .mark_geoshape(stroke="black", strokeWidth=0.15)
         .encode(
             color=alt.Color(
-                "num:N", 
+                "num:Q", 
                 scale=alt.Scale(scheme=COLOR_THEME[mtype]), 
                 legend=None),
             tooltip=[
@@ -53,32 +53,3 @@ def draw_map(mtype='count'):
     return world_map
 st.write(draw_map('count'))
 
-# ------------------------------------------------------------------------------------------------------------------------
-# def draw_map(mtype='count'):
-    
-#     COLOR_THEME = {'count':"lightgreyred"}
-    
-#     olympic_medal_map['Medals'] = olympic_medal_map[mtype]
-
-#     source = alt.topo_feature(data.world_110m.url, "countries")
-
-#     world_map = (
-#         alt.Chart(source, title=f'Countries by number of {mtype} medals')
-#         .mark_geoshape(stroke="black", strokeWidth=0.15)
-#         .encode(
-#             color=alt.Color(
-#                 "Medals:N", 
-#                 scale=alt.Scale(scheme=COLOR_THEME[mtype]), 
-#                 legend=None),
-#             tooltip=[
-#                 alt.Tooltip("Team/NOC:N", title="Team"),
-#                 alt.Tooltip("Medals:Q", title="Medals"),
-#             ],
-#         )
-#         .transform_lookup(
-#             lookup="id",
-#             from_=alt.LookupData(olympic_medal_map, "id", ["Team/NOC", "Medals"]),
-#         )
-#     ).configure_view(strokeWidth=0).properties(width=700, height=400).project("naturalEarth1")
-    
-#     return world_map

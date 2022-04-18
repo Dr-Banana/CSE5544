@@ -21,7 +21,7 @@ from vega_datasets import data
 
 def draw_map(mtype,y):
     
-    COLOR_THEME = {'count':"spectral"}
+    COLOR_THEME = {'count':"lighttealblue"}
     d['num'] = d[mtype]
     source = alt.topo_feature(data.world_110m.url, "countries")
     

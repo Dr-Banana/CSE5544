@@ -22,6 +22,7 @@ d.columns = ['count']
 d['id'] = country_codes['Numeric']
 d.reset_index(inplace=True)
 d = d.rename(columns = {'index':'country'})
+d.set_index('country')
 st.dataframe(d)
 from vega_datasets import data
 

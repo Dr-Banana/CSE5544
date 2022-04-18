@@ -1,9 +1,6 @@
 import numpy as np 
 import pandas as pd 
 import matplotlib.pyplot as plt
-from matplotlib.colors import ListedColormap
-plt.rcParams['axes.edgecolor']='#FA6E4F'
-plt.rcParams['font.family'] = 'monospace'
 import seaborn as sns
 import geopandas as gpd
 

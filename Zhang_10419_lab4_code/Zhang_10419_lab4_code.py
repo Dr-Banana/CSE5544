@@ -8,22 +8,39 @@ import altair as alt
 st.title("Zhang_10419_lab3_code")
 # Set Up
 university_df = pd.read_csv("https://raw.githubusercontent.com/Dr-Banana/CSE5544/main/Zhang_10419_lab4_code/qs-world-university-rankings-2017-to-2022-V2.csv")
+university_df.set_index('country', inplace = True)
 st.dataframe(university_df)
 
-import streamlit as st
-import leafmap.foliumap as leafmap
 
 
-st.title("Heatmap")
+# def draw_map(mtype='Total'):
+    
+#     COLOR_THEME = {'Total':"lightgreyred",
+#                    'Gold':"lightorange",
+#                    'Silver':"lightgreyteal",
+#                    'Bronze':"lightgreyred"}
+    
+#     olympic_medal_map['Medals'] = olympic_medal_map[mtype]
 
-filepath = "https://raw.githubusercontent.com/giswqs/leafmap/master/examples/data/us_cities.csv"
-m = leafmap.Map(tiles="stamentoner")
-m.add_heatmap(
-    filepath,
-    latitude="latitude",
-    longitude="longitude",
-    value="pop_max",
-    name="Heat map",
-    radius=20,
-)
-m.to_streamlit(height=700)
+#     source = alt.topo_feature(data.world_110m.url, "countries")
+
+#     world_map = (
+#         alt.Chart(source, title=f'Countries by number of {mtype} medals')
+#         .mark_geoshape(stroke="black", strokeWidth=0.15)
+#         .encode(
+#             color=alt.Color(
+#                 "Medals:N", 
+#                 scale=alt.Scale(scheme=COLOR_THEME[mtype]), 
+#                 legend=None),
+#             tooltip=[
+#                 alt.Tooltip("Team/NOC:N", title="Team"),
+#                 alt.Tooltip("Medals:Q", title="Medals"),
+#             ],
+#         )
+#         .transform_lookup(
+#             lookup="id",
+#             from_=alt.LookupData(olympic_medal_map, "id", ["Team/NOC", "Medals"]),
+#         )
+#     ).configure_view(strokeWidth=0).properties(width=700, height=400).project("naturalEarth1")
+    
+#     return world_map

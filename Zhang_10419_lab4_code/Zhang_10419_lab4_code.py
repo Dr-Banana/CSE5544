@@ -19,7 +19,7 @@ university_df = pd.read_csv('https://raw.githubusercontent.com/Dr-Banana/CSE5544
 
 from vega_datasets import data
 
-def draw_map(mtype='count'):
+def draw_map(mtype):
     
     COLOR_THEME = {'count':"lightorange"}
     d['num'] = d[mtype]
@@ -51,7 +51,7 @@ YEAR = st.selectbox('Select a year',
                options = [2017,2018,2019,2020,2021,2022])
 year_university_df = university_df.loc[university_df['year'] == YEAR]
 d = pd.DataFrame(year_university_df.pivot_table(columns=['country'], aggfunc='size'))
-st.dataframe(year_university_df)
+
 d.columns = ['count']
 d['id'] = country_codes['Numeric']
 d['country'] = d.index

@@ -19,7 +19,7 @@ def draw_map(mtype='Total'):
     
     university_df['num'] = university_df[mtype]
 
-#     source = alt.topo_feature(data.world_110m.url, "countries")
+    source = alt.topo_feature(data.world_110m.url, "countries")
 
 #     world_map = (
 #         alt.Chart(source, title=f'Countries by number of {mtype} medals')

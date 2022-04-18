@@ -34,7 +34,6 @@ def draw_map(mtype,y):
                 scale=alt.Scale(scheme=COLOR_THEME[mtype]), 
                 legend=None),
             tooltip=[
-                alt.Tooltip("y:Q", title="Year"),
                 alt.Tooltip("country:N", title="Country"),
                 alt.Tooltip("num:Q", title="Number of College"),
             ],

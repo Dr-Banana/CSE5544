@@ -86,3 +86,4 @@ else:
 
     fig.tight_layout()
     fig.subplots_adjust(wspace=0.7)
+    st.pyplot(fig)

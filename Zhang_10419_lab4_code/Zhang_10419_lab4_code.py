@@ -27,7 +27,7 @@ from vega_datasets import data
 
 def draw_map(mtype='count'):
     
-    COLOR_THEME = {'count':"lightgreyteal"}
+    COLOR_THEME = {'count':"inferno"}
     d['num'] = d[mtype]
     source = alt.topo_feature(data.world_110m.url, "countries")
     
@@ -37,7 +37,8 @@ def draw_map(mtype='count'):
         .encode(
             color=alt.Color(
                 "num:N", 
-                scale=alt.Scale(scheme=COLOR_THEME[mtype])),
+                scale=alt.Scale(scheme=COLOR_THEME[mtype]), 
+                legend=None),
             tooltip=[
                 alt.Tooltip("country:N", title="Country"),
                 alt.Tooltip("num:Q", title="Number of College"),

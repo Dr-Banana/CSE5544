@@ -27,13 +27,12 @@ from vega_datasets import data
 
 def draw_map(mtype='count'):
     
-    COLOR_THEME = {'count':"lightgreyred"}
+    COLOR_THEME = {'count':"lightgreyteal"}
     d['num'] = d[mtype]
-    st.write(1)
     source = alt.topo_feature(data.world_110m.url, "countries")
     st.write(source)
     world_map = (
-        alt.Chart(source, title=f'Countries by number of {mtype} universities')
+        alt.Chart(source, title=f'Countries by number of universities')
         .mark_geoshape(stroke="black", strokeWidth=0.15)
         .encode(
             color=alt.Color(

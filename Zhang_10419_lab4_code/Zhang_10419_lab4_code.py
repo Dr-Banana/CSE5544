@@ -40,8 +40,8 @@ def draw_map(mtype='count'):
                 scale=alt.Scale(scheme=COLOR_THEME[mtype]), 
                 legend=None),
             tooltip=[
-                alt.Tooltip("country:N", title="country"),
-                alt.Tooltip("num:Q", title="count"),
+                alt.Tooltip("country:N", title="Country"),
+                alt.Tooltip("num:Q", title="Number of College"),
             ],
         )
         .transform_lookup(

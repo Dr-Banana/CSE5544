@@ -31,7 +31,7 @@ def draw_map(mtype='count'):
     d['num'] = d[mtype]
     st.write(1)
     source = alt.topo_feature(data.world_110m.url, "countries")
-    st.dataframe(source)
+    st.write(source)
     world_map = (
         alt.Chart(source, title=f'Countries by number of {mtype} universities')
         .mark_geoshape(stroke="black", strokeWidth=0.15)

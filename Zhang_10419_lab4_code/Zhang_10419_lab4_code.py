@@ -30,7 +30,7 @@ def draw_map(mtype,y):
         .mark_geoshape(stroke="black", strokeWidth=0.15)
         .encode(
             color=alt.Color(
-                "num:N", 
+                "num:Q", 
                 scale=alt.Scale(scheme=COLOR_THEME[mtype]), 
                 legend=alt.Legend(title="Number of college", tickCount=6)),
             tooltip=[

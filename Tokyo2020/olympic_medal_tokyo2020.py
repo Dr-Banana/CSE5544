@@ -7,17 +7,18 @@ import streamlit as st
 country_codes = pd.read_csv('https://raw.githubusercontent.com/mariapaskevich/Tokyo2020/main/country_codes.csv',sep=',', encoding='latin-1')
 country_codes.set_index('Alpha-3 code', inplace = True)
 
-#Reading file with total medals
-olympic_medal_map = pd.read_csv('https://raw.githubusercontent.com/mariapaskevich/Tokyo2020/main/olympic_medal_count.csv',sep=',', encoding='latin-1')
 
-# Russia was participating as ROC that year, so need to change NOCCode in the table to match with country_codes
-olympic_medal_map.loc[olympic_medal_map['Team/NOC']=='ROC','NOCCode'] = 'RUS' 
+# #Reading file with total medals
+# olympic_medal_map = pd.read_csv('https://raw.githubusercontent.com/mariapaskevich/Tokyo2020/main/olympic_medal_count.csv',sep=',', encoding='latin-1')
 
-olympic_medal_map.set_index('NOCCode', inplace = True)
-olympic_medal_map['id'] = country_codes['Numeric']
+# # Russia was participating as ROC that year, so need to change NOCCode in the table to match with country_codes
+# olympic_medal_map.loc[olympic_medal_map['Team/NOC']=='ROC','NOCCode'] = 'RUS' 
 
-#Reading data by gender
-medal_count_by_gender = pd.read_csv('medal_count_by_gender.csv',sep=',', encoding='latin-1')
+# olympic_medal_map.set_index('NOCCode', inplace = True)
+# olympic_medal_map['id'] = country_codes['Numeric']
+
+# #Reading data by gender
+# medal_count_by_gender = pd.read_csv('medal_count_by_gender.csv',sep=',', encoding='latin-1')
 
 ###Drawing a map
 

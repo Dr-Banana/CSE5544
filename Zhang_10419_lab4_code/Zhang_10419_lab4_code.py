@@ -55,11 +55,14 @@ MODE = st.sidebar.radio('Select view',['Total number of universities in ranking 
 #  --------------------------------------------------------------------
 if MODE == 'Total number of universities in ranking by country':
     YEAR = st.slider('Select the year', 2017, 2022, 2017)
-    REGION = st.multiselect(
-     'What are your favorite colors',
-     ['North America','Europe','Asia','Oceania','Latin America','Africa'],
-     ['North America','Europe','Asia','Oceania','Latin America','Africa'])
-    year_university_df = university_df.loc[(university_df['year'] == YEAR) & (university_df['region'].isin(REGION))]
+    REGION = st.selectbox(
+     'Select continent',
+     ['North America','Europe','Asia','Oceania','Latin America','Africa','Global'],
+     ['Global'])
+    if(REGION == 'Global'):
+        year_university_df = university_df.loc[(university_df['year'] == YEAR)]
+    else:
+        year_university_df = university_df.loc[(university_df['year'] == YEAR) & (university_df['region'].isin(REGION))]
 
     d = pd.DataFrame(year_university_df.pivot_table(columns=['country'], aggfunc='size'))
 

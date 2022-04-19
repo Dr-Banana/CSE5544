@@ -67,6 +67,7 @@ custom_palette1 = sns.color_palette(long_palette)
 research_size = pd.DataFrame(university_df.groupby(['research_output']).apply(lambda df: df['size'].value_counts()))
 research_size = research_size.reset_index().rename(columns={'level_1': 'size', 'size': 'count'})
 fig, ax = plt.subplots()
+sns.set()
 ax = sns.catplot(x="research_output", y="count", kind="point", data=research_size, hue='size', palette=custom_palette1);
 # ax.set_xlabel('Research Output')
 # ax.set_ylabel('Count')

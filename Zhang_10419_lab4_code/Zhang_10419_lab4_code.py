@@ -56,9 +56,7 @@ MODE = st.sidebar.radio('Select view',['Total number of universities in ranking 
 if MODE == 'Total number of universities in ranking by country':
     YEAR = st.slider('Select the year', 2017, 2022, 2017)
     REGION = st.selectbox(
-     'Select continent',
-     ['North America','Europe','Asia','Oceania','Latin America','Africa','Global'],
-     ['Global'])
+     'Select continent', options = ['Global','North America','Europe','Asia','Oceania','Latin America','Africa'])
     if(REGION == 'Global'):
         year_university_df = university_df.loc[(university_df['year'] == YEAR)]
     else:

@@ -26,7 +26,7 @@ def draw_map(mtype,y):
     source = alt.topo_feature(data.world_110m.url, "countries")
     
     world_map = (
-        alt.Chart(source, title=f'Countries of Universities in QS World University Rankings {y} ')
+        alt.Chart(source, title=f'Universities in QS World University Rankings {y} ')
         .mark_geoshape(stroke="black", strokeWidth=0.15)
         .encode(
             color=alt.Color(

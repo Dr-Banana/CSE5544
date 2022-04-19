@@ -61,9 +61,9 @@ d['country'] = d.index
 
 st.write(draw_map('count',YEAR))
 
-st.dataframe(year_university_df)
-
 # ---------------------------------------------
+
+st.dataframe(university_df)
 uni_df = university_df['university'].value_counts()
 
 fig, ax = plt.subplots(figsize=(10,20), dpi=150)

@@ -55,7 +55,11 @@ MODE = st.sidebar.radio('Select view',['Total number of universities in ranking 
 #  --------------------------------------------------------------------
 if MODE == 'Total number of universities in ranking by country':
     YEAR = st.slider('Select the year', 2017, 2022, 2017)
-    year_university_df = university_df.loc[university_df['year'] == YEAR]
+    REGION = st.multiselect(
+     'What are your favorite colors',
+     ['North America','Europe','Asia','Oceania','Latin America','Africa'],
+     ['Europe','Asia'])
+    year_university_df = university_df.loc[university_df['year'] == YEAR & university_df['region'].isin(REGION)]
     d = pd.DataFrame(year_university_df.pivot_table(columns=['country'], aggfunc='size'))
 
     d.columns = ['count']
@@ -67,11 +71,7 @@ if MODE == 'Total number of universities in ranking by country':
 else:
     YEAR = st.selectbox('Select a year',
                    options = [2017,2018,2019,2020,2021,2022])
-    REGION = st.multiselect(
-     'What are your favorite colors',
-     ['North America','Europe','Asia','Oceania','Latin America','Africa'],
-     ['Europe','Asia'])
-    year_university_df = university_df.loc[university_df['year'] == YEAR & university_df['region']==REGION]
+    year_university_df = university_df.loc[university_df['year'] == YEAR]
     type_df = year_university_df['type'].value_counts()
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10,5))
 

@@ -60,7 +60,7 @@ if MODE == 'Total number of universities in ranking by country':
     if(REGION == 'Global'):
         year_university_df = university_df.loc[(university_df['year'] == YEAR)]
     else:
-        year_university_df = university_df.loc[(university_df['year'] == YEAR) & (university_df['region'].isin(REGION))]
+        year_university_df = university_df.loc[(university_df['year'] == YEAR) & (university_df['region'] == REGION)]
 
     d = pd.DataFrame(year_university_df.pivot_table(columns=['country'], aggfunc='size'))
 

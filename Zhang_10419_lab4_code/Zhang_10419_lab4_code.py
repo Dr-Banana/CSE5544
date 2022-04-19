@@ -72,4 +72,4 @@ sns.countplot(data=university_df, y='country', order=university_df.country.value
 plt.xlabel('Number of universities', fontsize=12, color = '#ff4800')
 plt.ylabel('Country', fontsize=12, color = '#ff4800')
 plt.title("Distribution of universities across countries", fontsize=14, color = '#ff4800');
-st.plotly(fig)
+st.pyplot(fig)

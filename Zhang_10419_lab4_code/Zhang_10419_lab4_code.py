@@ -67,7 +67,11 @@ if MODE == 'Total number of universities in ranking by country':
 else:
     YEAR = st.selectbox('Select a year',
                    options = [2017,2018,2019,2020,2021,2022])
-    year_university_df = university_df.loc[university_df['year'] == YEAR]
+    REGION = st.multiselect(
+     'What are your favorite colors',
+     ['North America','Europe','Asia','Oceania','Latin America','Africa'],
+     ['Europe','Asia'])
+    year_university_df = university_df.loc[university_df['year'] == YEAR & university_df['region']==REGION]
     type_df = year_university_df['type'].value_counts()
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10,5))
 

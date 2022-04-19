@@ -85,4 +85,4 @@ fig = px.sunburst(
     parents='parent',
     values='value',
 )
-st.pyplot(fig)
+st.plotly_chart(fig, use_container_width=True)

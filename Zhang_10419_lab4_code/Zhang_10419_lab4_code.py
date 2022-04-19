@@ -30,7 +30,7 @@ def draw_map(mtype,y):
         .mark_geoshape(stroke="black", strokeWidth=0.15)
         .encode(
             color=alt.Color(
-                "num:Q", 
+                "num:N", 
                 scale=alt.Scale(scheme=COLOR_THEME[mtype]), 
                 legend=alt.Legend(title="Number of college", tickCount=6)),
             tooltip=[
@@ -42,10 +42,7 @@ def draw_map(mtype,y):
             lookup="id",
             from_=alt.LookupData(d, "id", ["country", "num"]),
         )
-    ).configure_view(strokeWidth=0).properties(width=700, height=400).project("naturalEarth1").configure_legend(
-    gradientLength=300,
-    gradientThickness=25
-    ) 
+    ).configure_view(strokeWidth=0).properties(width=700, height=400).project("naturalEarth1")
     
     return world_map
 

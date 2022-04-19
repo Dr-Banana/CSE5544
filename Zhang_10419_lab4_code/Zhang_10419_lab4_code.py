@@ -21,7 +21,7 @@ from vega_datasets import data
 
 def draw_map(mtype,y):
     
-    COLOR_THEME = {'count':"lightgreyred"}
+    COLOR_THEME = {'count':"lightgreyteal"}
     d['num'] = d[mtype]
     source = alt.topo_feature(data.world_110m.url, "countries")
     
@@ -32,7 +32,8 @@ def draw_map(mtype,y):
             color=alt.Color(
                 "num:N", 
                 scale=alt.Scale(scheme=COLOR_THEME[mtype]), 
-                legend=alt.Legend(title="Number of college", tickCount=6)),
+                legend=alt.Legend(title="Number of college", tickCount=6),
+            legend = False),
             tooltip=[
                 alt.Tooltip("country:N", title="Country"),
                 alt.Tooltip("num:Q", title="Number of College"),
@@ -53,7 +54,7 @@ if(REGION == 'Global'):
 else:
     year_university_df = university_df.loc[(university_df['year'] == YEAR) & (university_df['region'] == REGION)]
         
-d = pd.DataFrame(university_df.pivot_table(columns=['country'], aggfunc='size'))
+d = pd.DataFrame(year_university_df.pivot_table(columns=['country'], aggfunc='size'))
 
 d.columns = ['count']
 d['id'] = country_codes['Numeric']

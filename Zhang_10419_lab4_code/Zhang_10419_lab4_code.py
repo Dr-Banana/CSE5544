@@ -63,13 +63,20 @@ st.write(draw_map('count',YEAR))
 
 # ---------------------------------------------
 
-st.dataframe(university_df)
-uni_df = university_df['university'].value_counts()
+fig, ax = plt.subplots(figsize=(8,4), dpi=90)
+ax.spines['top'].set_visible(False)
+ax.spines['right'].set_visible(False)
+ax.spines['left'].set_visible(False)
 
-fig, ax = plt.subplots(figsize=(10,20), dpi=150)
+ax.tick_params(bottom=False)
+ax.get_yaxis().set_visible(False)
 
-sns.lineplot(data=university_df, y='country', order=university_df.country.value_counts().index, palette=custom_palette1);
-plt.xlabel('Number of universities', fontsize=12, color = '#ff4800')
-plt.ylabel('Country', fontsize=12, color = '#ff4800')
-plt.title("Distribution of universities across countries", fontsize=14, color = '#ff4800');
-st.pyplot(fig)
+sns.countplot(data=university_df, x='research_output', hue='type', palette=research_palette);
+
+for container in ax.containers:
+    ax.bar_label(container)
+
+plt.legend(edgecolor='#ff4800');
+ax.set_xlabel('Research Output', fontsize=13, color = '#ff4800');
+fig.suptitle('Research output of universities', fontsize=15, color = '#ff4800');
+# st.pyplot(fig)

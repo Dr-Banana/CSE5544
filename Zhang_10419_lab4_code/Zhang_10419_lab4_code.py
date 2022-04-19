@@ -32,8 +32,7 @@ def draw_map(mtype,y):
             color=alt.Color(
                 "num:N", 
                 scale=alt.Scale(scheme=COLOR_THEME[mtype]), 
-                legend=alt.Legend(title="Number of college", tickCount=6),
-            legend = False),
+                legend = None),
             tooltip=[
                 alt.Tooltip("country:N", title="Country"),
                 alt.Tooltip("num:Q", title="Number of College"),

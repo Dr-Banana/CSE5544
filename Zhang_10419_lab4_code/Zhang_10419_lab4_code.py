@@ -49,12 +49,12 @@ def draw_map(mtype,y):
     
     return world_map
 
- YEAR = st.slider('Select the year', 2017, 2022, 2017)
- REGION = st.selectbox('Select continent', options = ['Global','North America','Europe','Asia','Oceania','Latin America','Africa'])
- if(REGION == 'Global'):
-     year_university_df = university_df.loc[(university_df['year'] == YEAR)]
- else:
-     year_university_df = university_df.loc[(university_df['year'] == YEAR) & (university_df['region'] == REGION)]
+YEAR = st.slider('Select the year', 2017, 2022, 2017)
+REGION = st.selectbox('Select continent', options = ['Global','North America','Europe','Asia','Oceania','Latin America','Africa']) 
+if(REGION == 'Global'):
+    year_university_df = university_df.loc[(university_df['year'] == YEAR)]
+else:
+    year_university_df = university_df.loc[(university_df['year'] == YEAR) & (university_df['region'] == REGION)]
         
 d = pd.DataFrame(university_df.pivot_table(columns=['country'], aggfunc='size'))
 

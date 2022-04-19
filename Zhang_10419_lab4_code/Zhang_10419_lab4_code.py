@@ -58,7 +58,7 @@ if MODE == 'Total number of universities in ranking by country':
     REGION = st.multiselect(
      'What are your favorite colors',
      ['North America','Europe','Asia','Oceania','Latin America','Africa'],
-     ['Europe','Asia'])
+     ['North America','Europe','Asia','Oceania','Latin America','Africa'])
     year_university_df = university_df.loc[(university_df['year'] == YEAR) & (university_df['region'].isin(REGION))]
 
     d = pd.DataFrame(year_university_df.pivot_table(columns=['country'], aggfunc='size'))

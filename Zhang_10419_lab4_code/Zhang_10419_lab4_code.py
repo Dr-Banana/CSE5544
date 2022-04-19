@@ -62,21 +62,8 @@ d['country'] = d.index
 st.write(draw_map('count',YEAR))
 
 # ---------------------------------------------
-
-fig, ax = plt.subplots(figsize=(8,4), dpi=90)
-ax.spines['top'].set_visible(False)
-ax.spines['right'].set_visible(False)
-ax.spines['left'].set_visible(False)
-
-ax.tick_params(bottom=False)
-ax.get_yaxis().set_visible(False)
-
-sns.countplot(data=university_df, x='research_output', hue='type', palette=research_palette);
-
-for container in ax.containers:
-    ax.bar_label(container)
-
-plt.legend(edgecolor='#ff4800');
-ax.set_xlabel('Research Output', fontsize=13, color = '#ff4800');
-fig.suptitle('Research output of universities', fontsize=15, color = '#ff4800');
+sns.catplot(x="research_output", y="count", kind="point", data=research_size, hue='size', palette=custom_palette1);
+plt.xlabel('Research Output', fontsize=13, color = '#ff4800')
+plt.ylabel('Count', fontsize=13, color = '#ff4800')
+plt.title('Research output Vs Size of university', fontsize=15, color = '#ff4800');
 # st.pyplot(fig)

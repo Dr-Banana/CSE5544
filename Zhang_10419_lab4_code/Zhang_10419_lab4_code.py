@@ -68,7 +68,7 @@ research_size = pd.DataFrame(university_df.groupby(['research_output']).apply(la
 research_size = research_size.reset_index().rename(columns={'level_1': 'size', 'size': 'count'})
 fig, ax = plt.subplots()
 ax = sns.catplot(x="research_output", y="count", kind="point", data=research_size, hue='size', palette=custom_palette1);
-ax.set_xlabel('Research Output')
-ax.set_ylabel('Count')
-ax.set_title('Research output Vs Size of university', fontsize=15, color = '#ff4800');
+# ax.set_xlabel('Research Output')
+# ax.set_ylabel('Count')
+# ax.set_title('Research output Vs Size of university', fontsize=15, color = '#ff4800');
 st.pyplot(fig)

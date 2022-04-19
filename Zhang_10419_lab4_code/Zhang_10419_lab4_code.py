@@ -67,7 +67,7 @@ uni_df = year_university_df['university'].value_counts()
 
 fig, ax = plt.subplots(figsize=(10,20), dpi=150)
 my_cmap = sns.color_palette("light:#5A9", as_cmap=True)
-ax = sns.countplot(data=year_university_df, y='country', order=year_university_df.country.value_counts().index, cmap=my_cmap)
+ax = sns.countplot(data=year_university_df, y='country', order=year_university_df.country.value_counts().index, palette=my_cmap)
 plt.xlabel('Number of universities', fontsize=12, color = '#ff4800')
 plt.ylabel('Country', fontsize=12, color = '#ff4800')
 plt.title("Distribution of universities across countries", fontsize=14, color = '#ff4800');

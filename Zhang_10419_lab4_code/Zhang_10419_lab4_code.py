@@ -54,7 +54,7 @@ MODE = st.sidebar.radio('Select view',['Total number of universities in ranking 
 
 #  --------------------------------------------------------------------
 if MODE == 'Total number of universities in ranking by country':
-    YEAR = st.slider('Select the year', 2017, 2022, 1)
+    YEAR = st.slider('Select the year', 2017, 2022, 2017)
     year_university_df = university_df.loc[university_df['year'] == YEAR]
     d = pd.DataFrame(year_university_df.pivot_table(columns=['country'], aggfunc='size'))
 

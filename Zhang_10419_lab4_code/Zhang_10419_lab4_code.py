@@ -66,10 +66,10 @@ long_palette = ["#FA6E4F", "#F2CF59", "#FB8E7E", "#C5D7C0", "#8EC9BB", "#F8CA9D"
 custom_palette1 = sns.color_palette(long_palette)
 research_size = pd.DataFrame(university_df.groupby(['research_output']).apply(lambda df: df['size'].value_counts()))
 research_size = research_size.reset_index().rename(columns={'level_1': 'size', 'size': 'count'})
-fig, ax = plt.subplots()
+fig1, ax1 = plt.subplots()
 sns.set()
-ax = sns.catplot(x="research_output", y="count", kind="point", data=research_size, hue='size', palette=custom_palette1);
+ax1 = sns.catplot(x="research_output", y="count", kind="point", data=research_size, hue='size', palette=custom_palette1);
 # ax.set_xlabel('Research Output')
 # ax.set_ylabel('Count')
 # ax.set_title('Research output Vs Size of university', fontsize=15, color = '#ff4800');
-st.pyplot(fig)
+st.pyplot(fig1)

@@ -21,7 +21,7 @@ from vega_datasets import data
 
 def draw_map(mtype,y):
     
-    COLOR_THEME = {'count':"lighttealblue"}
+    COLOR_THEME = {'count':"lightgreyred"}
     d['num'] = d[mtype]
     source = alt.topo_feature(data.world_110m.url, "countries")
     
@@ -48,50 +48,18 @@ def draw_map(mtype,y):
     ) 
     
     return world_map
-  
-#  --------------------------------------------------------------------
-MODE = st.sidebar.radio('Select view',['Total number of universities in ranking by country','portion of public vs private university by by year'])
 
-#  --------------------------------------------------------------------
-if MODE == 'Total number of universities in ranking by country':
-    YEAR = st.slider('Select the year', 2017, 2022, 2017)
-    REGION = st.selectbox(
-     'Select continent', options = ['Global','North America','Europe','Asia','Oceania','Latin America','Africa'])
-    if(REGION == 'Global'):
-        year_university_df = university_df.loc[(university_df['year'] == YEAR)]
-    else:
-        year_university_df = university_df.loc[(university_df['year'] == YEAR) & (university_df['region'] == REGION)]
+ YEAR = st.slider('Select the year', 2017, 2022, 2017)
+ REGION = st.selectbox('Select continent', options = ['Global','North America','Europe','Asia','Oceania','Latin America','Africa'])
+ if(REGION == 'Global'):
+     year_university_df = university_df.loc[(university_df['year'] == YEAR)]
+ else:
+     year_university_df = university_df.loc[(university_df['year'] == YEAR) & (university_df['region'] == REGION)]
+        
+d = pd.DataFrame(university_df.pivot_table(columns=['country'], aggfunc='size'))
 
-    d = pd.DataFrame(university_df.pivot_table(columns=['country'], aggfunc='size'))
+d.columns = ['count']
+d['id'] = country_codes['Numeric']
+d['country'] = d.index
 
-    d.columns = ['count']
-    d['id'] = country_codes['Numeric']
-    d['country'] = d.index
-
-    st.write(draw_map('count',YEAR))
-
-else:
-    YEAR = st.selectbox('Select a year',
-                   options = [2017,2018,2019,2020,2021,2022])
-    year_university_df = university_df.loc[university_df['year'] == YEAR]
-    type_df = year_university_df['type'].value_counts()
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10,5))
-
-    pie_bar_colors = ['#FB8E7E','#8EC9BB']
-    explode = [0,0.1]
-    ax1.pie(year_university_df['type'].value_counts().values, labels = year_university_df['type'].value_counts().index, explode=explode, colors=pie_bar_colors, autopct='%1.1f%%') 
-    ax1.axis('equal')
-
-    ax2.bar(year_university_df['type'].value_counts().index, year_university_df['type'].value_counts().values, color=pie_bar_colors) 
-    ax2.spines['top'].set_visible(False)
-    ax2.spines['right'].set_visible(False)
-    ax2.spines['left'].set_visible(False)
-    ax2.tick_params(axis='both', which='both', labelsize=10, left=False, bottom=False)
-    ax2.get_yaxis().set_visible(False)
-    plt.title("University Types", fontsize=15, color = '#ff4800');
-
-    ax2.bar_label(ax2.containers[0])
-
-    fig.tight_layout()
-    fig.subplots_adjust(wspace=0.7)
-    st.pyplot(fig)
+st.write(draw_map('count',YEAR))

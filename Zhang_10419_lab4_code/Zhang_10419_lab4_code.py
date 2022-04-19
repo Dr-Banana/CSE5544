@@ -69,7 +69,7 @@ fig, ax = plt.subplots(figsize=(10,20), dpi=150)
 
 ax = sns.countplot(data=year_university_df, y='country', order=year_university_df.country.value_counts().index)
 diverging_colors = sns.color_palette("RdBu", 10)
-sns.palplot(diverging_colors)
+ax = sns.palplot(diverging_colors)
 plt.xlabel('Number of universities', fontsize=12, color = '#ff4800')
 plt.ylabel('Country', fontsize=12, color = '#ff4800')
 plt.title("Distribution of universities across countries", fontsize=14, color = '#ff4800');

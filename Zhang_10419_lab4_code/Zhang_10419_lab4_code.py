@@ -62,6 +62,7 @@ d['country'] = d.index
 st.write(draw_map('count',YEAR))
 
 # ---------------------------------------------
+research_size = research_size.reset_index().rename(columns={'level_1': 'size', 'size': 'count'})
 sns.catplot(x="research_output", y="count", kind="point", data=research_size, hue='size', palette=custom_palette1);
 plt.xlabel('Research Output', fontsize=13, color = '#ff4800')
 plt.ylabel('Count', fontsize=13, color = '#ff4800')

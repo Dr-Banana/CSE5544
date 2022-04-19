@@ -62,16 +62,12 @@ d['country'] = d.index
 st.write(draw_map('count',YEAR))
 
 # ---------------------------------------------
-long_palette = ["#FA6E4F", "#F2CF59", "#FB8E7E", "#C5D7C0", "#8EC9BB", "#F8CA9D", '#F69EAF', '#8F8CBC', '#7C5396', '#EA6382', '#6BEAF3', '#5A9DE2', '#DDAD64', '#EA876B', '#B98174', '#357866', '#625586', '#647B99']
-custom_palette1 = sns.color_palette(long_palette)
-research_size = pd.DataFrame(university_df.groupby(['research_output']).apply(lambda df: df['size'].value_counts()))
-research_size = research_size.reset_index().rename(columns={'level_1': 'size', 'size': 'count'})
 
-uni_df = university_df['university'].value_counts()
+uni_df = year_university_df['university'].value_counts()
 
 fig, ax = plt.subplots(figsize=(10,20), dpi=150)
 
-ax = sns.countplot(data=university_df, y='country', order=university_df.country.value_counts().index);
+ax = sns.countplot(data=year_university_df, y='country', order=year_university_df.country.value_counts().index);
 sns.light_palette("seagreen", as_cmap=True)
 plt.xlabel('Number of universities', fontsize=12, color = '#ff4800')
 plt.ylabel('Country', fontsize=12, color = '#ff4800')

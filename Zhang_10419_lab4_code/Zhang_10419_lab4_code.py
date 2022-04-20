@@ -75,7 +75,7 @@ plt.title("Distribution of universities across countries", fontsize=14, color = 
 st.pyplot(fig)
 
 # ---------------------------------------------Shloksah
-df = pd.read_csv('https://raw.githubusercontent.com/Dr-Banana/CSE5544/main/Zhang_10419_lab4_code/qs-world-university-rankings-2017-to-2022-V2.csv')
+df =  pd.read_csv('https://raw.githubusercontent.com/Dr-Banana/CSE5544/main/Zhang_10419_lab4_code/qs-world-university-rankings-2017-to-2022-V2.csv' ,sep=',', encoding='latin-1')
 df['research_output'] = df['research_output'].replace('Very high', 'Very High')
 df['international_students'] = df['international_students'].apply(lambda x: float(str(x).replace(',','')))
 df['faculty_count'] = df['faculty_count'].apply(lambda x: float(str(x).replace(',','')))

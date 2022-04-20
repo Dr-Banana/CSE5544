@@ -203,8 +203,7 @@ d = pd.DataFrame(year_university_df.pivot_table(columns=['country'], aggfunc='si
 d.columns = ['count']
 d['id'] = country_codes['Numeric']
 d['country'] = d.index
-fig1 = draw_map('count',start_year)
-st.plotly_chart(fig1, use_container_width=True)
+st.altair_chart(draw_map('count',start_year), use_container_width=True)
 st.write(draw_map('count',start_year))
 
 # ---------------------------------------------Shloksah---------------------------------------------

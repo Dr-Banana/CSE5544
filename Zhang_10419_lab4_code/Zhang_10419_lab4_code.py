@@ -18,45 +18,6 @@ st.set_page_config(
 # Create interface
 st.markdown("<div style='background:#e6e6e6'><h3 style='font-weight:bold; color:#ac2217'>QS Ranking Dashboard</h3></div>", unsafe_allow_html=True)
 
-# ---------------------------------------------Xuanzhi---------------------------------------------
-# Set Up
-country_codes = pd.read_csv('https://raw.githubusercontent.com/Dr-Banana/CSE5544/main/Zhang_10419_lab4_code/country_codes.csv' ,sep=',', encoding='latin-1')
-country_codes.set_index('English short name', inplace = True)
-
-
-#Reading file 
-university_df = pd.read_csv('https://raw.githubusercontent.com/Dr-Banana/CSE5544/main/Zhang_10419_lab4_code/qs-world-university-rankings-2017-to-2022-V2.csv' ,sep=',', encoding='latin-1')
-
-
-from vega_datasets import data
-
-def draw_map(mtype,y):
-    
-    COLOR_THEME = {'count':"lighttealblue"}
-    d['num'] = d[mtype]
-    source = alt.topo_feature(data.world_110m.url, "countries")
-    
-    world_map = (
-        alt.Chart(source, title=f'Universities in QS World University Rankings {y} ')
-        .mark_geoshape(stroke="black", strokeWidth=0.15)
-        .encode(
-            color=alt.Color(
-                "num:N", 
-                scale=alt.Scale(scheme=COLOR_THEME[mtype]), 
-                legend = None),
-            tooltip=[
-                alt.Tooltip("country:N", title="Country"),
-                alt.Tooltip("num:Q", title="Number of College"),
-            ],
-        )
-        .transform_lookup(
-            lookup="id",
-            from_=alt.LookupData(d, "id", ["country", "num"]),
-        )
-    ).configure_view(strokeWidth=0).properties(width=900, height=400).project("naturalEarth1")
-    
-    return world_map
-
 # ---------------------------------------------Dragon Xu---------------------------------------------
 
 # Read in the data from csv file
@@ -192,9 +153,46 @@ with panel2:
         )
         st.altair_chart(hist1.interactive(), use_container_width = True)
 
-        
-        
-        
+# ---------------------------------------------Xuanzhi---------------------------------------------
+# Set Up
+country_codes = pd.read_csv('https://raw.githubusercontent.com/Dr-Banana/CSE5544/main/Zhang_10419_lab4_code/country_codes.csv' ,sep=',', encoding='latin-1')
+country_codes.set_index('English short name', inplace = True)
+
+
+#Reading file 
+university_df = pd.read_csv('https://raw.githubusercontent.com/Dr-Banana/CSE5544/main/Zhang_10419_lab4_code/qs-world-university-rankings-2017-to-2022-V2.csv' ,sep=',', encoding='latin-1')
+
+
+from vega_datasets import data
+
+def draw_map(mtype,y):
+    
+    COLOR_THEME = {'count':"lighttealblue"}
+    d['num'] = d[mtype]
+    source = alt.topo_feature(data.world_110m.url, "countries")
+    
+    world_map = (
+        alt.Chart(source, title=f'Universities in QS World University Rankings {y} ')
+        .mark_geoshape(stroke="black", strokeWidth=0.15)
+        .encode(
+            color=alt.Color(
+                "num:N", 
+                scale=alt.Scale(scheme=COLOR_THEME[mtype]), 
+                legend = None),
+            tooltip=[
+                alt.Tooltip("country:N", title="Country"),
+                alt.Tooltip("num:Q", title="Number of College"),
+            ],
+        )
+        .transform_lookup(
+            lookup="id",
+            from_=alt.LookupData(d, "id", ["country", "num"]),
+        )
+    ).configure_view(strokeWidth=0).properties(width=2000, height=400).project("naturalEarth1")
+    
+    return world_map
+
+               
 if(REGION == 'Global'):
     year_university_df = university_df.loc[(university_df['year'] == start_year)]
 else:
@@ -208,7 +206,7 @@ d['country'] = d.index
 st.write(draw_map('count',start_year))
 
 # ---------------------------------------------Shloksah---------------------------------------------
-df =  pd.read_csv('https://raw.githubusercontent.com/Dr-Banana/CSE5544/main/Zhang_10419_lab4_code/qs-world-university-rankings-2017-to-2022-V2.csv' ,sep=',', encoding='latin-1')
+df =  pd.read_csv("https://raw.githubusercontent.com/CristoDragon/CSE5544-Lab3/main/QS_ranking.csv" ,sep=',', encoding='latin-1')
 df['research_output'] = df['research_output'].replace('Very high', 'Very High')
 df['international_students'] = df['international_students'].apply(lambda x: float(str(x).replace(',','')))
 df['faculty_count'] = df['faculty_count'].apply(lambda x: float(str(x).replace(',','')))

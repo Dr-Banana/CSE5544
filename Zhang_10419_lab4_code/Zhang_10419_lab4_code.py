@@ -110,13 +110,13 @@ with panel1:
     with columns[0]:
         type = st.radio('Choose the university type', ('Public', 'Private'))
         type_data = current_data.loc[df1['type'] == type]
-    # For the third widget, we create a selectbox to select university region
-    with columns[1]:
-        REGION = st.selectbox('Select continent', options = ['Global','North America','Europe','Asia','Oceania','Latin America','Africa']) 
     # For the third widget, we create a selectbox to select university size
     with columns[4]:
         size = st.selectbox('Choose the university size', ('XL', 'L', 'M', 'S'))
         size_data = type_data.loc[df1['size'] == size]
+    # For the fourth widget, we create a selectbox to select university region
+    with columns[6]:
+        REGION = st.selectbox('Select continent', options = ['Global','North America','Europe','Asia','Oceania','Latin America','Africa']) 
 
 
     # Create 2 plots

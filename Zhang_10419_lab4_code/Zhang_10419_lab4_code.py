@@ -238,7 +238,7 @@ if REGION != 'Global':
         y='score',
         color='university',
         tooltip= ['year', 'university', 'score','student_faculty_ratio', 'type', 'research_output']
-    ).properties(width=700, height=1500)
+    )
 
     st.altair_chart(chart1, use_container_width=True)
 else:

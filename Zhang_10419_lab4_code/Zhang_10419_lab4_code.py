@@ -15,6 +15,8 @@ import re
 st.set_page_config(
     layout="wide"
 )
+# Create interface
+st.markdown("<div style='background:#e6e6e6'><h3 style='font-weight:bold; color:#ac2217'>QS Ranking Dashboard</h3></div>", unsafe_allow_html=True)
 
 # ---------------------------------------------Xuanzhi---------------------------------------------
 # Set Up
@@ -55,30 +57,7 @@ def draw_map(mtype,y):
     
     return world_map
 
-YEAR = st.slider('Select the year', 2017, 2022, 2017)
-REGION = st.selectbox('Select continent', options = ['Global','North America','Europe','Asia','Oceania','Latin America','Africa']) 
-if(REGION == 'Global'):
-    year_university_df = university_df.loc[(university_df['year'] == YEAR)]
-else:
-    year_university_df = university_df.loc[(university_df['year'] == YEAR) & (university_df['region'] == REGION)]
-        
-d = pd.DataFrame(year_university_df.pivot_table(columns=['country'], aggfunc='size'))
-
-d.columns = ['count']
-d['id'] = country_codes['Numeric']
-d['country'] = d.index
-
-st.write(draw_map('count',YEAR))
-
-uni_df = year_university_df['university'].value_counts()
-
-fig, ax = plt.subplots(figsize=(10,20), dpi=150)
-color_p = sns.dark_palette("#69d", reverse=True, as_cmap=True)
-ax = sns.countplot(data=year_university_df, y='country', order=year_university_df.country.value_counts().index, palette = 'ch:start=.2,rot=-.3')
-plt.xlabel('Number of universities', fontsize=12, color = '#ff4800')
-plt.ylabel('Country', fontsize=12, color = '#ff4800')
-plt.title("Distribution of universities across countries", fontsize=14, color = '#ff4800');
-st.pyplot(fig)
+# YEAR = st.slider('Select the year', 2017, 2022, 2017)
 
 # ---------------------------------------------Shloksah---------------------------------------------
 # df =  pd.read_csv('https://raw.githubusercontent.com/Dr-Banana/CSE5544/main/Zhang_10419_lab4_code/qs-world-university-rankings-2017-to-2022-V2.csv' ,sep=',', encoding='latin-1')
@@ -113,11 +92,6 @@ qs_data['international_students'] = qs_data['international_students'].apply(lamb
 qs_data['faculty_count'] = qs_data['faculty_count'].apply(lambda x: float(str(x).replace(',','')))
 qs_data['rank_display'] = qs_data['rank_display'].apply(lambda x: float(re.sub(r'\W+', '', str(x))))
 
-
-
-# Create interface
-st.markdown("<div style='background:#e6e6e6'><h3 style='font-weight:bold; color:#ac2217'>QS Ranking Dashboard</h3></div>", unsafe_allow_html=True)
-#st.dataframe(qs_data.head(5))
 
 # Create the first panel 
 panel1 = st.container()
@@ -232,3 +206,30 @@ with panel2:
             alt.Color('region:N')
         )
         st.altair_chart(hist1.interactive(), use_container_width = True)
+
+        
+        
+        
+REGION = st.selectbox('Select continent', options = ['Global','North America','Europe','Asia','Oceania','Latin America','Africa']) 
+if(REGION == 'Global'):
+    year_university_df = university_df.loc[(university_df['year'] == start_year)]
+else:
+    year_university_df = university_df.loc[(university_df['year'] == start_year) & (university_df['region'] == REGION)]
+        
+d = pd.DataFrame(year_university_df.pivot_table(columns=['country'], aggfunc='size'))
+
+d.columns = ['count']
+d['id'] = country_codes['Numeric']
+d['country'] = d.index
+
+st.write(draw_map('count',start_year))
+
+uni_df = year_university_df['university'].value_counts()
+
+fig, ax = plt.subplots(figsize=(10,20), dpi=150)
+color_p = sns.dark_palette("#69d", reverse=True, as_cmap=True)
+ax = sns.countplot(data=year_university_df, y='country', order=year_university_df.country.value_counts().index, palette = 'ch:start=.2,rot=-.3')
+plt.xlabel('Number of universities', fontsize=12, color = '#ff4800')
+plt.ylabel('Country', fontsize=12, color = '#ff4800')
+plt.title("Distribution of universities across countries", fontsize=14, color = '#ff4800');
+st.pyplot(fig)

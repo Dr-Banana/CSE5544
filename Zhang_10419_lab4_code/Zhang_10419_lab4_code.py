@@ -98,7 +98,7 @@ panel1 = st.container()
 with panel1:
     with st.expander("Filter"):
         # Create 3 widgets to change conditions to filter data
-        columns = st.columns([1.1, 0.3, 3.1, 0.3, 2.1, 0.3, 2.1])
+        columns = st.columns([1.4, 0.3, 2.8, 0.3, 2.1, 0.3, 2.1])
         # For the first widget, we create a slider to select years
         with columns[2]:
             df1 = qs_data.copy()

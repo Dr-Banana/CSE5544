@@ -57,26 +57,7 @@ def draw_map(mtype,y):
     
     return world_map
 
-# YEAR = st.slider('Select the year', 2017, 2022, 2017)
-
-# ---------------------------------------------Shloksah---------------------------------------------
-# df =  pd.read_csv('https://raw.githubusercontent.com/Dr-Banana/CSE5544/main/Zhang_10419_lab4_code/qs-world-university-rankings-2017-to-2022-V2.csv' ,sep=',', encoding='latin-1')
-# df['research_output'] = df['research_output'].replace('Very high', 'Very High')
-# df['international_students'] = df['international_students'].apply(lambda x: float(str(x).replace(',','')))
-# df['faculty_count'] = df['faculty_count'].apply(lambda x: float(str(x).replace(',','')))
-# df['rank_display'] = df['rank_display'].apply(lambda x: float(re.sub(r'\W+', '', str(x))))
-# df_plt = df[df['year']==2022].groupby(by=['region','country']).agg({'international_students': np.sum,'score': np.max})#['international_students']
-# df_plt = df_plt.reset_index()
-# df_plt = df_plt.dropna()
-# fig = px.treemap(df_plt, path=[px.Constant("world"), 'region', 'country'], values='international_students',
-#                   color='score', 
-#                   color_continuous_scale='RdBu')
-
-# st.plotly_chart(fig, use_container_width=True)
-
 # ---------------------------------------------Dragon Xu---------------------------------------------
-
-# page setup
 
 # Read in the data from csv file
 qs_data = pd.read_csv("https://raw.githubusercontent.com/CristoDragon/CSE5544-Lab3/main/QS_ranking.csv", encoding='ISO-8859-1')
@@ -225,3 +206,18 @@ d['id'] = country_codes['Numeric']
 d['country'] = d.index
 
 st.write(draw_map('count',start_year))
+
+# ---------------------------------------------Shloksah---------------------------------------------
+df =  pd.read_csv('https://raw.githubusercontent.com/Dr-Banana/CSE5544/main/Zhang_10419_lab4_code/qs-world-university-rankings-2017-to-2022-V2.csv' ,sep=',', encoding='latin-1')
+df['research_output'] = df['research_output'].replace('Very high', 'Very High')
+df['international_students'] = df['international_students'].apply(lambda x: float(str(x).replace(',','')))
+df['faculty_count'] = df['faculty_count'].apply(lambda x: float(str(x).replace(',','')))
+df['rank_display'] = df['rank_display'].apply(lambda x: float(re.sub(r'\W+', '', str(x))))
+df_plt = df[df['year']==2022].groupby(by=['region','country']).agg({'international_students': np.sum,'score': np.max})#['international_students']
+df_plt = df_plt.reset_index()
+df_plt = df_plt.dropna()
+fig = px.treemap(df_plt, path=[px.Constant("world"), 'region', 'country'], values='international_students',
+                  color='score', 
+                  color_continuous_scale='RdBu')
+
+st.plotly_chart(fig, use_container_width=True)

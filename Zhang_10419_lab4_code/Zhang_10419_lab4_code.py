@@ -224,19 +224,23 @@ st.plotly_chart(fig, use_container_width=True)
 
 data = pd.read_csv("https://github.com/hwahoh/CSE5544-lab-final/blob/438797bb4119358b632991281763ec24273a9b45/qs-world-university-rankings-2017-to-2022-V2.csv?raw=true")
 
-dv1 = data.drop(columns=['link','logo'])
-dv1['score'] = dv1['score'].apply(pd.to_numeric, errors='coerce')
-#dv1['year'] = dv1['year'].apply(pd.to_numeric, errors='coerce', downcast='integer')
-regions = dv1['region'].drop_duplicates()
-countries = dv1['country'].loc[dv1['region'] == REGION].drop_duplicates()
-country_choice = st.selectbox('', countries)
+if REGION != 'Global':
+    dv1 = data.drop(columns=['link','logo'])
+    dv1['score'] = dv1['score'].apply(pd.to_numeric, errors='coerce')
+    #dv1['year'] = dv1['year'].apply(pd.to_numeric, errors='coerce', downcast='integer')
+    regions = dv1['region'].drop_duplicates()
+    countries = dv1['country'].loc[dv1['region'] == REGION].drop_duplicates()
+    country_choice = st.selectbox('', countries)
 
-dv1 = dv1[dv1['country'] == country_choice]
-chart1 = alt.Chart(dv1).mark_line().encode(
-    x='year:N',
-    y='score',
-    color='university',
-    tooltip= ['year', 'university', 'score','student_faculty_ratio', 'type', 'research_output']
-).properties(width=700, height=2000)
+    dv1 = dv1[dv1['country'] == country_choice]
+    chart1 = alt.Chart(dv1).mark_line().encode(
+        x='year:N',
+        y='score',
+        color='university',
+        tooltip= ['year', 'university', 'score','student_faculty_ratio', 'type', 'research_output']
+    ).properties(width=700, height=1500)
 
-st.altair_chart(chart1, use_container_width=True)
+    st.altair_chart(chart1, use_container_width=True)
+else:
+    st.markdown("""<style>.big-font {font-size:100px !important;}</style>""", unsafe_allow_html=True)
+    st.markdown('<p class="big-font">Please select the continent to show each university ranking!!</p>', unsafe_allow_html=True)

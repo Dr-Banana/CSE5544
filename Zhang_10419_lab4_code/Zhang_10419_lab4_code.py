@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 import altair as alt
+import plotly.express as px
 
 
 # Set Up
@@ -61,7 +62,7 @@ d['country'] = d.index
 
 st.write(draw_map('count',YEAR))
 
-# ---------------------------------------------
+# ---------------------------------------------Xuanzhi
 
 uni_df = year_university_df['university'].value_counts()
 
@@ -73,16 +74,17 @@ plt.ylabel('Country', fontsize=12, color = '#ff4800')
 plt.title("Distribution of universities across countries", fontsize=14, color = '#ff4800');
 st.pyplot(fig)
 
-import plotly.express as px
-data = dict(
-    character=["Eve", "Cain", "Seth", "Enos", "Noam", "Abel", "Awan", "Enoch", "Azura"],
-    parent=["", "Eve", "Eve", "Seth", "Seth", "Eve", "Eve", "Awan", "Eve" ],
-    value=[10, 14, 12, 10, 2, 6, 6, 4, 4])
+# ---------------------------------------------Shloksah
+df = pd.read_csv('https://raw.githubusercontent.com/Dr-Banana/CSE5544/main/Zhang_10419_lab4_code/qs-world-university-rankings-2017-to-2022-V2.csv')
+df['research_output'] = df['research_output'].replace('Very high', 'Very High')
+df['international_students'] = df['international_students'].apply(lambda x: float(str(x).replace(',','')))
+df['faculty_count'] = df['faculty_count'].apply(lambda x: float(str(x).replace(',','')))
+df['rank_display'] = df['rank_display'].apply(lambda x: float(re.sub(r'\W+', '', str(x))))
+df_plt = df[df['year']==2022].groupby(by=['region','country']).agg({'international_students': np.sum,'score': np.max})#['international_students']
+df_plt = df_plt.reset_index()
+df_plt = df_plt.dropna()
+fig = px.treemap(df_plt, path=[px.Constant("world"), 'region', 'country'], values='international_students',
+                  color='score', 
+                  color_continuous_scale='RdBu')
 
-fig = px.sunburst(
-    data,
-    names='character',
-    parents='parent',
-    values='value',
-)
-st.plotly_chart(fig, use_container_width=True)0
+st.plotly_chart(fig, use_container_width=True)

@@ -233,7 +233,7 @@ if REGION != 'Global':
     country_choice = st.selectbox('', countries)
 
     dv1 = dv1[dv1['country'] == country_choice]
-    chart1 = alt.Chart(dv1).mark_line().encode(
+    chart1 = alt.Chart(dv1).mark_line(point=alt.OverlayMarkDef()).encode(
         x='year:N',
         y='score',
         color='university',

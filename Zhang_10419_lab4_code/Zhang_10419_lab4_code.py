@@ -228,8 +228,7 @@ dv1 = data.drop(columns=['link','logo'])
 dv1['score'] = dv1['score'].apply(pd.to_numeric, errors='coerce')
 #dv1['year'] = dv1['year'].apply(pd.to_numeric, errors='coerce', downcast='integer')
 regions = dv1['region'].drop_duplicates()
-region_choice = st.selectbox('Select your universities:', regions)
-countries = dv1['country'].loc[dv1['region'] == region_choice].drop_duplicates()
+countries = dv1['country'].loc[dv1['region'] == REGION].drop_duplicates()
 country_choice = st.selectbox('', countries)
 
 dv1 = dv1[dv1['country'] == country_choice]
@@ -238,6 +237,6 @@ chart1 = alt.Chart(dv1).mark_line().encode(
     y='score',
     color='university',
     tooltip= ['year', 'university', 'score','student_faculty_ratio', 'type', 'research_output']
-)
+).properties(width=700, height=2000)
 
 st.altair_chart(chart1, use_container_width=True)

@@ -188,7 +188,7 @@ def draw_map(mtype,y):
             lookup="id",
             from_=alt.LookupData(d, "id", ["country", "num"]),
         )
-    ).configure_view(strokeWidth=0).properties(width=2000, height=400)
+    ).configure_view(strokeWidth=0).properties(width=800, height=400)
     
     
     return world_map

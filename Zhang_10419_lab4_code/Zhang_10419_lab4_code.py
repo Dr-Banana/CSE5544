@@ -242,5 +242,5 @@ if REGION != 'Global':
 
     st.altair_chart(chart1, use_container_width=True)
 else:
-    st.markdown("""<style>.big-font {font-size:100px !important;}</style>""", unsafe_allow_html=True)
-    st.markdown('<p class="big-font">Please select the continent to show each university ranking!!</p>', unsafe_allow_html=True)
+    st.markdown("""<style>.big-font {font-size:30px !important;}</style>""", unsafe_allow_html=True)
+    st.markdown('<p class="big-font">Please select continent to display university ranking!!</p>', unsafe_allow_html=True)

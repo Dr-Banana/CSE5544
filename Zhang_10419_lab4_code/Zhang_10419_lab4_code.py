@@ -188,7 +188,8 @@ def draw_map(mtype,y):
             lookup="id",
             from_=alt.LookupData(d, "id", ["country", "num"]),
         )
-    ).properties(width=800, height=400).project("naturalEarth1")
+    ).properties(width=1000, height=400)
+#     .configure_view(strokeWidth=0)
     
     return world_map
 
@@ -203,7 +204,8 @@ d.columns = ['count']
 d['id'] = country_codes['Numeric']
 d['country'] = d.index
 
-st.write(draw_map('count',start_year))
+st.plotly_chart(draw_map('count',start_year), use_container_width=True)
+# st.write(draw_map('count',start_year))
 
 # ---------------------------------------------Shloksah---------------------------------------------
 df =  pd.read_csv("https://raw.githubusercontent.com/CristoDragon/CSE5544-Lab3/main/QS_ranking.csv" ,sep=',', encoding='latin-1')

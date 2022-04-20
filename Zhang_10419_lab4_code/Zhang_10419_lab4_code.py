@@ -85,10 +85,4 @@ fig = px.sunburst(
     parents='parent',
     values='value',
 )
-st.plotly_chart(fig, use_container_width=True)
-
-st.write(university_df.groupby(['research_output']))
-
-research_size = pd.DataFrame(university_df.groupby(['research_output']).apply(lambda df: df['size'].value_counts()))
-
-st.dataframe(research_size)
+st.plotly_chart(fig, use_container_width=True)0

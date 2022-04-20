@@ -12,6 +12,10 @@ plt.rcParams['axes.edgecolor']='#FA6E4F'
 plt.rcParams['font.family'] = 'monospace'
 import re
 
+st.set_page_config(
+    layout="wide"
+)
+
 # ---------------------------------------------Xuanzhi---------------------------------------------
 # Set Up
 country_codes = pd.read_csv('https://raw.githubusercontent.com/Dr-Banana/CSE5544/main/Zhang_10419_lab4_code/country_codes.csv' ,sep=',', encoding='latin-1')
@@ -94,9 +98,7 @@ st.pyplot(fig)
 # ---------------------------------------------Dragon Xu---------------------------------------------
 
 # page setup
-# st.set_page_config(
-#     layout="wide"
-# )
+
 # Read in the data from csv file
 qs_data = pd.read_csv("https://raw.githubusercontent.com/CristoDragon/CSE5544-Lab3/main/QS_ranking.csv", encoding='ISO-8859-1')
 # Drop rows with more than 4 missing values

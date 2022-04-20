@@ -53,7 +53,7 @@ def draw_map(mtype,y):
             lookup="id",
             from_=alt.LookupData(d, "id", ["country", "num"]),
         )
-    ).configure_view(strokeWidth=0).properties(width=700, height=400).project("naturalEarth1")
+    ).configure_view(strokeWidth=0).properties(width=900, height=400).project("naturalEarth1")
     
     return world_map
 
@@ -217,19 +217,8 @@ else:
     year_university_df = university_df.loc[(university_df['year'] == start_year) & (university_df['region'] == REGION)]
         
 d = pd.DataFrame(year_university_df.pivot_table(columns=['country'], aggfunc='size'))
-
 d.columns = ['count']
 d['id'] = country_codes['Numeric']
 d['country'] = d.index
 
 st.write(draw_map('count',start_year))
-
-uni_df = year_university_df['university'].value_counts()
-
-fig, ax = plt.subplots(figsize=(10,20), dpi=150)
-color_p = sns.dark_palette("#69d", reverse=True, as_cmap=True)
-ax = sns.countplot(data=year_university_df, y='country', order=year_university_df.country.value_counts().index, palette = 'ch:start=.2,rot=-.3')
-plt.xlabel('Number of universities', fontsize=12, color = '#ff4800')
-plt.ylabel('Country', fontsize=12, color = '#ff4800')
-plt.title("Distribution of universities across countries", fontsize=14, color = '#ff4800');
-st.pyplot(fig)

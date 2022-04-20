@@ -96,27 +96,28 @@ qs_data['rank_display'] = qs_data['rank_display'].apply(lambda x: float(re.sub(r
 # Create the first panel 
 panel1 = st.container()
 with panel1:
-    # Create 3 widgets to change conditions to filter data
-    columns = st.columns([1.1, 0.3, 3.1, 0.3, 2.1, 0.3, 2.1])
-    # For the first widget, we create a slider to select years
-    with columns[2]:
-        df1 = qs_data.copy()
-        df1["log(international_students)"] = np.log(df1["international_students"])
-        df1["log(student_faculty_ratio)"] = np.log(df1["student_faculty_ratio"])
-        df1["log(faculty_count)"] = np.log(df1["faculty_count"])
-        start_year = st.slider("Select the year", 2017, 2022, 2017)
-        current_data = df1.loc[df1['year'] == start_year]
-    # For the second widget, we create a selectbox to select university type
-    with columns[0]:
-        type = st.radio('Choose the university type', ('Public', 'Private'))
-        type_data = current_data.loc[df1['type'] == type]
-    # For the third widget, we create a selectbox to select university size
-    with columns[4]:
-        size = st.selectbox('Choose the university size', ('XL', 'L', 'M', 'S'))
-        size_data = type_data.loc[df1['size'] == size]
-    # For the fourth widget, we create a selectbox to select university region
-    with columns[6]:
-        REGION = st.selectbox('Select continent', options = ['Global','North America','Europe','Asia','Oceania','Latin America','Africa']) 
+    with st.expander("Filter"):
+        # Create 3 widgets to change conditions to filter data
+        columns = st.columns([1.1, 0.3, 3.1, 0.3, 2.1, 0.3, 2.1])
+        # For the first widget, we create a slider to select years
+        with columns[2]:
+            df1 = qs_data.copy()
+            df1["log(international_students)"] = np.log(df1["international_students"])
+            df1["log(student_faculty_ratio)"] = np.log(df1["student_faculty_ratio"])
+            df1["log(faculty_count)"] = np.log(df1["faculty_count"])
+            start_year = st.slider("Select the year", 2017, 2022, 2017)
+            current_data = df1.loc[df1['year'] == start_year]
+        # For the second widget, we create a selectbox to select university type
+        with columns[0]:
+            type = st.radio('Choose the university type', ('Public', 'Private'))
+            type_data = current_data.loc[df1['type'] == type]
+        # For the third widget, we create a selectbox to select university size
+        with columns[4]:
+            size = st.selectbox('Choose the university size', ('XL', 'L', 'M', 'S'))
+            size_data = type_data.loc[df1['size'] == size]
+        # For the fourth widget, we create a selectbox to select university region
+        with columns[6]:
+            REGION = st.selectbox('Select continent', options = ['Global','North America','Europe','Asia','Oceania','Latin America','Africa']) 
 
 
     # Create 2 plots
